@@ -1,0 +1,26 @@
+{
+  "siteName": "HelpVloggers",
+  "siteUrl": "https://helpvloggers.com",
+  "titleTemplate": "%s | HelpVloggers Creator Gear & Multi-Store Price Comparison",
+  "defaultMetaDescription": "Compare vlogging cameras, wireless mics, gimbals, lighting, and smartphone setups across Amazon, B&H Photo, Adorama, and Best Buy. Real creator benchmark tests & price drop alerts.",
+  "affiliateSettings": {
+    "linkPrefix": "/go/",
+    "defaultRel": "nofollow sponsored",
+    "retailers": {
+      "amazon": { "tag": "helpvloggers-20", "label": "Amazon" },
+      "bhphoto": { "tag": "helpvloggers_bh", "label": "B&H Photo Video" },
+      "adorama": { "tag": "helpvloggers_ado", "label": "Adorama" },
+      "bestbuy": { "tag": "helpvloggers_bb", "label": "Best Buy" },
+      "dji": { "tag": "helpvloggers_dji", "label": "DJI Official Store" }
+    }
+  },
+  "socialLinks": {
+    "youtube": "@helpvloggers",
+    "twitter": "@helpvloggers",
+    "instagram": "@helpvloggers"
+  },
+  "structuredDataDefaults": {
+    "organizationName": "HelpVloggers Creator Testing Labs",
+    "logoUrl": "https://helpvloggers.com/assets/logo.png"
+  }
+}

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemap.org/schemas/sitemap/0.9">
+  <!-- Homepage Hub -->
+  <url>
+    <loc>https://helpvloggers.com/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- 6 Category Hubs -->
+  <url>
+    <loc>https://helpvloggers.com/category/vlogging-mics/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://helpvloggers.com/category/vlogging-cameras/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://helpvloggers.com/category/smartphone-vlogging/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://helpvloggers.com/category/gimbals-tripods/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://helpvloggers.com/category/vlogging-lighting/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://helpvloggers.com/category/creator-accessories/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Product Review Spokes -->
+  <url><loc>https://helpvloggers.com/product/dji-mic-2/</loc><lastmod>2026-09-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://helpvloggers.com/product/rode-wireless-pro/</loc><lastmod>2026-09-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://helpvloggers.com/product/boya-by-v20/</loc><lastmod>2026-09-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://helpvloggers.com/product/hollyland-lark-m2/</loc><lastmod>2026-09-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://helpvloggers.com/product/rode-videomic-go-ii/</loc><lastmod>2026-09-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://helpvloggers.com/product/sony-zv-e10-ii/</loc><lastmod>2026-09-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://helpvloggers.com/product/dji-osmo-pocket-3/</loc><lastmod>2026-09-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://helpvloggers.com/product/canon-eos-r50/</loc><lastmod>2026-09-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://helpvloggers.com/product/insta360-x4/</loc><lastmod>2026-09-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://helpvloggers.com/product/smallrig-universal-phone-cage/</loc><lastmod>2026-09-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://helpvloggers.com/product/moment-t-series-mobile-lenses/</loc><lastmod>2026-09-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://helpvloggers.com/product/shiftcam-snapgrip/</loc><lastmod>2026-09-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://helpvloggers.com/product/dji-osmo-mobile-6/</loc><lastmod>2026-09-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://helpvloggers.com/product/joby-gorillapod-3k/</loc><lastmod>2026-09-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://helpvloggers.com/product/insta360-flow-pro/</loc><lastmod>2026-09-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://helpvloggers.com/product/ulanzi-vl49-rgb/</loc><lastmod>2026-09-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://helpvloggers.com/product/aputure-amaran-mc/</loc><lastmod>2026-09-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://helpvloggers.com/product/godox-es45/</loc><lastmod>2026-09-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://helpvloggers.com/product/desview-t3-teleprompter/</loc><lastmod>2026-09-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://helpvloggers.com/product/sandisk-extreme-pro-256gb/</loc><lastmod>2026-09-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://helpvloggers.com/product/anker-737-power-bank/</loc><lastmod>2026-09-19</lastmod><priority>0.8</priority></url>
+
+  <!-- Comparison Head-to-Head Pages -->
+  <url><loc>https://helpvloggers.com/compare/dji-mic-2-vs-rode-wireless-pro/</loc><lastmod>2026-09-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://helpvloggers.com/compare/dji-osmo-pocket-3-vs-sony-zv-e10-ii/</loc><lastmod>2026-09-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://helpvloggers.com/compare/dji-osmo-mobile-6-vs-insta360-flow-pro/</loc><lastmod>2026-09-19</lastmod><priority>0.8</priority></url>
+
+  <!-- Educational Blog Clusters -->
+  <url><loc>https://helpvloggers.com/blog/iphone-vlogging-beginner-guide/</loc><lastmod>2026-09-19</lastmod><priority>0.7</priority></url>
+  <url><loc>https://helpvloggers.com/blog/fix-wind-noise-wireless-mics/</loc><lastmod>2026-09-19</lastmod><priority>0.7</priority></url>
+  <url><loc>https://helpvloggers.com/blog/dji-osmo-pocket-3-worth-it-review/</loc><lastmod>2026-09-19</lastmod><priority>0.7</priority></url>
+  <url><loc>https://helpvloggers.com/blog/budget-vlogging-setup-under-300/</loc><lastmod>2026-09-19</lastmod><priority>0.7</priority></url>
+</urlset>

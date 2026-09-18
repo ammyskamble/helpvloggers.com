@@ -1,0 +1,146 @@
+{
+  "domain": "HelpVloggers.com",
+  "niche": "Complete Vlogging Gear, Cameras, Audio, Stabilization, Lighting & Creator Equipment",
+  "competitor_gap_fillers": [
+    {
+      "gap_type": "Interactive Setup Builder & Compatibility Tool",
+      "competitor_flaw": "Static text reviews without cross-product compatibility checks",
+      "our_solution": "Interactive 'Build My Vlogging Kit' tool checking mic mounts, gimbal weight limits, and camera hot shoe compatibility",
+      "target_keywords": [
+        "vlogging kit compatibility checker",
+        "custom vlogging setup builder",
+        "iphone vlogging rig builder"
+      ]
+    },
+    {
+      "gap_type": "Multi-Store Live Price Drop & Deal Aggregator",
+      "competitor_flaw": "Single retailer links (Amazon only) with outdated static prices",
+      "our_solution": "Real-time 5-retailer price matrix (Amazon, B&H Photo, Adorama, Best Buy, DJI Store) with price drop notifications",
+      "target_keywords": [
+        "cheapest dji osmo pocket 3 deal",
+        "rode wireless pro discount price",
+        "sony zv-e10 lowest price comparison"
+      ]
+    },
+    {
+      "gap_type": "Real Creator Benchmark Testing Data",
+      "competitor_flaw": "Generic marketing specs without real-world testing evidence",
+      "our_solution": "Raw audio sound floor clips, low-light noise comparisons, battery drain benchmarks, wind-noise mitigation scores",
+      "target_keywords": [
+        "dji mic 2 audio quality test clips",
+        "sony zv-e10 battery life real test",
+        "insta360 flow tracking test outdoor"
+      ]
+    },
+    {
+      "gap_type": "Niche-Specific Vlogging Guides",
+      "competitor_flaw": "Generic 'best camera' lists ignoring specific vlogging styles",
+      "our_solution": "Dedicated guides for Moto-Vlogging, Travel-Vlogging, Fitness/Sports, Beauty/Desk-Vlogging, and Food Vlogging",
+      "target_keywords": [
+        "best moto vlogging setup with helmet mic",
+        "best travel vlogging setup lightweight",
+        "desk vlogging camera setup under 1000",
+        "gym vlogging camera setup"
+      ]
+    }
+  ],
+  "primary_categories": [
+    {
+      "name": "Vlogging Microphones & Audio",
+      "hub_url": "/category/vlogging-mics/",
+      "target_keywords": [
+        { "term": "best vlogging microphone", "volume": 22400, "intent": "Commercial", "kd": "Medium" },
+        { "term": "wireless bluetooth mic for vlogging", "volume": 18100, "intent": "Commercial", "kd": "Low" },
+        { "term": "best lavalier mic for iphone vlogging", "volume": 12500, "intent": "Transactional", "kd": "Low" },
+        { "term": "shotgun mic vs lavalier for outdoor vlogging", "volume": 9800, "intent": "Informational", "kd": "Low" },
+        { "term": "best noise cancelling mic for youtube vlogs", "volume": 8400, "intent": "Transactional", "kd": "Low" }
+      ]
+    },
+    {
+      "name": "Vlogging Cameras & Pocket Cams",
+      "hub_url": "/category/vlogging-cameras/",
+      "target_keywords": [
+        { "term": "best compact camera for vlogging", "volume": 40500, "intent": "Commercial", "kd": "High" },
+        { "term": "4k vlogging camera under 500", "volume": 27100, "intent": "Transactional", "kd": "Medium" },
+        { "term": "best cheap vlogging camera for youtube", "volume": 19400, "intent": "Commercial", "kd": "Low" },
+        { "term": "best flip screen camera for self vlogging", "volume": 14500, "intent": "Commercial", "kd": "Low" },
+        { "term": "best 360 action camera for travel vlogs", "volume": 11200, "intent": "Transactional", "kd": "Low" }
+      ]
+    },
+    {
+      "name": "Smartphone Vlogging Gear & Rigs",
+      "hub_url": "/category/smartphone-vlogging/",
+      "target_keywords": [
+        { "term": "iphone vlogging setup for beginners", "volume": 16800, "intent": "Commercial", "kd": "Low" },
+        { "term": "best smartphone vlogging kit with light and mic", "volume": 14200, "intent": "Transactional", "kd": "Low" },
+        { "term": "smartphone vlogging rig case and handles", "volume": 8900, "intent": "Transactional", "kd": "Low" },
+        { "term": "best magsafe vlogging grip for iphone", "volume": 7600, "intent": "Transactional", "kd": "Low" }
+      ]
+    },
+    {
+      "name": "Gimbals, Tripods & Stabilization",
+      "hub_url": "/category/gimbals-tripods/",
+      "target_keywords": [
+        { "term": "best smartphone gimbal for vlogging", "volume": 33100, "intent": "Commercial", "kd": "Medium" },
+        { "term": "flexible tripod for camera and phone", "volume": 15600, "intent": "Transactional", "kd": "Low" },
+        { "term": "lightweight camera gimbal for travel vlogging", "volume": 11800, "intent": "Commercial", "kd": "Low" },
+        { "term": "suction cup mount for car vlogging", "volume": 6400, "intent": "Transactional", "kd": "Low" }
+      ]
+    },
+    {
+      "name": "Vlogging Lighting & Illumination",
+      "hub_url": "/category/vlogging-lighting/",
+      "target_keywords": [
+        { "term": "best portable light for video vlogging", "volume": 18200, "intent": "Commercial", "kd": "Low" },
+        { "term": "mini led camera light for night vlogs", "volume": 11400, "intent": "Transactional", "kd": "Low" },
+        { "term": "ring light vs key light for youtube vlogging", "volume": 9100, "intent": "Informational", "kd": "Low" }
+      ]
+    },
+    {
+      "name": "Creator Tech & Essential Accessories",
+      "hub_url": "/category/creator-accessories/",
+      "target_keywords": [
+        { "term": "portable teleprompter for smartphone vlogging", "volume": 12900, "intent": "Transactional", "kd": "Low" },
+        { "term": "fastest sd card for 4k 120fps video recording", "volume": 14100, "intent": "Commercial", "kd": "Low" },
+        { "term": "best power bank for long camera vlogging sessions", "volume": 8700, "intent": "Transactional", "kd": "Low" },
+        { "term": "vlogging backpack with camera gear dividers", "volume": 10300, "intent": "Commercial", "kd": "Low" }
+      ]
+    }
+  ],
+  "comparison_keywords": [
+    "dji mic 2 vs rode wireless pro",
+    "dji osmo pocket 3 vs sony zv-e10",
+    "dji osmo mobile 6 vs insta360 flow pro",
+    "sony zv-1 II vs canon g7x mark iii",
+    "gopro hero 12 vs insta360 ace pro",
+    "boya by-v20 vs rode wireless me",
+    "hollyland lark m2 vs dji mic 2",
+    "aputure amaran mc vs ulazi vl49 rgb"
+  ],
+  "blog_content_clusters": [
+    {
+      "cluster_name": "Beginner Setup Guides & Workflows",
+      "articles": [
+        { "title": "How to Start Vlogging on iPhone: Complete 2026 Gear & Settings Guide", "slug": "iphone-vlogging-beginner-guide" },
+        { "title": "Step-by-Step Moto Vlogging Setup: Helmet Mic, Camera & Audio Wiring", "slug": "moto-vlogging-setup-guide" },
+        { "title": "Travel Vlogging Masterclass: How to Pack Light Without Losing Quality", "slug": "travel-vlogging-gear-packing-guide" }
+      ]
+    },
+    {
+      "cluster_name": "Problem Solving & Audio/Video Troubleshooting",
+      "articles": [
+        { "title": "How to Fix Wind Noise & Audio Muffling on Outdoor Wireless Mics", "slug": "fix-wind-noise-wireless-mics" },
+        { "title": "Why Your Vlogging Videos Look Blurry: 4K Frame Rate & Shutter Speed Fix", "slug": "fix-blurry-vlogging-video" },
+        { "title": "How to Connect Wireless Mic to iPhone 15 & 16 (USB-C & Lightning Fix)", "slug": "connect-wireless-mic-iphone-usb-c" }
+      ]
+    },
+    {
+      "cluster_name": "Buyer Decision & Value Breakdown ('Is It Worth It?')",
+      "articles": [
+        { "title": "Is DJI Osmo Pocket 3 Worth $519 for Beginner Vloggers? 6-Month Review", "slug": "dji-osmo-pocket-3-worth-it-review" },
+        { "title": "Do You Really Need a 3-Axis Gimbal for Smartphone Vlogging?", "slug": "do-you-need-gimbal-iphone-vlogging" },
+        { "title": "Sony ZV-E10 II vs Smartphone: Should You Upgrade to a Mirrorless Cam?", "slug": "sony-zv-e10-ii-vs-smartphone" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+Allow: /products/
+Allow: /categories/
+Allow: /reviews/
+Allow: /blog/
+Allow: /images/
+
+Disallow: /search/
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /my-account/
+Disallow: /wp-admin/
+Disallow: /go/
+Disallow: /out/
+Disallow: /*?add-to-cart=*
+Disallow: /*?filter_*
+
+Sitemap: https://bluetooth.com/sitemap.xml

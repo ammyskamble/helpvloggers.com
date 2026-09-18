@@ -1,0 +1,89 @@
+{
+  "ProductSchema": {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "{{PRODUCT_TITLE}}",
+    "image": [
+      "{{PRODUCT_IMAGE_URL}}"
+    ],
+    "description": "{{PRODUCT_DESCRIPTION}}",
+    "sku": "{{PRODUCT_SKU}}",
+    "brand": {
+      "@type": "Brand",
+      "name": "{{BRAND_NAME}}"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "USD",
+      "lowPrice": "{{LOW_PRICE}}",
+      "highPrice": "{{HIGH_PRICE}}",
+      "offerCount": "{{OFFER_COUNT}}",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Amazon",
+          "url": "{{AMAZON_AFFILIATE_URL}}",
+          "price": "{{AMAZON_PRICE}}",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "name": "B&H Photo Video",
+          "url": "{{BH_AFFILIATE_URL}}",
+          "price": "{{BH_PRICE}}",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        }
+      ]
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "{{RATING_VALUE}}",
+      "reviewCount": "{{REVIEW_COUNT}}"
+    }
+  },
+  "BlogArticleSchema": {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "{{ARTICLE_TITLE}}",
+    "description": "{{ARTICLE_EXCERPT}}",
+    "author": {
+      "@type": "Organization",
+      "name": "HelpVloggers Creator Lab"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "HelpVloggers.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://helpvloggers.com/assets/logo.png"
+      }
+    },
+    "mainEntityOfPage": "{{ARTICLE_URL}}"
+  },
+  "BreadcrumbSchema": {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://helpvloggers.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{CATEGORY_NAME}}",
+        "item": "https://helpvloggers.com/category/{{CATEGORY_SLUG}}/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "{{PAGE_TITLE}}",
+        "item": "{{CURRENT_URL}}"
+      }
+    ]
+  }
+}
