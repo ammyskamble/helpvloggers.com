@@ -149,8 +149,8 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
           </div>
         </Link>
 
-        {/* E-Commerce Search Bar with Instant Suggestions Dropdown (MicPrice / Amazon Unified Style) */}
-        <div ref={searchWrapRef} style={{ position: 'relative', maxWidth: '640px', flex: 1, margin: '0 16px' }}>
+        {/* E-Commerce Search Bar with Centered Modern Layout & Instant Suggestions */}
+        <div ref={searchWrapRef} style={{ position: 'relative', maxWidth: '680px', flex: 1, margin: '0 24px' }}>
           <form 
             onSubmit={handleSearchSubmit} 
             style={{
@@ -158,12 +158,14 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
               alignItems: 'center',
               width: '100%',
               margin: 0,
-              background: 'rgba(15, 23, 42, 0.9)',
-              border: isDropdownOpen ? '1px solid #00f2fe' : '1px solid rgba(255, 255, 255, 0.16)',
-              borderRadius: '28px',
+              background: 'rgba(11, 17, 38, 0.95)',
+              border: isDropdownOpen ? '1px solid #00f2fe' : '1px solid rgba(255, 255, 255, 0.2)',
+              borderRadius: '30px',
               overflow: 'hidden',
-              boxShadow: isDropdownOpen ? '0 0 15px rgba(0, 242, 254, 0.25)' : 'none',
-              transition: 'all 0.2s ease'
+              boxShadow: isDropdownOpen 
+                ? '0 0 20px rgba(0, 242, 254, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.1)' 
+                : '0 2px 10px rgba(0, 0, 0, 0.3)',
+              transition: 'all 0.25s ease'
             }}
           >
             {/* Category Filter Select */}
@@ -171,16 +173,16 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
               value={searchCategory}
               onChange={(e) => setSearchCategory(e.target.value)}
               style={{
-                background: 'rgba(255, 255, 255, 0.05)',
+                background: 'rgba(255, 255, 255, 0.06)',
                 color: '#00f2fe',
                 border: 'none',
-                borderRight: '1px solid rgba(255, 255, 255, 0.12)',
-                padding: '10px 14px',
-                fontSize: '0.8rem',
-                fontWeight: 700,
+                borderRight: '1px solid rgba(255, 255, 255, 0.14)',
+                padding: '12px 16px',
+                fontSize: '0.82rem',
+                fontWeight: 800,
                 outline: 'none',
                 cursor: 'pointer',
-                maxWidth: '145px'
+                maxWidth: '150px'
               }}
             >
               <option value="all" style={{ background: '#0a0d24', color: '#fff' }}>All Categories</option>
@@ -195,7 +197,7 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
             <input
               type="text"
               placeholder={market === 'india' 
-                ? "Search Indian gear (Digitek mic, Boya BY-M1, Tygot, Ring light)..."
+                ? "Search Indian creator gear (Digitek mic, Boya, Tygot tripod, Ring light)..."
                 : "Search global gear (DJI Mic 2, Sony ZV-E10, SmallRig, Pocket 3)..."
               }
               value={query || ''}
@@ -209,10 +211,10 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
                 background: 'transparent',
                 border: 'none',
                 color: '#fff',
-                padding: '10px 16px',
-                fontSize: '0.88rem',
+                padding: '12px 18px',
+                fontSize: '0.92rem',
                 outline: 'none',
-                minWidth: '120px'
+                minWidth: '140px'
               }}
             />
 
@@ -224,34 +226,41 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
                   setQuery('');
                   setIsDropdownOpen(false);
                 }}
-                style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', padding: '0 8px' }}
+                style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', padding: '0 10px' }}
                 title="Clear search"
               >
-                <X size={15} />
+                <X size={16} />
               </button>
             )}
 
-            {/* Search Submit Button with Icon and Text (MicPrice style!) */}
+            {/* Search Submit Button with High Contrast Gradient */}
             <button 
               type="submit" 
               style={{ 
                 background: 'linear-gradient(135deg, #ff9900 0%, #ff5722 100%)', 
                 color: '#fff', 
                 border: 'none', 
-                padding: '10px 20px', 
-                fontWeight: 800,
-                fontSize: '0.82rem',
+                padding: '12px 24px', 
+                fontWeight: 900,
+                fontSize: '0.85rem',
                 cursor: 'pointer', 
                 display: 'flex', 
                 alignItems: 'center',
-                gap: '6px',
+                gap: '8px',
                 height: '100%',
-                transition: 'opacity 0.2s ease'
+                boxShadow: '0 2px 12px rgba(255, 120, 0, 0.35)',
+                transition: 'all 0.2s ease'
               }}
-              onMouseEnter={(e) => e.currentTarget.style.opacity = '0.9'}
-              onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.opacity = '0.95';
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(255, 120, 0, 0.5)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.opacity = '1';
+                e.currentTarget.style.boxShadow = '0 2px 12px rgba(255, 120, 0, 0.35)';
+              }}
             >
-              <Search size={15} />
+              <Search size={16} />
               <span>Search</span>
             </button>
           </form>

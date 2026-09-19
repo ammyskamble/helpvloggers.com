@@ -9,6 +9,7 @@ import {
 
 import CategoryBrandBanners from '../components/CategoryBrandBanners';
 import SmartphoneVloggingGuide from '../components/SmartphoneVloggingGuide';
+import CreatorTestimonials from '../components/CreatorTestimonials';
 
 const CATEGORY_HUBS = [
   {
@@ -482,76 +483,93 @@ export default function HomePage() {
                 {product.discountPercent > 0 && (
                   <div style={{
                     position: 'absolute',
-                    top: 12,
-                    left: 12,
-                    background: '#ff2d55',
+                    top: 10,
+                    left: 10,
+                    background: 'linear-gradient(135deg, #ff0844 0%, #ff4b2b 100%)',
                     color: '#fff',
-                    padding: '3px 9px',
+                    padding: '4px 10px',
                     borderRadius: '6px',
-                    fontSize: '0.74rem',
+                    fontSize: '0.8rem',
                     fontWeight: 900,
-                    letterSpacing: '0.5px'
+                    letterSpacing: '0.5px',
+                    boxShadow: '0 4px 12px rgba(255, 8, 68, 0.5)',
+                    zIndex: 3
                   }}>
-                    - {product.discountPercent}%
+                    -{product.discountPercent}% OFF
                   </div>
                 )}
 
                 <div style={{
                   position: 'absolute',
-                  top: 12,
-                  right: 12,
+                  top: 10,
+                  right: 10,
                   background: 'rgba(0, 0, 0, 0.75)',
                   color: '#fff',
-                  padding: '2px 8px',
+                  padding: '3px 8px',
                   borderRadius: '12px',
-                  fontSize: '0.7rem',
+                  fontSize: '0.72rem',
                   fontWeight: 700,
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '3px'
+                  gap: '3px',
+                  zIndex: 3
                 }}>
-                  <Star size={11} fill="#f6d365" color="#f6d365" /> {product.rating}
+                  <Star size={12} fill="#f6d365" color="#f6d365" /> {product.rating}
                 </div>
               </div>
 
               {/* Product Details */}
               <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
                 <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.72rem', color: 'var(--text-muted)', marginBottom: '4px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.74rem', color: 'var(--text-muted)', marginBottom: '6px' }}>
                     <span style={{ color: market === 'india' ? '#00f2fe' : '#ff9900', fontWeight: 800 }}>{product.brand}</span>
                     <span>{product.origin || 'Verified'}</span>
                   </div>
 
-                  <h3 style={{ fontSize: '0.88rem', fontWeight: 700, lineHeight: 1.35, marginBottom: '10px', height: '38px', overflow: 'hidden' }}>
+                  <h3 style={{ fontSize: '0.92rem', fontWeight: 700, lineHeight: 1.35, marginBottom: '12px', height: '40px', overflow: 'hidden' }}>
                     <Link to={`/product/${product.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
                       {product.title}
                     </Link>
                   </h3>
 
-                  {/* Price Block */}
-                  <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', marginBottom: '14px' }}>
-                    <span style={{ fontSize: '1.25rem', fontWeight: 900, color: market === 'india' ? '#00f2fe' : '#ff9900' }}>
-                      {formatPrice(product.priceINR, product.priceUSD)}
-                    </span>
-                    {product.mrpINR && (
-                      <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textDecoration: 'line-through' }}>
-                        {market === 'india' 
-                          ? `₹${product.mrpINR.toLocaleString('en-IN')}`
-                          : `$${((product.mrpINR / 83) || product.priceUSD * 1.3).toFixed(2)}`
-                        }
+                  {/* High-Contrast Price Block */}
+                  <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', flexWrap: 'wrap', gap: '6px', marginBottom: '14px' }}>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
+                      <span style={{ fontSize: '1.4rem', fontWeight: 900, color: market === 'india' ? '#00f2fe' : '#ff9900' }}>
+                        {formatPrice(product.priceINR, product.priceUSD)}
+                      </span>
+                      {product.mrpINR && (
+                        <span style={{ fontSize: '0.82rem', color: 'rgba(255, 255, 255, 0.4)', textDecoration: 'line-through' }}>
+                          {market === 'india' 
+                            ? `₹${product.mrpINR.toLocaleString('en-IN')}`
+                            : `$${((product.mrpINR / 83) || product.priceUSD * 1.3).toFixed(2)}`
+                          }
+                        </span>
+                      )}
+                    </div>
+                    {product.mrpINR && product.mrpINR > product.priceINR && market === 'india' && (
+                      <span style={{
+                        fontSize: '0.7rem',
+                        fontWeight: 800,
+                        color: '#38ef7d',
+                        background: 'rgba(56, 239, 125, 0.1)',
+                        padding: '2px 6px',
+                        borderRadius: '4px'
+                      }}>
+                        Save ₹{(product.mrpINR - product.priceINR).toLocaleString('en-IN')}
                       </span>
                     )}
                   </div>
                 </div>
 
-                {/* Direct GET DISCOUNT Button (MicPrice.com Style) */}
+                {/* Direct GET DISCOUNT Button */}
                 <Link
                   to={product.prices[0]?.url || `/product/${product.id}`}
                   rel="nofollow sponsored"
                   style={{
-                    padding: '10px 14px',
-                    fontSize: '0.84rem',
-                    fontWeight: 800,
+                    padding: '11px 16px',
+                    fontSize: '0.86rem',
+                    fontWeight: 900,
                     textDecoration: 'none',
                     textAlign: 'center',
                     display: 'flex',
@@ -561,12 +579,21 @@ export default function HomePage() {
                     background: 'linear-gradient(135deg, #ff9900 0%, #ff5500 100%)',
                     color: '#fff',
                     borderRadius: '8px',
-                    boxShadow: '0 4px 15px rgba(255, 153, 0, 0.25)',
+                    boxShadow: '0 4px 15px rgba(255, 120, 0, 0.35)',
                     transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-1px)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 120, 0, 0.5)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(255, 120, 0, 0.35)';
                   }}
                 >
                   <ShoppingBag size={15} />
                   <span>GET DISCOUNT</span>
+                  <ArrowRight size={14} />
                 </Link>
               </div>
             </div>
@@ -716,54 +743,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. CREATOR TESTIMONIALS (MicPrice.com Testimonials Section) */}
+      {/* 5. INTERACTIVE CREATOR TESTIMONIALS (Verified Community Carousel) */}
       <section style={{ marginBottom: '55px' }}>
-        <div style={{ textAlign: 'center', marginBottom: '24px' }}>
-          <h2 style={{ fontSize: '1.5rem', fontWeight: 900, margin: 0 }}>
-            What Creators Say About HelpVloggers
-          </h2>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', margin: '4px 0 0' }}>
-            Independent field reviews trusted by YouTubers, vloggers, and reel artists
-          </p>
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
-          {TESTIMONIALS.map((t, i) => (
-            <div 
-              key={i} 
-              className="glass-panel"
-              style={{
-                borderRadius: '16px',
-                padding: '20px',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
-                background: 'rgba(10, 15, 32, 0.6)',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between'
-              }}
-            >
-              <div style={{ marginBottom: '14px' }}>
-                <div style={{ display: 'flex', gap: '2px', color: '#f6d365', marginBottom: '10px' }}>
-                  {[...Array(5)].map((_, idx) => (
-                    <Star key={idx} size={14} fill="#f6d365" color="#f6d365" />
-                  ))}
-                </div>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.55, fontStyle: 'italic' }}>
-                  "{t.comment}"
-                </p>
-              </div>
-
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', borderTop: '1px solid rgba(255, 255, 255, 0.06)', paddingTop: '12px' }}>
-                <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg, #00f2fe, #ff9900)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, color: '#050714', fontSize: '0.85rem' }}>
-                  {t.name[0]}
-                </div>
-                <div>
-                  <div style={{ fontWeight: 800, fontSize: '0.85rem', color: '#fff' }}>{t.name}</div>
-                  <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>{t.role} • {t.city}</div>
-                </div>
-              </div>
-            </div>
-          ))}
+        <div style={{ maxWidth: '880px', margin: '0 auto' }}>
+          <CreatorTestimonials />
         </div>
       </section>
 

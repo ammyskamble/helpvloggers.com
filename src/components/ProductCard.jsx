@@ -27,21 +27,23 @@ export default function ProductCard({ product }) {
           <img src={product.image} alt={product.title} className="card-img" />
         </Link>
 
-        {/* % OFF Discount Tag */}
+        {/* Prominent High-Contrast % OFF Discount Badge */}
         {product.discountPercent > 0 && (
           <div style={{
             position: 'absolute',
-            top: '12px',
-            left: '12px',
-            background: '#ff0844',
+            top: '10px',
+            left: '10px',
+            background: 'linear-gradient(135deg, #ff0844 0%, #ff4b2b 100%)',
             color: '#fff',
-            fontSize: '0.75rem',
+            fontSize: '0.8rem',
             fontWeight: 900,
-            padding: '3px 8px',
-            borderRadius: '4px',
-            boxShadow: '0 4px 10px rgba(255, 8, 68, 0.4)'
+            padding: '4px 9px',
+            borderRadius: '6px',
+            boxShadow: '0 4px 12px rgba(255, 8, 68, 0.5)',
+            letterSpacing: '0.5px',
+            zIndex: 3
           }}>
-            {product.discountPercent}% OFF
+            -{product.discountPercent}% OFF
           </div>
         )}
 
@@ -52,8 +54,8 @@ export default function ProductCard({ product }) {
             position: 'absolute',
             top: '10px',
             right: '10px',
-            background: 'rgba(5, 7, 20, 0.7)',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
+            background: 'rgba(5, 7, 20, 0.75)',
+            border: '1px solid rgba(255, 255, 255, 0.25)',
             borderRadius: '50%',
             width: '34px',
             height: '34px',
@@ -62,15 +64,16 @@ export default function ProductCard({ product }) {
             justifyContent: 'center',
             cursor: 'pointer',
             backdropFilter: 'blur(8px)',
-            transition: 'transform 0.2s ease'
+            transition: 'transform 0.2s ease',
+            zIndex: 3
           }}
           title={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
         >
-          <Heart size={18} color={isWishlisted ? "#ff0844" : "#fff"} fill={isWishlisted ? "#ff0844" : "none"} />
+          <Heart size={17} color={isWishlisted ? "#ff0844" : "#fff"} fill={isWishlisted ? "#ff0844" : "none"} />
         </button>
 
         {/* Sub-Category Tag */}
-        <div className="keyword-tag-float" style={{ bottom: '10px', left: '10px' }}>
+        <div className="keyword-tag-float" style={{ bottom: '10px', left: '10px', zIndex: 2 }}>
           🏷️ {product.subCategoryName || product.categoryName}
         </div>
       </div>
@@ -78,7 +81,7 @@ export default function ProductCard({ product }) {
       <div className="card-body" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
         {/* Brand & Origin */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-          <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#ff9900', textTransform: 'uppercase' }}>
+          <span style={{ fontSize: '0.76rem', fontWeight: 800, color: '#ff9900', textTransform: 'uppercase' }}>
             {product.brand}
           </span>
           <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>
@@ -87,7 +90,7 @@ export default function ProductCard({ product }) {
         </div>
 
         {/* Product Title */}
-        <h3 className="card-title" style={{ fontSize: '1.05rem', minHeight: '44px', marginBottom: '8px' }}>
+        <h3 className="card-title" style={{ fontSize: '1.02rem', minHeight: '42px', marginBottom: '8px', lineHeight: 1.35 }}>
           <Link to={`/product/${product.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
             {product.title}
           </Link>
@@ -97,32 +100,46 @@ export default function ProductCard({ product }) {
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '12px' }}>
           <div style={{ display: 'flex', color: '#f6d365' }}>
             {[...Array(5)].map((_, i) => (
-              <Star key={i} size={14} fill="#f6d365" />
+              <Star key={i} size={13} fill="#f6d365" />
             ))}
           </div>
           <span style={{ fontWeight: 800, fontSize: '0.85rem' }}>{product.rating}</span>
-          <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>({product.reviewCount.toLocaleString()} ratings)</span>
+          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>({product.reviewCount?.toLocaleString() || '1,200'} ratings)</span>
         </div>
 
-        {/* Price Box with MRP strike-through */}
+        {/* Clear High-Contrast Price Box with MRP strike-through and savings */}
         <div style={{
-          background: 'rgba(255, 255, 255, 0.03)',
-          border: '1px solid rgba(255, 255, 255, 0.06)',
+          background: 'rgba(255, 255, 255, 0.04)',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
           borderRadius: '10px',
           padding: '10px 14px',
           marginBottom: '14px'
         }}>
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
-            <span style={{ fontSize: '1.4rem', fontWeight: 900, color: '#00f2fe' }}>
-              {formatPrice(product.priceINR, product.priceUSD)}
-            </span>
-            {product.mrpINR && (
-              <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', textDecoration: 'line-through' }}>
-                M.R.P.: ₹{product.mrpINR.toLocaleString('en-IN')}
+          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', flexWrap: 'wrap', gap: '6px' }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
+              <span style={{ fontSize: '1.45rem', fontWeight: 900, color: '#00f2fe', letterSpacing: '-0.5px' }}>
+                {formatPrice(product.priceINR, product.priceUSD)}
+              </span>
+              {product.mrpINR && (
+                <span style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.4)', textDecoration: 'line-through' }}>
+                  ₹{product.mrpINR.toLocaleString('en-IN')}
+                </span>
+              )}
+            </div>
+            {product.mrpINR && product.mrpINR > product.priceINR && (
+              <span style={{
+                fontSize: '0.72rem',
+                fontWeight: 800,
+                color: '#38ef7d',
+                background: 'rgba(56, 239, 125, 0.1)',
+                padding: '2px 6px',
+                borderRadius: '4px'
+              }}>
+                Save ₹{(product.mrpINR - product.priceINR).toLocaleString('en-IN')}
               </span>
             )}
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.75rem', color: '#38ef7d', marginTop: '2px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.74rem', color: '#38ef7d', marginTop: '4px' }}>
             <Truck size={13} /> {product.deliverySpeed || "Fast Express Shipping Available"}
           </div>
         </div>
@@ -167,22 +184,35 @@ export default function ProductCard({ product }) {
           </Link>
         </div>
 
-        {/* Primary E-Commerce Buy CTA */}
+        {/* Unified High-Contrast Action Button */}
         <Link
           to={lowestStore.url}
-          className="cta-button"
           style={{ 
             textDecoration: 'none', 
-            padding: '10px 14px', 
-            fontSize: '0.85rem',
-            background: 'linear-gradient(135deg, #ff9900 0%, #ff5722 100%)',
+            padding: '11px 16px', 
+            fontSize: '0.88rem',
+            fontWeight: 900,
+            color: '#fff',
+            borderRadius: '8px',
+            background: 'linear-gradient(135deg, #ff9900 0%, #ff5500 100%)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '8px'
+            gap: '8px',
+            boxShadow: '0 4px 15px rgba(255, 120, 0, 0.35)',
+            transition: 'all 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-1px)';
+            e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 120, 0, 0.5)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 4px 15px rgba(255, 120, 0, 0.35)';
           }}
         >
-          <ShoppingBag size={16} /> Buy on {lowestStore.store} ({formatPrice(lowestStore.priceINR, lowestStore.priceUSD)})
+          <ShoppingBag size={16} />
+          <span>GET DISCOUNT ({lowestStore.store})</span>
         </Link>
       </div>
     </div>

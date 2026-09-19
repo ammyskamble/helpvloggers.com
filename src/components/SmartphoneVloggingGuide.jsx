@@ -464,22 +464,38 @@ export default function SmartphoneVloggingGuide() {
           </div>
         </div>
 
-        {/* Responsive Matrix Table Container */}
+        {/* Responsive Matrix Table Container with Sticky Headers & Hover Highlighting */}
         <div style={{
           overflowX: 'auto',
+          overflowY: 'auto',
+          maxHeight: '560px',
           borderRadius: '16px',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          background: 'rgba(10, 14, 32, 0.65)'
+          border: '1px solid rgba(255, 255, 255, 0.12)',
+          background: 'rgba(10, 14, 32, 0.85)',
+          boxShadow: '0 10px 30px rgba(0, 0, 0, 0.4)'
         }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '850px' }}>
-            <thead>
-              <tr style={{ background: 'rgba(0, 242, 254, 0.08)', borderBottom: '1px solid rgba(255, 255, 255, 0.12)' }}>
-                <th style={{ padding: '14px 16px', fontSize: '0.8rem', fontWeight: 900, color: '#00f2fe' }}>Core Vlogging Metric</th>
-                <th style={{ padding: '14px 14px', fontSize: '0.8rem', fontWeight: 900, color: '#fff' }}>iPhone 16 Pro</th>
-                <th style={{ padding: '14px 14px', fontSize: '0.8rem', fontWeight: 900, color: '#fff' }}>S24 Ultra</th>
-                <th style={{ padding: '14px 14px', fontSize: '0.8rem', fontWeight: 900, color: '#fff' }}>Pixel 9 Pro</th>
-                <th style={{ padding: '14px 14px', fontSize: '0.8rem', fontWeight: 900, color: '#fff' }}>OnePlus 12</th>
-                <th style={{ padding: '14px 14px', fontSize: '0.8rem', fontWeight: 900, color: '#ff9900' }}>👑 Lab Winner</th>
+          <table style={{ width: '100%', borderCollapse: 'separate', borderSpacing: 0, textAlign: 'left', minWidth: '860px' }}>
+            <thead style={{ position: 'sticky', top: 0, zIndex: 10 }}>
+              <tr style={{ background: '#0b1028', borderBottom: '2px solid rgba(0, 242, 254, 0.3)' }}>
+                <th style={{ 
+                  position: 'sticky', 
+                  left: 0, 
+                  zIndex: 12, 
+                  background: '#0b1028', 
+                  padding: '14px 18px', 
+                  fontSize: '0.82rem', 
+                  fontWeight: 900, 
+                  color: '#00f2fe',
+                  borderRight: '1px solid rgba(255, 255, 255, 0.12)',
+                  boxShadow: '2px 0 8px rgba(0,0,0,0.5)'
+                }}>
+                  Core Vlogging Metric
+                </th>
+                <th style={{ padding: '14px 16px', fontSize: '0.82rem', fontWeight: 900, color: '#fff' }}>iPhone 16 Pro</th>
+                <th style={{ padding: '14px 16px', fontSize: '0.82rem', fontWeight: 900, color: '#fff' }}>S24 Ultra</th>
+                <th style={{ padding: '14px 16px', fontSize: '0.82rem', fontWeight: 900, color: '#fff' }}>Pixel 9 Pro</th>
+                <th style={{ padding: '14px 16px', fontSize: '0.82rem', fontWeight: 900, color: '#fff' }}>OnePlus 12</th>
+                <th style={{ padding: '14px 16px', fontSize: '0.82rem', fontWeight: 900, color: '#ff9900' }}>👑 Lab Winner</th>
               </tr>
             </thead>
             <tbody>
@@ -487,20 +503,42 @@ export default function SmartphoneVloggingGuide() {
                 <tr 
                   key={idx}
                   style={{
-                    borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
-                    background: idx % 2 === 0 ? 'rgba(255, 255, 255, 0.015)' : 'transparent',
-                    fontSize: '0.78rem'
+                    borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
+                    background: idx % 2 === 0 ? 'rgba(255, 255, 255, 0.02)' : 'transparent',
+                    fontSize: '0.8rem',
+                    transition: 'background 0.15s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(0, 242, 254, 0.08)';
+                    const stickyCell = e.currentTarget.querySelector('td:first-child');
+                    if (stickyCell) stickyCell.style.background = '#11183c';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = idx % 2 === 0 ? 'rgba(255, 255, 255, 0.02)' : 'transparent';
+                    const stickyCell = e.currentTarget.querySelector('td:first-child');
+                    if (stickyCell) stickyCell.style.background = '#090d24';
                   }}
                 >
-                  <td style={{ padding: '12px 16px', fontWeight: 700, color: '#fff' }}>
+                  <td style={{ 
+                    position: 'sticky', 
+                    left: 0, 
+                    zIndex: 8, 
+                    background: '#090d24', 
+                    padding: '12px 18px', 
+                    fontWeight: 800, 
+                    color: '#fff',
+                    borderRight: '1px solid rgba(255, 255, 255, 0.08)',
+                    boxShadow: '2px 0 8px rgba(0,0,0,0.5)',
+                    transition: 'background 0.15s ease'
+                  }}>
                     <div>{row.feature}</div>
-                    <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>{row.category}</span>
+                    <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{row.category}</span>
                   </td>
-                  <td style={{ padding: '12px 14px', color: 'var(--text-secondary)' }}>{row.iphone16Pro}</td>
-                  <td style={{ padding: '12px 14px', color: 'var(--text-secondary)' }}>{row.s24Ultra}</td>
-                  <td style={{ padding: '12px 14px', color: 'var(--text-secondary)' }}>{row.pixel9Pro}</td>
-                  <td style={{ padding: '12px 14px', color: 'var(--text-secondary)' }}>{row.oneplus12}</td>
-                  <td style={{ padding: '12px 14px', color: '#00e676', fontWeight: 800 }}>
+                  <td style={{ padding: '12px 16px', color: 'var(--text-secondary)' }}>{row.iphone16Pro}</td>
+                  <td style={{ padding: '12px 16px', color: 'var(--text-secondary)' }}>{row.s24Ultra}</td>
+                  <td style={{ padding: '12px 16px', color: 'var(--text-secondary)' }}>{row.pixel9Pro}</td>
+                  <td style={{ padding: '12px 16px', color: 'var(--text-secondary)' }}>{row.oneplus12}</td>
+                  <td style={{ padding: '12px 16px', color: '#00e676', fontWeight: 900 }}>
                     {row.winner}
                   </td>
                 </tr>
