@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { TAXONOMY } from '../data/vloggingProducts';
-import { Flame, Mic, Camera, Smartphone, Sliders, Sparkles, Package, ChevronDown, Layers, ShoppingBag, Home } from 'lucide-react';
+import { Mic, Camera, Smartphone, Sliders, Sparkles, Package, ShoppingBag, Home } from 'lucide-react';
 
 const ICON_MAP = {
   'audio-microphones': Mic,
@@ -13,13 +13,11 @@ const ICON_MAP = {
 };
 
 export default function CategoryNavBar() {
-  const [activeDropdown, setActiveDropdown] = useState(null);
-
   return (
     <nav className="category-subnav glass-panel" style={{
       borderTop: '1px solid rgba(255, 255, 255, 0.05)',
       borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-      padding: '4px 16px',
+      padding: '6px 16px',
       position: 'sticky',
       top: '90px',
       zIndex: 90,
@@ -29,13 +27,14 @@ export default function CategoryNavBar() {
       <div 
         className="no-scrollbar"
         style={{
-          maxWidth: '1240px',
+          maxWidth: '1280px',
           margin: '0 auto',
           display: 'flex',
           alignItems: 'center',
-          gap: '4px',
+          gap: '6px',
           overflowX: 'auto',
-          whiteSpace: 'nowrap'
+          whiteSpace: 'nowrap',
+          padding: '2px 0'
         }}
       >
         {/* Home */}
@@ -47,18 +46,19 @@ export default function CategoryNavBar() {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '6px',
-            padding: '6px 12px',
-            borderRadius: '8px',
-            fontSize: '0.8rem',
+            padding: '6px 14px',
+            borderRadius: '20px',
+            fontSize: '0.82rem',
             fontWeight: 700,
             textDecoration: 'none',
-            color: 'var(--text-secondary)'
+            color: 'var(--text-secondary)',
+            transition: 'all 0.2s ease'
           }}
         >
           <Home size={14} color="#ff9900" /> Home
         </NavLink>
 
-        {/* Shop All Gear Sub-Page */}
+        {/* Shop All Gear */}
         <NavLink
           to="/shop"
           className={({ isActive }) => `subnav-pill ${isActive ? 'active' : ''}`}
@@ -66,18 +66,19 @@ export default function CategoryNavBar() {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '6px',
-            padding: '6px 12px',
-            borderRadius: '8px',
-            fontSize: '0.8rem',
+            padding: '6px 14px',
+            borderRadius: '20px',
+            fontSize: '0.82rem',
             fontWeight: 700,
             textDecoration: 'none',
-            color: 'var(--text-secondary)'
+            color: 'var(--text-secondary)',
+            transition: 'all 0.2s ease'
           }}
         >
           <ShoppingBag size={14} color="#00f2fe" /> Shop All Gear
         </NavLink>
 
-        {/* Smartphone Vlogging Guide Sub-Page */}
+        {/* Smartphone Vlogging Guide */}
         <NavLink
           to="/smartphones"
           className={({ isActive }) => `subnav-pill ${isActive ? 'active' : ''}`}
@@ -85,113 +86,43 @@ export default function CategoryNavBar() {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '6px',
-            padding: '6px 12px',
-            borderRadius: '8px',
-            fontSize: '0.8rem',
+            padding: '6px 14px',
+            borderRadius: '20px',
+            fontSize: '0.82rem',
             fontWeight: 700,
             textDecoration: 'none',
-            color: 'var(--text-secondary)'
+            color: 'var(--text-secondary)',
+            transition: 'all 0.2s ease'
           }}
         >
-          <Smartphone size={14} color="#00e676" /> Best Vlogging Phones
+          <Smartphone size={14} color="#00e676" /> Vlogging Smartphones
         </NavLink>
 
-        {/* 3-Tier Category Mega Menus */}
+        {/* Clean Category Navigation Pills (Subcategories live on their respective pages) */}
         {TAXONOMY.map(cat => {
           const IconComponent = ICON_MAP[cat.id] || Sparkles;
-          const isDropdownOpen = activeDropdown === cat.id;
 
           return (
-            <div 
+            <NavLink
               key={cat.id}
-              style={{ position: 'relative' }}
-              onMouseEnter={() => setActiveDropdown(cat.id)}
-              onMouseLeave={() => setActiveDropdown(null)}
+              to={`/category/${cat.id}`}
+              className={({ isActive }) => `subnav-pill ${isActive ? 'active' : ''}`}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                padding: '6px 14px',
+                borderRadius: '20px',
+                fontSize: '0.82rem',
+                fontWeight: 700,
+                textDecoration: 'none',
+                color: 'var(--text-secondary)',
+                transition: 'all 0.2s ease'
+              }}
             >
-              <NavLink
-                to={`/category/${cat.id}`}
-                className={({ isActive }) => `subnav-pill ${isActive ? 'active' : ''}`}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '5px',
-                  padding: '6px 12px',
-                  borderRadius: '8px',
-                  fontSize: '0.8rem',
-                  fontWeight: 700,
-                  textDecoration: 'none',
-                  color: 'var(--text-secondary)',
-                  cursor: 'pointer'
-                }}
-              >
-                <IconComponent size={14} />
-                <span>{cat.name}</span>
-                <ChevronDown size={12} style={{ opacity: 0.6 }} />
-              </NavLink>
-
-              {/* Mega Dropdown Menu (Sub-Categories & Micro-Categories) */}
-              {isDropdownOpen && (
-                <div 
-                  className="glass-panel"
-                  style={{
-                    position: 'absolute',
-                    top: '100%',
-                    left: 0,
-                    minWidth: '580px',
-                    padding: '20px',
-                    borderRadius: '14px',
-                    background: '#090d20',
-                    border: '1px solid rgba(0, 242, 254, 0.3)',
-                    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.7)',
-                    zIndex: 200,
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-                    gap: '20px',
-                    whiteSpace: 'normal'
-                  }}
-                >
-                  {cat.subCategories.map(sub => (
-                    <div key={sub.id}>
-                      <Link 
-                        to={`/category/${cat.id}?sub=${sub.id}`}
-                        style={{
-                          fontSize: '0.85rem',
-                          fontWeight: 800,
-                          color: '#00f2fe',
-                          textDecoration: 'none',
-                          display: 'block',
-                          marginBottom: '8px',
-                          borderBottom: '1px solid rgba(0, 242, 254, 0.2)',
-                          paddingBottom: '4px'
-                        }}
-                      >
-                        📂 {sub.name}
-                      </Link>
-
-                      {/* Micro-Categories */}
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', paddingLeft: '8px' }}>
-                        {sub.microCategories.map(micro => (
-                          <Link
-                            key={micro.id}
-                            to={`/category/${cat.id}?sub=${sub.id}&micro=${micro.id}`}
-                            style={{
-                              fontSize: '0.78rem',
-                              color: 'var(--text-secondary)',
-                              textDecoration: 'none',
-                              lineHeight: 1.3
-                            }}
-                            onMouseEnter={(e) => e.target.style.color = '#ff9900'}
-                            onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}
-                          >
-                            › {micro.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+              <IconComponent size={14} />
+              <span>{cat.name}</span>
+            </NavLink>
           );
         })}
       </div>

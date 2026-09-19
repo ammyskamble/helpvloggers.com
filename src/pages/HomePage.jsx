@@ -1,11 +1,77 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { VLOGGING_PRODUCTS, BLOG_CLUSTERS } from '../data/vloggingProducts';
+import { VLOGGING_PRODUCTS, BLOG_CLUSTERS, TAXONOMY } from '../data/vloggingProducts';
 import { useEcommerce } from '../context/EcommerceContext';
-import { ShoppingBag, ArrowRight, Star, Clock, CheckCircle, ShieldCheck } from 'lucide-react';
+import { 
+  ShoppingBag, ArrowRight, Star, Clock, CheckCircle, ShieldCheck,
+  Mic, Camera, Smartphone, Sliders, Zap, Layers, Sparkles
+} from 'lucide-react';
 
 import CategoryBrandBanners from '../components/CategoryBrandBanners';
 import SmartphoneVloggingGuide from '../components/SmartphoneVloggingGuide';
+
+const CATEGORY_HUBS = [
+  {
+    id: "audio-microphones",
+    name: "Audio & Microphones",
+    icon: Mic,
+    accent: "#00f2fe",
+    subtext: "Wireless lapels, shotgun mics & studio USB pods",
+    topSubs: [
+      { id: "wireless-mics", name: "Wireless Mics" },
+      { id: "shotgun-mics", name: "Shotgun Mics" },
+      { id: "usb-studio-mics", name: "USB Mics" }
+    ]
+  },
+  {
+    id: "cameras-recorders",
+    name: "Cameras & 4K Video",
+    icon: Camera,
+    accent: "#f43f5e",
+    subtext: "Cinema 4K mirrorless, pocket gimbals & action cams",
+    topSubs: [
+      { id: "vlogging-cameras", name: "4K Cameras" },
+      { id: "pocket-gimbals", name: "Pocket Cams" },
+      { id: "action-cameras", name: "Action Cams" }
+    ]
+  },
+  {
+    id: "smartphone-rigs",
+    name: "Smartphone Rigs & Cages",
+    icon: Smartphone,
+    accent: "#00e676",
+    subtext: "Dual-handle cages, MagSafe clamps & cold shoes",
+    topSubs: [
+      { id: "phone-cages", name: "Metal Cages" },
+      { id: "grip-handles", name: "Dual Grips" },
+      { id: "cold-shoe-mounts", name: "Cold Shoes" }
+    ]
+  },
+  {
+    id: "gimbals-tripods",
+    name: "Gimbals & Tripods",
+    icon: Sliders,
+    accent: "#ff9900",
+    subtext: "3-axis motorized stabilizers & heavy fluid heads",
+    topSubs: [
+      { id: "phone-gimbals", name: "Phone Gimbals" },
+      { id: "camera-tripods", name: "Fluid Tripods" },
+      { id: "flexible-tripods", name: "GorillaPods" }
+    ]
+  },
+  {
+    id: "creator-lighting",
+    name: "Lighting & Power",
+    icon: Zap,
+    accent: "#f6d365",
+    subtext: "Bi-color ring lights, pocket RGBs & V30 SD cards",
+    topSubs: [
+      { id: "ring-lights", name: "Ring Lights" },
+      { id: "rgb-pocket-lights", name: "RGB Lights" },
+      { id: "high-speed-sd-cards", name: "V30 Cards" }
+    ]
+  }
+];
 
 const INDIA_TABS = [
   { id: 'in-all', label: '🔥 Top Indian Deals', filter: (p) => p.market === 'india' && p.discountPercent >= 50, subPageUrl: '/shop?market=india&discount=50' },
@@ -74,7 +140,193 @@ export default function HomePage() {
 
       {/* Main Content Container */}
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '36px 20px 0' }}>
-        {/* 2. FEW PRODUCTS (MicPrice.com Featured Products Section with Distinct Market Sections) */}
+        {/* 2. CATEGORY GATEWAY HUBS (Clean UI: All subcategories live on their respective category sub-pages) */}
+        <section style={{ marginBottom: '55px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '12px', marginBottom: '22px' }}>
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                <span style={{ 
+                  background: 'rgba(0, 242, 254, 0.12)', 
+                  color: '#00f2fe', 
+                  fontSize: '0.74rem', 
+                  fontWeight: 800, 
+                  padding: '3px 9px', 
+                  borderRadius: '20px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '5px'
+                }}>
+                  <Layers size={13} /> Dedicated Gear Hubs
+                </span>
+              </div>
+              <h2 style={{ fontSize: '1.75rem', fontWeight: 900, margin: '0 0 6px' }}>
+                Explore Gear Categories & Sub-Pages
+              </h2>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', margin: 0, maxWidth: '650px' }}>
+                Browse our verified vlogging equipment catalog categorized into specialized sub-pages with price history and test recordings.
+              </p>
+            </div>
+
+            <Link
+              to="/shop"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                color: '#00f2fe',
+                fontWeight: 800,
+                fontSize: '0.86rem',
+                textDecoration: 'none'
+              }}
+            >
+              <span>View Full Catalog</span>
+              <ArrowRight size={15} />
+            </Link>
+          </div>
+
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', 
+            gap: '18px' 
+          }}>
+            {CATEGORY_HUBS.map((cat) => {
+              const IconComp = cat.icon;
+              const catProductCount = VLOGGING_PRODUCTS.filter(p => p.category === cat.id).length;
+
+              return (
+                <div
+                  key={cat.id}
+                  className="glass-panel"
+                  style={{
+                    borderRadius: '16px',
+                    padding: '20px',
+                    border: '1px solid rgba(255, 255, 255, 0.08)',
+                    background: 'rgba(10, 14, 34, 0.7)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    transition: 'transform 0.2s ease, border-color 0.2s ease',
+                    position: 'relative'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-4px)';
+                    e.currentTarget.style.borderColor = `${cat.accent}66`;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                  }}
+                >
+                  <div>
+                    {/* Top Icon & Count Header */}
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
+                      <div style={{
+                        width: '44px',
+                        height: '44px',
+                        borderRadius: '12px',
+                        background: `${cat.accent}18`,
+                        border: `1px solid ${cat.accent}44`,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: cat.accent
+                      }}>
+                        <IconComp size={22} />
+                      </div>
+                      <span style={{ 
+                        fontSize: '0.72rem', 
+                        fontWeight: 800, 
+                        color: 'var(--text-muted)',
+                        background: 'rgba(255, 255, 255, 0.05)',
+                        padding: '3px 8px',
+                        borderRadius: '10px'
+                      }}>
+                        {catProductCount} Models
+                      </span>
+                    </div>
+
+                    {/* Category Title */}
+                    <h3 style={{ fontSize: '1.05rem', fontWeight: 800, margin: '0 0 6px', color: '#fff' }}>
+                      <Link to={`/category/${cat.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                        {cat.name}
+                      </Link>
+                    </h3>
+                    
+                    {/* Subtext description */}
+                    <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', margin: '0 0 14px', lineHeight: 1.4 }}>
+                      {cat.subtext}
+                    </p>
+
+                    {/* Subcategories preview tags */}
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '16px' }}>
+                      {cat.topSubs.map(sub => (
+                        <Link
+                          key={sub.id}
+                          to={`/category/${cat.id}?sub=${sub.id}`}
+                          style={{
+                            fontSize: '0.73rem',
+                            fontWeight: 700,
+                            padding: '3px 8px',
+                            borderRadius: '12px',
+                            background: 'rgba(255, 255, 255, 0.04)',
+                            border: '1px solid rgba(255, 255, 255, 0.08)',
+                            color: 'var(--text-secondary)',
+                            textDecoration: 'none',
+                            transition: 'all 0.15s ease'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.borderColor = cat.accent;
+                            e.currentTarget.style.color = cat.accent;
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                            e.currentTarget.style.color = 'var(--text-secondary)';
+                          }}
+                        >
+                          {sub.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Clean CTA to dedicated subpage */}
+                  <Link
+                    to={`/category/${cat.id}`}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      padding: '8px 12px',
+                      borderRadius: '8px',
+                      background: 'rgba(255, 255, 255, 0.03)',
+                      border: '1px solid rgba(255, 255, 255, 0.08)',
+                      color: cat.accent,
+                      fontSize: '0.8rem',
+                      fontWeight: 800,
+                      textDecoration: 'none',
+                      transition: 'all 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = `${cat.accent}15`;
+                      e.currentTarget.style.borderColor = `${cat.accent}55`;
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
+                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                    }}
+                  >
+                    <span>Browse Category Sub-Page</span>
+                    <ArrowRight size={14} />
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* 3. FEW PRODUCTS (MicPrice.com Featured Products Section with Distinct Market Sections) */}
         <section id="featured-products-section" style={{ marginBottom: '55px' }}>
         {/* Market Switcher Row (India vs Global Section - No Conflict!) */}
         <div style={{ 

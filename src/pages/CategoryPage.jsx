@@ -122,10 +122,11 @@ export default function CategoryPage() {
   };
 
   // Base products for category
-  let categoryProducts = VLOGGING_PRODUCTS.filter(p => {
-    const matchesCat = p.category === canonicalCategorySlug || p.category === categorySlug;
-    return matchesCat;
+  const baseCategoryProducts = VLOGGING_PRODUCTS.filter(p => {
+    return p.category === canonicalCategorySlug || p.category === categorySlug;
   });
+
+  let categoryProducts = [...baseCategoryProducts];
 
   // Filter by Sub-Category
   if (subSlug !== 'all') {
@@ -270,74 +271,158 @@ export default function CategoryPage() {
           </div>
         </div>
 
-        {/* 2nd Tier: Sub-Category Navigation Pills */}
+        {/* 2nd Tier: Sub-Category Navigation Explorer */}
         {taxonomyCategory?.subCategories && taxonomyCategory.subCategories.length > 0 && (
-          <div style={{ marginTop: '20px', paddingTop: '16px', borderTop: '1px solid rgba(255, 255, 255, 0.08)' }}>
-            <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 700, marginBottom: '8px', letterSpacing: '0.5px' }}>
-              Sub-Categories:
+          <div style={{ marginTop: '22px', paddingTop: '18px', borderTop: '1px solid rgba(255, 255, 255, 0.08)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+              <div style={{ fontSize: '0.78rem', color: '#00f2fe', textTransform: 'uppercase', fontWeight: 800, letterSpacing: '0.6px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <Layers size={14} /> Sub-Categories in {categoryName}:
+              </div>
+              {subSlug !== 'all' && (
+                <button
+                  onClick={() => handleSubCategorySelect('all')}
+                  style={{
+                    background: 'transparent',
+                    border: 'none',
+                    color: '#ff9900',
+                    fontSize: '0.78rem',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    textDecoration: 'underline'
+                  }}
+                >
+                  Reset to All Sub-Categories
+                </button>
+              )}
             </div>
+            
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
               <button
                 onClick={() => handleSubCategorySelect('all')}
                 className={`btn-filter-pill ${subSlug === 'all' ? 'active' : ''}`}
-                style={{ fontSize: '0.85rem', padding: '6px 14px' }}
+                style={{ 
+                  fontSize: '0.84rem', 
+                  padding: '7px 16px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  borderRadius: '20px'
+                }}
               >
-                All {categoryName}
+                <span>All {categoryName}</span>
+                <span style={{ 
+                  fontSize: '0.72rem', 
+                  opacity: 0.8,
+                  background: subSlug === 'all' ? 'rgba(0, 0, 0, 0.25)' : 'rgba(255, 255, 255, 0.1)',
+                  padding: '1px 6px',
+                  borderRadius: '10px'
+                }}>
+                  {baseCategoryProducts.length}
+                </span>
               </button>
-              {taxonomyCategory.subCategories.map(sub => (
-                <button
-                  key={sub.id}
-                  onClick={() => handleSubCategorySelect(sub.id)}
-                  className={`btn-filter-pill ${subSlug === sub.id ? 'active' : ''}`}
-                  style={{ fontSize: '0.85rem', padding: '6px 14px' }}
-                >
-                  {sub.name}
-                </button>
-              ))}
+
+              {taxonomyCategory.subCategories.map(sub => {
+                const count = baseCategoryProducts.filter(p => p.subCategory === sub.id).length;
+                const isSubActive = subSlug === sub.id;
+
+                return (
+                  <button
+                    key={sub.id}
+                    onClick={() => handleSubCategorySelect(sub.id)}
+                    className={`btn-filter-pill ${isSubActive ? 'active' : ''}`}
+                    style={{ 
+                      fontSize: '0.84rem', 
+                      padding: '7px 16px',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      borderRadius: '20px'
+                    }}
+                  >
+                    <span>{sub.name}</span>
+                    <span style={{ 
+                      fontSize: '0.72rem', 
+                      opacity: 0.85,
+                      background: isSubActive ? 'rgba(0, 0, 0, 0.25)' : 'rgba(255, 255, 255, 0.1)',
+                      padding: '1px 6px',
+                      borderRadius: '10px'
+                    }}>
+                      {count}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
           </div>
         )}
 
-        {/* 3rd Tier: Micro-Category Navigation Chips (Visible when a Sub-Category is active or available) */}
+        {/* 3rd Tier: Micro-Category Navigation Chips (Filtered under active Sub-Category) */}
         {activeSubCategory?.microCategories && activeSubCategory.microCategories.length > 0 && (
-          <div style={{ marginTop: '14px', paddingTop: '12px', borderTop: '1px dashed rgba(0, 242, 254, 0.15)' }}>
-            <div style={{ fontSize: '0.75rem', color: '#00f2fe', textTransform: 'uppercase', fontWeight: 700, marginBottom: '8px', letterSpacing: '0.5px' }}>
-              Micro-Category Filters ({activeSubCategory.name}):
+          <div style={{ 
+            marginTop: '16px', 
+            padding: '14px 18px', 
+            borderRadius: '12px',
+            background: 'rgba(0, 242, 254, 0.04)',
+            border: '1px solid rgba(0, 242, 254, 0.18)' 
+          }}>
+            <div style={{ fontSize: '0.74rem', color: '#00f2fe', textTransform: 'uppercase', fontWeight: 800, marginBottom: '10px', letterSpacing: '0.6px' }}>
+              Micro-Types for {activeSubCategory.name}:
             </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
               <button
                 onClick={() => handleMicroCategorySelect('all')}
                 style={{
                   fontSize: '0.8rem',
-                  padding: '4px 12px',
+                  padding: '5px 14px',
                   borderRadius: '16px',
                   border: microSlug === 'all' ? '1px solid #00f2fe' : '1px solid rgba(255, 255, 255, 0.1)',
-                  background: microSlug === 'all' ? 'rgba(0, 242, 254, 0.2)' : 'rgba(255, 255, 255, 0.04)',
-                  color: microSlug === 'all' ? '#00f2fe' : 'var(--text-secondary)',
+                  background: microSlug === 'all' ? 'linear-gradient(135deg, #00f2fe, #4facfe)' : 'rgba(255, 255, 255, 0.04)',
+                  color: microSlug === 'all' ? '#050714' : 'var(--text-secondary)',
                   cursor: 'pointer',
-                  fontWeight: microSlug === 'all' ? 700 : 500
+                  fontWeight: microSlug === 'all' ? 800 : 500,
+                  transition: 'all 0.2s ease'
                 }}
               >
                 All Micro-Types
               </button>
-              {activeSubCategory.microCategories.map(micro => (
-                <button
-                  key={micro.id}
-                  onClick={() => handleMicroCategorySelect(micro.id)}
-                  style={{
-                    fontSize: '0.8rem',
-                    padding: '4px 12px',
-                    borderRadius: '16px',
-                    border: microSlug === micro.id ? '1px solid #ff9900' : '1px solid rgba(255, 255, 255, 0.1)',
-                    background: microSlug === micro.id ? 'rgba(255, 153, 0, 0.2)' : 'rgba(255, 255, 255, 0.04)',
-                    color: microSlug === micro.id ? '#ff9900' : 'var(--text-secondary)',
-                    cursor: 'pointer',
-                    fontWeight: microSlug === micro.id ? 700 : 500
-                  }}
-                >
-                  {micro.name}
-                </button>
-              ))}
+              {activeSubCategory.microCategories.map(micro => {
+                const count = baseCategoryProducts.filter(p => p.subCategory === subSlug && p.microCategory === micro.id).length;
+                const isMicroActive = microSlug === micro.id;
+
+                return (
+                  <button
+                    key={micro.id}
+                    onClick={() => handleMicroCategorySelect(micro.id)}
+                    style={{
+                      fontSize: '0.8rem',
+                      padding: '5px 14px',
+                      borderRadius: '16px',
+                      border: isMicroActive ? '1px solid #ff9900' : '1px solid rgba(255, 255, 255, 0.1)',
+                      background: isMicroActive ? 'linear-gradient(135deg, #ff9900, #ff5500)' : 'rgba(255, 255, 255, 0.04)',
+                      color: isMicroActive ? '#ffffff' : 'var(--text-secondary)',
+                      cursor: 'pointer',
+                      fontWeight: isMicroActive ? 800 : 500,
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      transition: 'all 0.2s ease'
+                    }}
+                  >
+                    <span>{micro.name}</span>
+                    {count > 0 && (
+                      <span style={{ 
+                        fontSize: '0.7rem', 
+                        opacity: 0.85,
+                        background: isMicroActive ? 'rgba(0, 0, 0, 0.25)' : 'rgba(255, 255, 255, 0.1)',
+                        padding: '1px 5px',
+                        borderRadius: '8px'
+                      }}>
+                        {count}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
             </div>
           </div>
         )}

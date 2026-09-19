@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { useEcommerce } from '../context/EcommerceContext';
-import { VLOGGING_PRODUCTS } from '../data/vloggingProducts';
 import { 
-  ShieldCheck, ArrowRight, ShoppingBag, 
-  ChevronLeft, ChevronRight, Star, CheckCircle,
+  ShieldCheck, ArrowRight, 
+  ChevronLeft, ChevronRight, CheckCircle,
   Mic, Camera, Smartphone, Sliders, Zap
 } from 'lucide-react';
 
@@ -21,7 +19,6 @@ const CATEGORY_BANNERS = [
     brands: ["Digitek", "Boya", "DJI", "Grenaro", "Maono"],
     accentColor: "#00f2fe",
     bannerImage: "/banners/mic_studio_hero.jpg",
-    topProductId: "digitek-dwm-101",
     guaranteeSpecs: ["Zero-Clipping Benchmarked", "1-Year Official Brand Warranty", "Hologram Sealed Units"]
   },
   {
@@ -36,7 +33,6 @@ const CATEGORY_BANNERS = [
     brands: ["Sony", "DJI", "Insta360"],
     accentColor: "#f43f5e",
     bannerImage: "/banners/camera_studio_hero.jpg",
-    topProductId: "sony-zv-e10-ii",
     guaranteeSpecs: ["Official 2-Year Manufacturer Warranty", "Zero Dead-Pixel Sensor Purity", "4K 60/120p Uncropped Tested"]
   },
   {
@@ -51,7 +47,6 @@ const CATEGORY_BANNERS = [
     brands: ["SmallRig", "Ulanzi", "Neewer"],
     accentColor: "#00e676",
     bannerImage: "/banners/phone_rig_hero.jpg",
-    topProductId: "smallrig-universal-phone-cage",
     guaranteeSpecs: ["Aircraft 6061-T6 Aluminum Alloy", "Universal Arca-Swiss & 5 Cold Shoes", "100% Genuine SmallRig Certified"]
   },
   {
@@ -66,7 +61,6 @@ const CATEGORY_BANNERS = [
     brands: ["DJI", "Digitek", "Tygot"],
     accentColor: "#ff9900",
     bannerImage: "/banners/gimbal_studio_hero.jpg",
-    topProductId: "dji-osmo-mobile-6",
     guaranteeSpecs: ["Smooth Hydraulic Fluid Drag Pan & Tilt", "Up to 5kg Payload Tested", "Anti-Slip Rubberized Leg Joints"]
   },
   {
@@ -81,7 +75,6 @@ const CATEGORY_BANNERS = [
     brands: ["Digitek", "Osaka", "SanDisk", "Ulanzi"],
     accentColor: "#f6d365",
     bannerImage: "/banners/lighting_studio_hero.jpg",
-    topProductId: "digitek-drl-18h",
     guaranteeSpecs: ["95+ High Color Rendering (CRI)", "200MB/s V30 4K Zero-Drop Media", "Safe USB Pass-Through Charging"]
   }
 ];
@@ -89,7 +82,6 @@ const CATEGORY_BANNERS = [
 export default function CategoryBrandBanners() {
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const { formatPrice, market } = useEcommerce();
   const sliderRef = useRef(null);
 
   // Auto-play slider every 6.5 seconds, pauses on hover
@@ -198,320 +190,196 @@ export default function CategoryBrandBanners() {
             willChange: 'transform'
           }}
         >
-          {CATEGORY_BANNERS.map((banner) => {
-            const featuredProduct = VLOGGING_PRODUCTS.find(p => p.id === banner.topProductId) || VLOGGING_PRODUCTS[0];
-
-            return (
-              <div
-                key={banner.id}
+          {CATEGORY_BANNERS.map((banner) => (
+            <div
+              key={banner.id}
+              style={{
+                width: `${100 / CATEGORY_BANNERS.length}%`,
+                height: '100%',
+                position: 'relative',
+                flexShrink: 0,
+                overflow: 'hidden',
+                display: 'flex',
+                alignItems: 'center'
+              }}
+            >
+              {/* Full-bleed Studio Background Image */}
+              <div 
                 style={{
-                  width: `${100 / CATEGORY_BANNERS.length}%`,
-                  height: '100%',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  backgroundImage: `url(${banner.bannerImage})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center right',
+                  zIndex: 1
+                }}
+              />
+
+              {/* Dark Linear Vignette Overlay (Leaves studio gear photography crisp on right, ensures ultra-crisp typography on left) */}
+              <div 
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  background: 'linear-gradient(90deg, rgba(5, 8, 18, 0.95) 0%, rgba(5, 8, 18, 0.82) 44%, rgba(5, 8, 18, 0.22) 75%, rgba(5, 8, 18, 0.02) 100%)',
+                  zIndex: 2
+                }}
+              />
+
+              {/* Aesthetic Slide Content Box (Spacious Editorial Layout - No product cards) */}
+              <div 
+                style={{
                   position: 'relative',
-                  flexShrink: 0,
-                  overflow: 'hidden',
-                  display: 'flex',
-                  alignItems: 'center'
+                  zIndex: 3,
+                  maxWidth: '1280px',
+                  margin: '0 auto',
+                  width: '100%',
+                  padding: '0 50px'
                 }}
               >
-                {/* Full-bleed Studio Background Image (Aspect Ratio ~2.9:1) */}
-                <div 
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    backgroundImage: `url(${banner.bannerImage})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center right',
-                    zIndex: 1
-                  }}
-                />
-
-                {/* Dark Linear Vignette Overlay (Leaves photography crisp on right, makes text ultra-legible on left) */}
-                <div 
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background: 'linear-gradient(90deg, rgba(5, 8, 18, 0.95) 0%, rgba(5, 8, 18, 0.88) 42%, rgba(5, 8, 18, 0.35) 75%, rgba(5, 8, 18, 0.05) 100%)',
-                    zIndex: 2
-                  }}
-                />
-
-                {/* Slide Content Box */}
-                <div 
-                  style={{
-                    position: 'relative',
-                    zIndex: 3,
-                    maxWidth: '1280px',
-                    margin: '0 auto',
-                    width: '100%',
-                    padding: '0 50px',
-                    display: 'grid',
-                    gridTemplateColumns: 'minmax(320px, 1.35fr) minmax(280px, 0.65fr)',
-                    gap: '40px',
-                    alignItems: 'center'
-                  }}
-                >
-                  {/* Left Column: Signature MicPrice 2-Line Headline & Trust Guarantee */}
-                  <div>
-                    {/* Reliability Trust Seal Tag */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px', flexWrap: 'wrap' }}>
-                      <span style={{
-                        background: 'rgba(255, 255, 255, 0.08)',
-                        border: `1px solid ${banner.accentColor}66`,
-                        color: banner.accentColor,
-                        fontSize: '0.74rem',
-                        fontWeight: 900,
-                        padding: '4px 12px',
-                        borderRadius: '20px',
-                        letterSpacing: '0.8px',
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '6px'
-                      }}>
-                        <ShieldCheck size={14} color={banner.accentColor} />
-                        {banner.trustTag}
-                      </span>
-
-                      <span style={{ 
-                        background: 'rgba(0, 230, 118, 0.15)', 
-                        color: '#00e676', 
-                        fontSize: '0.72rem', 
-                        fontWeight: 800, 
-                        padding: '4px 10px', 
-                        borderRadius: '20px',
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '5px'
-                      }}>
-                        <CheckCircle size={12} /> 100% GENUINE
-                      </span>
-                    </div>
-
-                    {/* Exact MicPrice Headline Style: Light 300 line 1 + Heavy 900 line 2 */}
-                    <h1 style={{ margin: '0 0 16px', color: '#ffffff', lineHeight: 1.15 }}>
-                      <span style={{ 
-                        display: 'block', 
-                        fontSize: '2.9rem', 
-                        fontWeight: 300, 
-                        letterSpacing: '-0.5px',
-                        opacity: 0.95
-                      }}>
-                        {banner.titleLight}
-                      </span>
-                      <span style={{ 
-                        display: 'block', 
-                        fontSize: '3.4rem', 
-                        fontWeight: 900, 
-                        letterSpacing: '-0.5px' 
-                      }}>
-                        {banner.titleBold}
-                      </span>
-                    </h1>
-
-                    {/* Subtext description */}
-                    <p style={{ 
-                      color: 'rgba(240, 244, 255, 0.85)', 
-                      fontSize: '0.96rem', 
-                      lineHeight: 1.6, 
-                      marginBottom: '22px', 
-                      maxWidth: '560px' 
+                <div style={{ maxWidth: '720px' }}>
+                  {/* Reliability Trust Seal Tag */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '18px', flexWrap: 'wrap' }}>
+                    <span style={{
+                      background: 'rgba(255, 255, 255, 0.08)',
+                      border: `1px solid ${banner.accentColor}66`,
+                      color: banner.accentColor,
+                      fontSize: '0.74rem',
+                      fontWeight: 900,
+                      padding: '4px 12px',
+                      borderRadius: '20px',
+                      letterSpacing: '0.8px',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px'
                     }}>
-                      {banner.subtext}
-                    </p>
+                      <ShieldCheck size={14} color={banner.accentColor} />
+                      {banner.trustTag}
+                    </span>
 
-                    {/* 3 Reliability Guarantee Points */}
-                    <div style={{ 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      gap: '18px', 
-                      marginBottom: '28px', 
-                      flexWrap: 'wrap' 
+                    <span style={{ 
+                      background: 'rgba(0, 230, 118, 0.15)', 
+                      color: '#00e676', 
+                      fontSize: '0.72rem', 
+                      fontWeight: 800, 
+                      padding: '4px 10px', 
+                      borderRadius: '20px',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '5px'
                     }}>
-                      {banner.guaranteeSpecs.map((spec, i) => (
-                        <div key={i} style={{ 
-                          display: 'flex', 
-                          alignItems: 'center', 
-                          gap: '6px', 
-                          fontSize: '0.82rem', 
-                          fontWeight: 700, 
-                          color: '#e2e8f0' 
-                        }}>
-                          <span style={{ color: banner.accentColor, fontWeight: 900 }}>✓</span>
-                          <span>{spec}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Action Buttons Row */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
-                      <Link
-                        to={`/category/${banner.categorySlug}`}
-                        style={{
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: '10px',
-                          padding: '14px 28px',
-                          borderRadius: '30px',
-                          background: banner.accentColor,
-                          color: '#050714',
-                          fontWeight: 900,
-                          fontSize: '0.94rem',
-                          textDecoration: 'none',
-                          boxShadow: `0 8px 24px ${banner.accentColor}55`,
-                          transition: 'transform 0.2s ease'
-                        }}
-                      >
-                        <ShoppingBag size={18} />
-                        <span>Shop {banner.name} Deals</span>
-                        <ArrowRight size={16} />
-                      </Link>
-
-                      {/* Authorized Brand Badges */}
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <span style={{ fontSize: '0.74rem', color: 'rgba(255, 255, 255, 0.5)', fontWeight: 600 }}>Authorized:</span>
-                        {banner.brands.map((b, i) => (
-                          <span 
-                            key={i} 
-                            style={{ 
-                              background: 'rgba(255, 255, 255, 0.08)', 
-                              border: '1px solid rgba(255, 255, 255, 0.12)', 
-                              padding: '3px 8px', 
-                              borderRadius: '6px', 
-                              fontSize: '0.74rem', 
-                              fontWeight: 800, 
-                              color: '#ffffff' 
-                            }}
-                          >
-                            {b}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+                      <CheckCircle size={12} /> 100% GENUINE
+                    </span>
                   </div>
 
-                  {/* Right Column: Floating High-Conversion Top Deal Card */}
-                  <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    {featuredProduct && (
-                      <div 
-                        style={{
-                          background: 'rgba(10, 15, 30, 0.78)',
-                          backdropFilter: 'blur(22px)',
-                          WebkitBackdropFilter: 'blur(22px)',
-                          border: `1px solid ${banner.accentColor}55`,
-                          borderRadius: '18px',
-                          padding: '18px',
-                          width: '100%',
-                          maxWidth: '320px',
-                          boxShadow: '0 16px 36px rgba(0, 0, 0, 0.65)'
-                        }}
-                      >
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-                          <span style={{ 
-                            fontSize: '0.7rem', 
-                            fontWeight: 900, 
-                            color: banner.accentColor, 
-                            textTransform: 'uppercase',
-                            letterSpacing: '0.5px' 
-                          }}>
-                            ★ #1 Verified Category Pick
-                          </span>
-                          {featuredProduct.discountPercent > 0 && (
-                            <span style={{ 
-                              background: '#ff2d55', 
-                              color: '#fff', 
-                              fontSize: '0.72rem', 
-                              fontWeight: 900, 
-                              padding: '2px 7px', 
-                              borderRadius: '6px' 
-                            }}>
-                              -{featuredProduct.discountPercent}% OFF
-                            </span>
-                          )}
-                        </div>
+                  {/* Clean 2-Line Headline: Light 300 line 1 + Heavy 900 line 2 */}
+                  <h1 style={{ margin: '0 0 16px', color: '#ffffff', lineHeight: 1.15 }}>
+                    <span style={{ 
+                      display: 'block', 
+                      fontSize: 'clamp(2rem, 3.8vw, 3rem)', 
+                      fontWeight: 300, 
+                      letterSpacing: '-0.5px',
+                      opacity: 0.95
+                    }}>
+                      {banner.titleLight}
+                    </span>
+                    <span style={{ 
+                      display: 'block', 
+                      fontSize: 'clamp(2.4rem, 4.4vw, 3.6rem)', 
+                      fontWeight: 900, 
+                      letterSpacing: '-0.5px' 
+                    }}>
+                      {banner.titleBold}
+                    </span>
+                  </h1>
 
-                        {/* Product Image */}
-                        <div style={{ height: '140px', borderRadius: '12px', overflow: 'hidden', marginBottom: '12px', background: '#050814' }}>
-                          <img 
-                            src={featuredProduct.image} 
-                            alt={featuredProduct.title}
-                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                          />
-                        </div>
+                  {/* Editorial Description */}
+                  <p style={{ 
+                    color: 'rgba(240, 244, 255, 0.85)', 
+                    fontSize: '1rem', 
+                    lineHeight: 1.65, 
+                    marginBottom: '24px', 
+                    maxWidth: '620px' 
+                  }}>
+                    {banner.subtext}
+                  </p>
 
-                        {/* Brand & Rating */}
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.72rem', color: 'var(--text-muted)', marginBottom: '4px' }}>
-                          <span style={{ color: banner.accentColor, fontWeight: 800 }}>{featuredProduct.brand}</span>
-                          <span>•</span>
-                          <span style={{ display: 'flex', alignItems: 'center', gap: '2px', color: '#f6d365' }}>
-                            <Star size={11} fill="#f6d365" color="#f6d365" /> {featuredProduct.rating}
-                          </span>
-                        </div>
-
-                        {/* Product Title */}
-                        <h3 style={{ 
-                          fontSize: '0.88rem', 
-                          fontWeight: 700, 
-                          color: '#fff', 
-                          margin: '0 0 10px', 
-                          lineHeight: 1.35,
-                          display: '-webkit-box',
-                          WebkitLineClamp: 2,
-                          WebkitBoxOrient: 'vertical',
-                          overflow: 'hidden'
-                        }}>
-                          {featuredProduct.title}
-                        </h3>
-
-                        {/* Pricing & Direct Deal Button */}
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '6px' }}>
-                          <div>
-                            <div style={{ fontSize: '1.2rem', fontWeight: 900, color: banner.accentColor }}>
-                              {formatPrice(featuredProduct.priceINR, featuredProduct.priceUSD)}
-                            </div>
-                            {featuredProduct.mrpINR && (
-                              <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', textDecoration: 'line-through' }}>
-                                {market === 'india' 
-                                  ? `₹${featuredProduct.mrpINR.toLocaleString('en-IN')}`
-                                  : `$${((featuredProduct.mrpINR / 83) || featuredProduct.priceUSD * 1.3).toFixed(2)}`
-                                }
-                              </div>
-                            )}
-                          </div>
-
-                          <Link
-                            to={featuredProduct.prices[0]?.url || `/product/${featuredProduct.id}`}
-                            rel="nofollow sponsored"
-                            style={{
-                              padding: '9px 15px',
-                              borderRadius: '8px',
-                              background: 'linear-gradient(135deg, #ff9900 0%, #ff5500 100%)',
-                              color: '#ffffff',
-                              fontSize: '0.78rem',
-                              fontWeight: 900,
-                              textDecoration: 'none',
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: '5px',
-                              boxShadow: '0 4px 14px rgba(255, 100, 0, 0.35)'
-                            }}
-                          >
-                            <ShoppingBag size={14} />
-                            <span>GET DEAL</span>
-                          </Link>
-                        </div>
+                  {/* 3 Reliability Guarantee Points */}
+                  <div style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    gap: '20px', 
+                    marginBottom: '32px', 
+                    flexWrap: 'wrap' 
+                  }}>
+                    {banner.guaranteeSpecs.map((spec, i) => (
+                      <div key={i} style={{ 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        gap: '6px', 
+                        fontSize: '0.84rem', 
+                        fontWeight: 700, 
+                        color: '#e2e8f0' 
+                      }}>
+                        <span style={{ color: banner.accentColor, fontWeight: 900 }}>✓</span>
+                        <span>{spec}</span>
                       </div>
-                    )}
+                    ))}
+                  </div>
+
+                  {/* Clean Call To Action & Authorized Brands */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '20px', flexWrap: 'wrap' }}>
+                    <Link
+                      to={`/category/${banner.categorySlug}`}
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '10px',
+                        padding: '14px 30px',
+                        borderRadius: '30px',
+                        background: banner.accentColor,
+                        color: '#050714',
+                        fontWeight: 900,
+                        fontSize: '0.96rem',
+                        textDecoration: 'none',
+                        boxShadow: `0 8px 24px ${banner.accentColor}55`,
+                        transition: 'transform 0.2s ease'
+                      }}
+                    >
+                      <span>Explore {banner.name}</span>
+                      <ArrowRight size={18} />
+                    </Link>
+
+                    {/* Authorized Brand Badges */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+                      <span style={{ fontSize: '0.76rem', color: 'rgba(255, 255, 255, 0.5)', fontWeight: 600 }}>Tested Brands:</span>
+                      {banner.brands.map((b, i) => (
+                        <span 
+                          key={i} 
+                          style={{ 
+                            background: 'rgba(255, 255, 255, 0.08)', 
+                            border: '1px solid rgba(255, 255, 255, 0.14)', 
+                            padding: '4px 10px', 
+                            borderRadius: '6px', 
+                            fontSize: '0.76rem', 
+                            fontWeight: 800, 
+                            color: '#ffffff' 
+                          }}
+                        >
+                          {b}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
 
         {/* Left Arrow Button (MicPrice.com Frosted Glass Style) */}
