@@ -53,12 +53,12 @@ export default function CategoryBrandBanners() {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const sliderRef = useRef(null);
 
-  // Auto-play slider every 6.5 seconds, pauses on hover
+  // Auto-play slider every 5.0 seconds with hover pause
   useEffect(() => {
     if (!isAutoPlaying) return;
     const timer = setInterval(() => {
       setActiveCategoryIndex((prev) => (prev + 1) % CATEGORY_BANNERS.length);
-    }, 6500);
+    }, 5000);
     return () => clearInterval(timer);
   }, [isAutoPlaying]);
 
@@ -137,9 +137,10 @@ export default function CategoryBrandBanners() {
         </div>
       </div>
 
-      {/* FULL-WIDTH 530px HERO SLIDER BANNER (Exact MicPrice.com Dimensions & Horizontal Slide Animation) */}
+      {/* FULL-WIDTH 530px HERO CAROUSEL BANNER (Smooth Crossfade & Vignette Styling) */}
       <div 
         ref={sliderRef}
+        className="hero-carousel-track"
         style={{
           position: 'relative',
           width: '100%',
@@ -148,34 +149,32 @@ export default function CategoryBrandBanners() {
           background: '#070a14'
         }}
       >
-        {/* Horizontal TranslateX Sliding Track (500ms cubic-bezier ease-in-out like micprice.com) */}
-        <div 
-          style={{
-            display: 'flex',
-            width: `${CATEGORY_BANNERS.length * 100}%`,
-            height: '100%',
-            transform: `translateX(-${(activeCategoryIndex * 100) / CATEGORY_BANNERS.length}%)`,
-            transition: 'transform 500ms cubic-bezier(0.4, 0, 0.2, 1)',
-            willChange: 'transform'
-          }}
-        >
-          {CATEGORY_BANNERS.map((banner) => (
+        {/* Silky-Smooth Crossfade Slides */}
+        {CATEGORY_BANNERS.map((banner, index) => {
+          const isActive = index === activeCategoryIndex;
+          return (
             <Link
               key={banner.id}
               to={`/category/${banner.categorySlug}`}
+              className={`hero-slide ${isActive ? 'active' : ''}`}
               style={{
-                width: `${100 / CATEGORY_BANNERS.length}%`,
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
                 height: '100%',
-                position: 'relative',
-                flexShrink: 0,
-                overflow: 'hidden',
+                opacity: isActive ? 1 : 0,
+                pointerEvents: isActive ? 'auto' : 'none',
+                transition: 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+                zIndex: isActive ? 2 : 1,
                 display: 'block',
                 textDecoration: 'none',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                overflow: 'hidden'
               }}
               title={`Explore ${banner.name}`}
             >
-              {/* Pure Aesthetic Full-Bleed Studio Background Image - Zero Clutter / Zero Details */}
+              {/* Full-Bleed Studio Background Image with Ken-Burns subtle zoom */}
               <div 
                 style={{
                   position: 'absolute',
@@ -186,52 +185,21 @@ export default function CategoryBrandBanners() {
                   backgroundImage: `url(${banner.bannerImage})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
-                  transition: 'transform 0.4s ease'
+                  transform: isActive ? 'scale(1)' : 'scale(1.03)',
+                  transition: 'transform 6s ease-out',
+                  willChange: 'transform, opacity'
                 }}
               />
             </Link>
-          ))}
-        </div>
+          );
+        })}
 
-        {/* Subtle Dark Bottom Gradient Overlay for High Contrast Indicators */}
-        <div 
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: '140px',
-            background: 'linear-gradient(to top, rgba(5, 8, 22, 0.9) 0%, rgba(5, 8, 22, 0.45) 55%, transparent 100%)',
-            pointerEvents: 'none',
-            zIndex: 4
-          }}
-        />
+        {/* Subtle Dark Bottom Gradient Vignette for High Contrast Indicators */}
+        <div className="hero-vignette-bottom" />
 
-        {/* Subtle Side Dark Gradients for Arrow Controls */}
-        <div 
-          style={{
-            position: 'absolute',
-            top: 0,
-            bottom: 0,
-            left: 0,
-            width: '90px',
-            background: 'linear-gradient(to right, rgba(5, 8, 22, 0.4) 0%, transparent 100%)',
-            pointerEvents: 'none',
-            zIndex: 4
-          }}
-        />
-        <div 
-          style={{
-            position: 'absolute',
-            top: 0,
-            bottom: 0,
-            right: 0,
-            width: '90px',
-            background: 'linear-gradient(to left, rgba(5, 8, 22, 0.4) 0%, transparent 100%)',
-            pointerEvents: 'none',
-            zIndex: 4
-          }}
-        />
+        {/* Subtle Side Dark Vignettes for Arrow Controls */}
+        <div className="hero-vignette-side-left" />
+        <div className="hero-vignette-side-right" />
 
         {/* Left Arrow Button (High-Contrast Frosted Glass Style) */}
         <button
@@ -311,8 +279,9 @@ export default function CategoryBrandBanners() {
           <ChevronRight size={24} />
         </button>
 
-        {/* Bottom Centered Pagination Dots (High-Contrast Frosted Glass Pill) */}
+        {/* Bottom Centered Pagination Dots with Pill Expansion Effect */}
         <div 
+          className="carousel-dots"
           style={{
             position: 'absolute',
             bottom: '26px',
@@ -338,15 +307,17 @@ export default function CategoryBrandBanners() {
                 key={banner.id}
                 onClick={() => setActiveCategoryIndex(index)}
                 aria-label={`Go to slide ${index + 1}`}
+                className={`dot ${isActive ? 'active' : ''}`}
                 style={{
                   width: isActive ? '28px' : '8px',
                   height: '8px',
-                  borderRadius: '4px',
+                  borderRadius: isActive ? '4px' : '50%',
                   background: isActive ? currentBanner.accentColor : 'rgba(255, 255, 255, 0.45)',
                   border: 'none',
                   cursor: 'pointer',
                   padding: 0,
-                  transition: 'all 0.3s ease'
+                  transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
+                  boxShadow: isActive ? `0 0 10px ${currentBanner.accentColor}88` : 'none'
                 }}
               />
             );
