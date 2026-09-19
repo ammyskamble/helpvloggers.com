@@ -208,15 +208,17 @@ export default function HomePage() {
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
-                    transition: 'transform 0.2s ease, border-color 0.2s ease',
+                    transition: 'transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease',
                     position: 'relative'
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-4px)';
-                    e.currentTarget.style.borderColor = `${cat.accent}66`;
+                    e.currentTarget.style.boxShadow = `0 16px 32px rgba(0, 0, 0, 0.55), 0 0 24px ${cat.accent}28`;
+                    e.currentTarget.style.borderColor = `${cat.accent}77`;
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = 'none';
                     e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
                   }}
                 >
@@ -562,11 +564,14 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                {/* Direct GET DISCOUNT Button */}
+                {/* Direct Full-Width GET DISCOUNT Button (Thumb-Friendly on Mobile) */}
                 <Link
                   to={product.prices[0]?.url || `/product/${product.id}`}
                   rel="nofollow sponsored"
                   style={{
+                    width: '100%',
+                    boxSizing: 'border-box',
+                    minHeight: '44px',
                     padding: '11px 16px',
                     fontSize: '0.86rem',
                     fontWeight: 900,

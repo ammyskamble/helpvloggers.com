@@ -184,10 +184,13 @@ export default function ProductCard({ product }) {
           </Link>
         </div>
 
-        {/* Unified High-Contrast Action Button */}
+        {/* Unified High-Contrast Action Button (Full-Width Thumb-Friendly) */}
         <Link
           to={lowestStore.url}
           style={{ 
+            width: '100%',
+            boxSizing: 'border-box',
+            minHeight: '44px',
             textDecoration: 'none', 
             padding: '11px 16px', 
             fontSize: '0.88rem',

@@ -193,7 +193,47 @@ export default function CategoryBrandBanners() {
           ))}
         </div>
 
-        {/* Left Arrow Button (MicPrice.com Frosted Glass Style) */}
+        {/* Subtle Dark Bottom Gradient Overlay for High Contrast Indicators */}
+        <div 
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: '140px',
+            background: 'linear-gradient(to top, rgba(5, 8, 22, 0.9) 0%, rgba(5, 8, 22, 0.45) 55%, transparent 100%)',
+            pointerEvents: 'none',
+            zIndex: 4
+          }}
+        />
+
+        {/* Subtle Side Dark Gradients for Arrow Controls */}
+        <div 
+          style={{
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            left: 0,
+            width: '90px',
+            background: 'linear-gradient(to right, rgba(5, 8, 22, 0.4) 0%, transparent 100%)',
+            pointerEvents: 'none',
+            zIndex: 4
+          }}
+        />
+        <div 
+          style={{
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            right: 0,
+            width: '90px',
+            background: 'linear-gradient(to left, rgba(5, 8, 22, 0.4) 0%, transparent 100%)',
+            pointerEvents: 'none',
+            zIndex: 4
+          }}
+        />
+
+        {/* Left Arrow Button (High-Contrast Frosted Glass Style) */}
         <button
           onClick={handlePrev}
           aria-label="Previous Slide"
@@ -206,22 +246,33 @@ export default function CategoryBrandBanners() {
             width: '46px',
             height: '46px',
             borderRadius: '12px',
-            background: 'rgba(255, 255, 255, 0.18)',
+            background: 'rgba(5, 8, 22, 0.65)',
             backdropFilter: 'blur(12px)',
             WebkitBackdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255, 255, 255, 0.25)',
+            border: '1px solid rgba(255, 255, 255, 0.22)',
             color: '#ffffff',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             cursor: 'pointer',
+            boxShadow: '0 4px 18px rgba(0, 0, 0, 0.5)',
             transition: 'all 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = 'rgba(0, 242, 254, 0.25)';
+            e.currentTarget.style.borderColor = '#00f2fe';
+            e.currentTarget.style.boxShadow = '0 6px 22px rgba(0, 242, 254, 0.35)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = 'rgba(5, 8, 22, 0.65)';
+            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.22)';
+            e.currentTarget.style.boxShadow = '0 4px 18px rgba(0, 0, 0, 0.5)';
           }}
         >
           <ChevronLeft size={24} />
         </button>
 
-        {/* Right Arrow Button (MicPrice.com Frosted Glass Style) */}
+        {/* Right Arrow Button (High-Contrast Frosted Glass Style) */}
         <button
           onClick={handleNext}
           aria-label="Next Slide"
@@ -234,38 +285,50 @@ export default function CategoryBrandBanners() {
             width: '46px',
             height: '46px',
             borderRadius: '12px',
-            background: 'rgba(255, 255, 255, 0.18)',
+            background: 'rgba(5, 8, 22, 0.65)',
             backdropFilter: 'blur(12px)',
             WebkitBackdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255, 255, 255, 0.25)',
+            border: '1px solid rgba(255, 255, 255, 0.22)',
             color: '#ffffff',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             cursor: 'pointer',
+            boxShadow: '0 4px 18px rgba(0, 0, 0, 0.5)',
             transition: 'all 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = 'rgba(0, 242, 254, 0.25)';
+            e.currentTarget.style.borderColor = '#00f2fe';
+            e.currentTarget.style.boxShadow = '0 6px 22px rgba(0, 242, 254, 0.35)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = 'rgba(5, 8, 22, 0.65)';
+            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.22)';
+            e.currentTarget.style.boxShadow = '0 4px 18px rgba(0, 0, 0, 0.5)';
           }}
         >
           <ChevronRight size={24} />
         </button>
 
-        {/* Bottom Centered Pagination Dots (MicPrice.com Expanding Active Pill) */}
+        {/* Bottom Centered Pagination Dots (High-Contrast Frosted Glass Pill) */}
         <div 
           style={{
             position: 'absolute',
-            bottom: '22px',
+            bottom: '26px',
             left: '50%',
             transform: 'translateX(-50%)',
             zIndex: 10,
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
-            background: 'rgba(0, 0, 0, 0.45)',
-            backdropFilter: 'blur(10px)',
-            WebkitBackdropFilter: 'blur(10px)',
-            padding: '7px 16px',
-            borderRadius: '20px',
-            border: '1px solid rgba(255, 255, 255, 0.1)'
+            background: 'rgba(5, 8, 22, 0.82)',
+            backdropFilter: 'blur(14px)',
+            WebkitBackdropFilter: 'blur(14px)',
+            padding: '8px 18px',
+            borderRadius: '24px',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            boxShadow: '0 8px 30px rgba(0, 0, 0, 0.7)'
           }}
         >
           {CATEGORY_BANNERS.map((banner, index) => {
@@ -276,7 +339,7 @@ export default function CategoryBrandBanners() {
                 onClick={() => setActiveCategoryIndex(index)}
                 aria-label={`Go to slide ${index + 1}`}
                 style={{
-                  width: isActive ? '26px' : '8px',
+                  width: isActive ? '28px' : '8px',
                   height: '8px',
                   borderRadius: '4px',
                   background: isActive ? currentBanner.accentColor : 'rgba(255, 255, 255, 0.45)',

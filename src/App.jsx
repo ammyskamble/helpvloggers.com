@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, Link } from 'react-router-dom';
 import { EcommerceProvider } from './context/EcommerceContext';
 import Header from './components/Header';
-import CategoryNavBar from './components/CategoryNavBar';
 import VloggingKitBuilderModal from './components/VloggingKitBuilderModal';
 import SchemaInjector from './components/SchemaInjector';
 import HomePage from './pages/HomePage';
@@ -36,15 +35,12 @@ export default function App() {
         <ScrollToTop />
         <SchemaInjector />
 
-        {/* Global E-Commerce Header */}
+        {/* Global E-Commerce Header with Integrated Sticky Categories Drop-Down */}
         <Header
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
           onOpenBuilder={() => setIsBuilderOpen(true)}
         />
-
-        {/* Sticky Global 3-Tier Category Mega Navigation */}
-        <CategoryNavBar />
 
         {/* Main App Routes */}
         <main style={{ minHeight: '80vh', width: '100%' }}>
