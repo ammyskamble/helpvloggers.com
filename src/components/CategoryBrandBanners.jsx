@@ -85,16 +85,16 @@ export default function CategoryBrandBanners() {
       onMouseEnter={() => setIsAutoPlaying(false)}
       onMouseLeave={() => setIsAutoPlaying(true)}
     >
-      {/* Category Navigation Pills (Exact Header-Attached Subnav Style) */}
+      {/* Category Navigation Pills (Touch-Friendly Smooth Horizontal Swipe) */}
       <div 
         style={{
           background: 'rgba(5, 7, 18, 0.95)',
           borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-          padding: '10px 24px'
+          padding: '10px 20px'
         }}
       >
         <div 
-          className="no-scrollbar"
+          className="category-subnav-scroll no-scrollbar"
           style={{ 
             maxWidth: '1280px',
             margin: '0 auto',
@@ -102,7 +102,10 @@ export default function CategoryBrandBanners() {
             alignItems: 'center', 
             justifyContent: 'center',
             gap: '10px', 
-            overflowX: 'auto'
+            overflowX: 'auto',
+            scrollBehavior: 'smooth',
+            WebkitOverflowScrolling: 'touch',
+            padding: '2px 4px'
           }}
         >
           {CATEGORY_BANNERS.map((banner, index) => {
@@ -125,6 +128,7 @@ export default function CategoryBrandBanners() {
                   fontSize: '0.82rem',
                   cursor: 'pointer',
                   whiteSpace: 'nowrap',
+                  flexShrink: 0,
                   transition: 'all 0.25s ease',
                   boxShadow: isActive ? `0 0 16px ${banner.accentColor}55` : 'none'
                 }}
@@ -140,7 +144,7 @@ export default function CategoryBrandBanners() {
       {/* FULL-WIDTH 530px HERO CAROUSEL BANNER (Smooth Crossfade & Vignette Styling) */}
       <div 
         ref={sliderRef}
-        className="hero-carousel-track"
+        className="hero-carousel-container hero-carousel-track"
         style={{
           position: 'relative',
           width: '100%',
@@ -152,6 +156,7 @@ export default function CategoryBrandBanners() {
         {/* Silky-Smooth Crossfade Slides */}
         {CATEGORY_BANNERS.map((banner, index) => {
           const isActive = index === activeCategoryIndex;
+          const IconComp = banner.icon;
           return (
             <Link
               key={banner.id}
@@ -174,6 +179,13 @@ export default function CategoryBrandBanners() {
               }}
               title={`Explore ${banner.name}`}
             >
+              {/* Compact Slide Title / Category Badge */}
+              <div className="hero-slide-badge">
+                <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: banner.accentColor, display: 'inline-block', boxShadow: `0 0 8px ${banner.accentColor}` }} />
+                <span>{banner.name}</span>
+                <span style={{ opacity: 0.6, fontSize: '0.7rem' }}>• 2025/2026 Picks</span>
+              </div>
+
               {/* Full-Bleed Studio Background Image with Ken-Burns subtle zoom */}
               <div 
                 style={{
@@ -201,82 +213,22 @@ export default function CategoryBrandBanners() {
         <div className="hero-vignette-side-left" />
         <div className="hero-vignette-side-right" />
 
-        {/* Left Arrow Button (High-Contrast Frosted Glass Style) */}
+        {/* Left Arrow Button (Compact Carousel Arrow with Brand Orange Hover) */}
         <button
           onClick={handlePrev}
           aria-label="Previous Slide"
-          style={{
-            position: 'absolute',
-            left: '24px',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            zIndex: 10,
-            width: '46px',
-            height: '46px',
-            borderRadius: '12px',
-            background: 'rgba(5, 8, 22, 0.65)',
-            backdropFilter: 'blur(12px)',
-            WebkitBackdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255, 255, 255, 0.22)',
-            color: '#ffffff',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            boxShadow: '0 4px 18px rgba(0, 0, 0, 0.5)',
-            transition: 'all 0.2s ease'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'rgba(0, 242, 254, 0.25)';
-            e.currentTarget.style.borderColor = '#00f2fe';
-            e.currentTarget.style.boxShadow = '0 6px 22px rgba(0, 242, 254, 0.35)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'rgba(5, 8, 22, 0.65)';
-            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.22)';
-            e.currentTarget.style.boxShadow = '0 4px 18px rgba(0, 0, 0, 0.5)';
-          }}
+          className="carousel-arrow left"
         >
-          <ChevronLeft size={24} />
+          <ChevronLeft size={18} />
         </button>
 
-        {/* Right Arrow Button (High-Contrast Frosted Glass Style) */}
+        {/* Right Arrow Button (Compact Carousel Arrow with Brand Orange Hover) */}
         <button
           onClick={handleNext}
           aria-label="Next Slide"
-          style={{
-            position: 'absolute',
-            right: '24px',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            zIndex: 10,
-            width: '46px',
-            height: '46px',
-            borderRadius: '12px',
-            background: 'rgba(5, 8, 22, 0.65)',
-            backdropFilter: 'blur(12px)',
-            WebkitBackdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255, 255, 255, 0.22)',
-            color: '#ffffff',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            boxShadow: '0 4px 18px rgba(0, 0, 0, 0.5)',
-            transition: 'all 0.2s ease'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'rgba(0, 242, 254, 0.25)';
-            e.currentTarget.style.borderColor = '#00f2fe';
-            e.currentTarget.style.boxShadow = '0 6px 22px rgba(0, 242, 254, 0.35)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'rgba(5, 8, 22, 0.65)';
-            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.22)';
-            e.currentTarget.style.boxShadow = '0 4px 18px rgba(0, 0, 0, 0.5)';
-          }}
+          className="carousel-arrow right"
         >
-          <ChevronRight size={24} />
+          <ChevronRight size={18} />
         </button>
 
         {/* Bottom Centered Pagination Dots with Pill Expansion Effect */}

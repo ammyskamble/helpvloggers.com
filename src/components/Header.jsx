@@ -85,6 +85,7 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+  const [isAnnouncementVisible, setIsAnnouncementVisible] = useState(true);
   const searchWrapRef = useRef(null);
   const categoriesMenuRef = useRef(null);
 
@@ -130,78 +131,106 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
   };
 
   return (
-    <header style={{ position: 'sticky', top: 0, zIndex: 100 }}>
-      {/* 1. Top Announcement Bar with Clear India / Global Market Switcher */}
-      <div style={{
-        background: 'linear-gradient(90deg, #ff9900 0%, #ff5722 50%, #00f2fe 100%)',
-        color: '#050714',
-        fontSize: '0.78rem',
-        fontWeight: 800,
-        padding: '6px 20px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        gap: '10px'
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span>🇮🇳 <strong>Great Indian Creator Fest:</strong> Up to 65% OFF on Digitek, Boya & Ring Lights</span>
-          <span style={{ background: '#050714', color: '#ff9900', padding: '1px 6px', borderRadius: '4px', fontSize: '0.7rem' }}>
-            DEALS LIVE
-          </span>
-        </div>
-
-        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-          {/* Region / Market Switcher (India vs Global - No Conflict) */}
-          <div style={{ display: 'flex', alignItems: 'center', background: 'rgba(5, 7, 20, 0.85)', borderRadius: '20px', padding: '2px' }}>
-            <button
-              onClick={() => setMarket('india')}
-              style={{
-                background: market === 'india' ? '#00f2fe' : 'transparent',
-                color: market === 'india' ? '#050714' : '#fff',
-                border: 'none',
-                borderRadius: '16px',
-                padding: '4px 12px',
-                fontSize: '0.72rem',
-                fontWeight: 800,
-                cursor: 'pointer',
-                transition: 'all 0.2s ease'
-              }}
-            >
-              🇮🇳 India Market (₹ INR)
-            </button>
-            <button
-              onClick={() => setMarket('global')}
-              style={{
-                background: market === 'global' ? '#ff9900' : 'transparent',
-                color: market === 'global' ? '#050714' : '#fff',
-                border: 'none',
-                borderRadius: '16px',
-                padding: '4px 12px',
-                fontSize: '0.72rem',
-                fontWeight: 800,
-                cursor: 'pointer',
-                transition: 'all 0.2s ease'
-              }}
-            >
-              🌐 Global Market ($ USD)
-            </button>
+    <header style={{ position: 'sticky', top: 0, zIndex: 1000, backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}>
+      {/* 1. Top Slimmer, Dismissible Announcement Bar */}
+      {isAnnouncementVisible && (
+        <div style={{
+          background: 'linear-gradient(90deg, #ff9900 0%, #ff5722 50%, #00f2fe 100%)',
+          color: '#050714',
+          fontSize: '0.74rem',
+          fontWeight: 800,
+          padding: '4px 18px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '8px',
+          transition: 'all 0.25s ease'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span>🇮🇳 <strong>Creator Fest:</strong> Up to 65% OFF on Digitek, Boya & LED Lighting</span>
+            <span style={{ background: '#050714', color: '#ff9900', padding: '1px 5px', borderRadius: '4px', fontSize: '0.65rem' }}>
+              DEALS LIVE
+            </span>
           </div>
 
-          {/* Pincode Selector (When India is active) */}
-          {market === 'india' && (
-            <div 
-              onClick={() => {
-                const code = prompt('Enter delivery pincode (e.g. 110001 Delhi, 560001 Bengaluru, 400001 Mumbai):', '400001');
-                if (code) setSelectedPincode(code);
-              }}
-              style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', textDecoration: 'underline', color: '#050714' }}
-            >
-              <MapPin size={12} /> Deliver: {selectedPincode}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            {/* Region / Market Switcher */}
+            <div style={{ display: 'flex', alignItems: 'center', background: 'rgba(5, 7, 20, 0.85)', borderRadius: '16px', padding: '1px' }}>
+              <button
+                onClick={() => setMarket('india')}
+                style={{
+                  background: market === 'india' ? '#00f2fe' : 'transparent',
+                  color: market === 'india' ? '#050714' : '#fff',
+                  border: 'none',
+                  borderRadius: '14px',
+                  padding: '3px 10px',
+                  fontSize: '0.7rem',
+                  fontWeight: 800,
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                🇮🇳 India (₹)
+              </button>
+              <button
+                onClick={() => setMarket('global')}
+                style={{
+                  background: market === 'global' ? '#ff9900' : 'transparent',
+                  color: market === 'global' ? '#050714' : '#fff',
+                  border: 'none',
+                  borderRadius: '14px',
+                  padding: '3px 10px',
+                  fontSize: '0.7rem',
+                  fontWeight: 800,
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                🌐 Global ($)
+              </button>
             </div>
-          )}
+
+            {/* Pincode Selector (When India is active) */}
+            {market === 'india' && (
+              <div 
+                onClick={() => {
+                  const code = prompt('Enter delivery pincode (e.g. 110001 Delhi, 560001 Bengaluru, 400001 Mumbai):', '400001');
+                  if (code) setSelectedPincode(code);
+                }}
+                style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '3px', textDecoration: 'underline', color: '#050714', fontSize: '0.72rem' }}
+              >
+                <MapPin size={11} /> {selectedPincode}
+              </div>
+            )}
+
+            {/* Dismiss Announcement Button */}
+            <button
+              onClick={() => setIsAnnouncementVisible(false)}
+              aria-label="Dismiss Announcement"
+              title="Dismiss announcement bar"
+              style={{
+                background: 'rgba(5, 7, 20, 0.25)',
+                border: 'none',
+                borderRadius: '50%',
+                width: '18px',
+                height: '18px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                color: '#050714',
+                padding: 0,
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(5, 7, 20, 0.45)'}
+              onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(5, 7, 20, 0.25)'}
+            >
+              <X size={11} />
+            </button>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* 2. Main E-Commerce Brand & Search Bar */}
       <div className="header-bar glass-panel" style={{ borderRadius: 0, padding: '12px 24px' }}>
