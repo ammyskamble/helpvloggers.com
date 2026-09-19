@@ -12,6 +12,7 @@ import ProductDetailPage from './pages/ProductDetailPage';
 import ComparisonDetailPage from './pages/ComparisonDetailPage';
 import BlogDetailPage from './pages/BlogDetailPage';
 import AffiliateRedirectPage from './pages/AffiliateRedirectPage';
+import SmartphoneGuidePage from './pages/SmartphoneGuidePage';
 import { TAXONOMY } from './data/vloggingProducts';
 import { ShieldCheck, Heart } from 'lucide-react';
 
@@ -55,6 +56,8 @@ export default function App() {
             <Route path="/product/:productId" element={<div style={{ maxWidth: '1280px', margin: '0 auto', padding: '24px 20px 60px' }}><ProductDetailPage /></div>} />
             <Route path="/compare/:vsId" element={<div style={{ maxWidth: '1280px', margin: '0 auto', padding: '24px 20px 60px' }}><ComparisonDetailPage /></div>} />
             <Route path="/blog/:blogId" element={<div style={{ maxWidth: '1280px', margin: '0 auto', padding: '24px 20px 60px' }}><BlogDetailPage /></div>} />
+            <Route path="/smartphones" element={<SmartphoneGuidePage />} />
+            <Route path="/vlogging-smartphones" element={<SmartphoneGuidePage />} />
             <Route path="/go/:store/:slug" element={<AffiliateRedirectPage />} />
             {/* Catch-all fallback */}
             <Route path="*" element={<HomePage onOpenBuilder={() => setIsBuilderOpen(true)} />} />

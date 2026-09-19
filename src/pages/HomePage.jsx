@@ -5,6 +5,7 @@ import { useEcommerce } from '../context/EcommerceContext';
 import { ShoppingBag, ArrowRight, Star, Clock, CheckCircle, ShieldCheck } from 'lucide-react';
 
 import CategoryBrandBanners from '../components/CategoryBrandBanners';
+import SmartphoneVloggingGuide from '../components/SmartphoneVloggingGuide';
 
 const INDIA_TABS = [
   { id: 'in-all', label: '🔥 Top Indian Deals', filter: (p) => p.market === 'india' && p.discountPercent >= 50, subPageUrl: '/shop?market=india&discount=50' },
@@ -344,7 +345,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. FEW BLOGS RELATED TO PRODUCT (MicPrice.com Latest Blog Section) */}
+      {/* 3. WHICH SMARTPHONE IS BETTER FOR VLOGGING (Interactive Lab & Spec Shootout) */}
+      <SmartphoneVloggingGuide />
+
+      {/* 4. FEW BLOGS RELATED TO PRODUCT (MicPrice.com Latest Blog Section) */}
       <section style={{ marginBottom: '55px' }}>
         <div style={{ marginBottom: '20px' }}>
           <h2 style={{ fontSize: '1.6rem', fontWeight: 900, margin: 0 }}>

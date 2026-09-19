@@ -7,7 +7,10 @@
     "linkPrefix": "/go/",
     "defaultRel": "nofollow sponsored",
     "retailers": {
-      "amazon": { "tag": "helpvloggers-20", "label": "Amazon" },
+      "amazon_in": { "tag": "ammyskambl00c-21", "label": "Amazon India", "baseUrl": "https://www.amazon.in" },
+      "amazon_us": { "tag": "ammyskambl00c-21", "label": "Amazon US", "baseUrl": "https://www.amazon.com" },
+      "amazon": { "tag": "ammyskambl00c-21", "label": "Amazon", "baseUrl": "https://www.amazon.in" },
+      "flipkart": { "tag": "helpvloggers", "label": "Flipkart", "baseUrl": "https://www.flipkart.com" },
       "bhphoto": { "tag": "helpvloggers_bh", "label": "B&H Photo Video" },
       "adorama": { "tag": "helpvloggers_ado", "label": "Adorama" },
       "bestbuy": { "tag": "helpvloggers_bb", "label": "Best Buy" },

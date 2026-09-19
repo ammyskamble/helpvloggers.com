@@ -77,6 +77,25 @@ export default function CategoryNavBar() {
           <ShoppingBag size={14} color="#00f2fe" /> Shop All Gear
         </NavLink>
 
+        {/* Smartphone Vlogging Guide Sub-Page */}
+        <NavLink
+          to="/smartphones"
+          className={({ isActive }) => `subnav-pill ${isActive ? 'active' : ''}`}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '6px',
+            padding: '6px 12px',
+            borderRadius: '8px',
+            fontSize: '0.8rem',
+            fontWeight: 700,
+            textDecoration: 'none',
+            color: 'var(--text-secondary)'
+          }}
+        >
+          <Smartphone size={14} color="#00e676" /> Best Vlogging Phones
+        </NavLink>
+
         {/* 3-Tier Category Mega Menus */}
         {TAXONOMY.map(cat => {
           const IconComponent = ICON_MAP[cat.id] || Sparkles;

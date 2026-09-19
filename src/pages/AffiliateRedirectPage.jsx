@@ -1,34 +1,79 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { VLOGGING_PRODUCTS } from '../data/vloggingProducts';
-import { ExternalLink, ShieldCheck, ArrowRight, ArrowLeft, Loader2 } from 'lucide-react';
-
-const STORE_CONFIG = {
-  amazon: { name: 'Amazon', color: '#ff9900', urlPattern: (slug) => `https://www.amazon.com/s?k=${slug.replace(/-/g, '+')}&tag=helpvloggers-20` },
-  bhphoto: { name: 'B&H Photo Video', color: '#0066cc', urlPattern: (slug) => `https://www.bhphotovideo.com/c/search?Ntt=${slug.replace(/-/g, '+')}` },
-  adorama: { name: 'Adorama', color: '#d92525', urlPattern: (slug) => `https://www.adorama.com/l/?searchinfo=${slug.replace(/-/g, '+')}` },
-  bestbuy: { name: 'Best Buy', color: '#fff200', urlPattern: (slug) => `https://www.bestbuy.com/site/searchpage.jsp?st=${slug.replace(/-/g, '+')}` },
-  dji: { name: 'DJI Official Store', color: '#000000', urlPattern: (slug) => `https://store.dji.com/search?keyword=${slug.replace(/-/g, '+')}` }
-};
+import { VLOGGING_SMARTPHONES } from '../data/vloggingSmartphones';
+import { AFFILIATE_CONFIG, getAmazonAffiliateUrl } from '../config/affiliateConfig';
+import { ExternalLink, ShieldCheck, ArrowRight, ArrowLeft, Loader2, CheckCircle2 } from 'lucide-react';
 
 export default function AffiliateRedirectPage() {
   const { store, slug } = useParams();
   const [countdown, setCountdown] = useState(3);
   const [isRedirecting, setIsRedirecting] = useState(false);
 
-  const product = VLOGGING_PRODUCTS.find(p => p.id === slug);
-  const storeInfo = STORE_CONFIG[store?.toLowerCase()] || {
-    name: store ? store.toUpperCase() : 'Partner Retailer',
-    color: '#00f2fe',
-    urlPattern: (s) => `https://www.google.com/search?q=${s}+buy`
-  };
+  const cleanStore = (store || '').toLowerCase().replace(/[\._]/g, '-');
+  const product = VLOGGING_PRODUCTS.find(p => p.id === slug) || VLOGGING_SMARTPHONES.find(p => p.id === slug);
+  const productName = product?.title || product?.name || slug?.replace(/-/g, ' ');
 
-  const destinationUrl = storeInfo.urlPattern(slug || 'vlogging-gear');
+  // Find store pricing info if product exists
+  const storePriceEntry = product?.prices?.find(p => {
+    const pStore = p.store.toLowerCase().replace(/[\._]/g, '-');
+    return pStore.includes(cleanStore) || cleanStore.includes(pStore);
+  });
+
+  // Determine Destination URL and Retailer Info
+  let destinationUrl = '';
+  let storeName = 'Amazon.in';
+  let storeColor = '#ff9900';
+
+  if (cleanStore.includes('amazon')) {
+    const isIndia = cleanStore.includes('in') || (!cleanStore.includes('com') && !cleanStore.includes('us'));
+    storeName = isIndia ? 'Amazon.in' : 'Amazon.com';
+    storeColor = '#ff9900';
+
+    destinationUrl = getAmazonAffiliateUrl({
+      country: isIndia ? 'IN' : 'US',
+      asin: storePriceEntry?.asin || product?.asin,
+      directAffiliateUrl: storePriceEntry?.directAffiliateUrl || product?.directAffiliateUrl,
+      searchQuery: productName,
+      slug
+    });
+  } else if (cleanStore.includes('flipkart')) {
+    storeName = 'Flipkart';
+    storeColor = '#2874f0';
+    destinationUrl = storePriceEntry?.directAffiliateUrl || `https://www.flipkart.com/search?q=${encodeURIComponent(productName)}&affid=${AFFILIATE_CONFIG.flipkart.affiliateId}`;
+  } else if (cleanStore.includes('croma')) {
+    storeName = 'Croma';
+    storeColor = '#00e676';
+    destinationUrl = storePriceEntry?.directAffiliateUrl || `https://www.croma.com/searchB?q=${encodeURIComponent(productName)}`;
+  } else if (cleanStore.includes('reliance')) {
+    storeName = 'Reliance Digital';
+    storeColor = '#e42529';
+    destinationUrl = storePriceEntry?.directAffiliateUrl || `https://www.reliancedigital.in/search?q=${encodeURIComponent(productName)}`;
+  } else if (cleanStore.includes('bhphoto')) {
+    storeName = 'B&H Photo Video';
+    storeColor = '#0066cc';
+    destinationUrl = storePriceEntry?.directAffiliateUrl || `https://www.bhphotovideo.com/c/search?Ntt=${encodeURIComponent(productName)}`;
+  } else if (cleanStore.includes('dji')) {
+    storeName = 'DJI Official Store';
+    storeColor = '#000000';
+    destinationUrl = storePriceEntry?.directAffiliateUrl || `https://store.dji.com/search?keyword=${encodeURIComponent(productName)}`;
+  } else {
+    storeName = store ? store.toUpperCase() : 'Partner Retailer';
+    storeColor = '#00f2fe';
+    destinationUrl = `https://www.google.com/search?q=${encodeURIComponent(productName)}+buy`;
+  }
 
   const handleProceed = () => {
     setIsRedirecting(true);
     window.open(destinationUrl, '_blank', 'noopener,noreferrer');
   };
+
+  useEffect(() => {
+    if (countdown > 0) {
+      const timer = setTimeout(() => setCountdown(c => c - 1), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [countdown]);
 
   return (
     <div style={{ maxWidth: '600px', margin: '60px auto', padding: '0 20px', textAlign: 'center' }}>
@@ -53,7 +98,7 @@ export default function AffiliateRedirectPage() {
         </span>
 
         <h1 style={{ fontSize: '1.8rem', fontWeight: 900, margin: '10px 0 16px' }}>
-          Visiting {storeInfo.name}
+          Visiting {storeName}
         </h1>
 
         {product && (
@@ -75,14 +120,32 @@ export default function AffiliateRedirectPage() {
             />
             <div>
               <div style={{ fontWeight: 800, fontSize: '0.95rem', color: '#fff' }}>
-                {product.title}
+                {productName}
               </div>
               <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: 4 }}>
-                Selected retailer: <span style={{ color: '#00f2fe', fontWeight: 700 }}>{storeInfo.name}</span>
+                Selected retailer: <span style={{ color: '#00f2fe', fontWeight: 700 }}>{storeName}</span>
               </div>
             </div>
           </div>
         )}
+
+        <div style={{
+          background: 'rgba(0, 242, 254, 0.08)',
+          border: '1px solid rgba(0, 242, 254, 0.25)',
+          borderRadius: '10px',
+          padding: '10px 14px',
+          marginBottom: '20px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '8px',
+          color: '#00f2fe',
+          fontSize: '0.85rem',
+          fontWeight: 700
+        }}>
+          <Loader2 size={16} className="spin-animation" />
+          <span>Redirecting to {storeName} in {countdown} seconds...</span>
+        </div>
 
         <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '28px' }}>
           HelpVloggers partners with verified retailers. When you purchase through our links, we may earn an affiliate commission at zero additional cost to you.
@@ -105,7 +168,7 @@ export default function AffiliateRedirectPage() {
               textDecoration: 'none'
             }}
           >
-            <span>Proceed to {storeInfo.name}</span>
+            <span>Proceed to {storeName} Now</span>
             <ExternalLink size={18} />
           </button>
 
