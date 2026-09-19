@@ -521,11 +521,145 @@ button {
   box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
 }
 
-/* Responsive */
+/* =============================================
+   RESPONSIVE BREAKPOINTS — Mobile-first design
+   ============================================= */
+
+/* Tablet: ≤ 1024px */
+@media (max-width: 1024px) {
+  .header-bar { padding: 10px 16px; gap: 12px; }
+  .search-box-wrap { max-width: 400px; }
+  .products-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+  .main-container { padding: 0 16px 60px; }
+  .hero-banner { padding: 40px 16px 28px; }
+  .builder-banner { padding: 32px 28px; gap: 28px; }
+  .hero-title { font-size: 2.6rem; }
+}
+
+/* Mobile: ≤ 768px */
 @media (max-width: 768px) {
-  .hero-title { font-size: 2.1rem; }
-  .builder-banner { grid-template-columns: 1fr; padding: 24px; }
-  .products-grid { grid-template-columns: 1fr; }
+  /* Header */
+  .header-bar { padding: 10px 16px; gap: 10px; }
+  .logo-brand { font-size: 1.1rem; gap: 8px; }
+  .logo-icon { width: 34px; height: 34px; border-radius: 10px; }
+  .search-box-wrap { max-width: 100%; flex: 1; }
+
+  /* Hero Banner text */
+  .hero-title { font-size: 2rem; }
+  .hero-subtitle { font-size: 0.98rem; }
+
+  /* Carousel height reduced for mobile */
+  .hero-carousel-track { height: 260px; }
+  .hero-vignette-bottom { height: 80px; }
+
+  /* Category filter pills - allow horizontal scroll on mobile */
+  .filter-pills-row {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 6px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .filter-pills-row::-webkit-scrollbar { display: none; }
+  .pill-btn { flex-shrink: 0; padding: 8px 16px; font-size: 0.82rem; }
+
+  /* Main content grid */
+  .main-container { padding: 0 12px 60px; }
+  .products-grid { grid-template-columns: 1fr; gap: 16px; }
+  .section-title { font-size: 1.3rem; }
+
+  /* Kit builder banner */
+  .builder-banner {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    gap: 20px;
+    margin: 32px 0;
+  }
+  .builder-title { font-size: 1.6rem; }
+
+  /* Modal */
+  .modal-overlay { padding: 12px; }
+  .modal-content { padding: 20px; border-radius: 16px; max-height: 88vh; }
+
+  /* Blog list page hero */
+  .blog-page-hero { padding: 24px 16px !important; }
+  .blog-hero-h1 { font-size: 1.75rem !important; }
+  .blog-hero-sub { font-size: 0.92rem !important; }
+
+  /* Blog detail article */
+  .blog-article-wrap { padding: 12px 0 60px !important; }
+  .blog-article-wrap h1 { font-size: 1.65rem !important; }
+  .blog-article-wrap h2 { font-size: 1.25rem !important; }
+
+  /* Products grid in category page */
+  .category-products-grid { grid-template-columns: 1fr !important; }
+
+  /* Blog cards grid: single column on mobile */
+  .blog-cards-grid { grid-template-columns: 1fr !important; }
+
+  /* Section headers collapse on mobile */
+  .section-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+
+  /* Hero Carousel arrows */
+  .carousel-arrow { width: 30px; height: 30px; font-size: 12px; }
+  .carousel-arrow.left { left: 8px; }
+  .carousel-arrow.right { right: 8px; }
+}
+
+/* Small mobile: ≤ 480px */
+@media (max-width: 480px) {
+  .hero-title { font-size: 1.7rem; }
+  .hero-carousel-track { height: 210px; }
+  .hero-banner { padding: 28px 12px 20px; }
+  .card-body { padding: 16px; }
+  .cta-button { padding: 12px; font-size: 0.88rem; }
+  .modal-content { padding: 16px; }
+  .builder-title { font-size: 1.4rem; }
+  .btn-gradient-secondary { padding: 12px 20px; font-size: 0.9rem; }
+
+  /* Subnav pills touch scroll */
+  .category-subnav-scroll { gap: 6px; padding: 2px 0; }
+
+  /* Brands strip: 2 columns on tiny screens */
+  .brands-strip-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+/* =============================================
+   MOBILE HEADER — Hamburger Toggle Logic
+   ============================================= */
+
+/* Desktop: show right-side nav, hide hamburger */
+.header-right-desktop { display: flex !important; }
+.mobile-menu-btn { display: none !important; }
+
+/* Categories dropdown: hide on mobile (drawer replaces it) */
+@media (max-width: 768px) {
+  /* Hide desktop-only nav actions */
+  .header-right-desktop { display: none !important; }
+  /* Show hamburger button */
+  .mobile-menu-btn { display: flex !important; }
+
+  /* Hide the full Categories mega-menu button on mobile (accessible via drawer) */
+  .categories-desktop-btn { display: none !important; }
+
+  /* Announcement bar: smaller text, don't show pincode on mobile */
+  .announcement-pincode { display: none !important; }
+
+  /* Search bar: hide the category select on very small screens to save space */
+  .search-cat-select { display: none !important; }
+
+  /* Make the header-bar row tighter */
+  .header-bar { padding: 8px 12px !important; gap: 8px !important; }
+
+  /* Logo: hide subtitle on mobile */
+  .logo-sub { display: none !important; }
+}
+
+@media (max-width: 480px) {
+  /* On tiny screens also hide the Categories dropdown button */
+  .header-right-desktop { display: none !important; }
+  .mobile-menu-btn { display: flex !important; }
 }
 
 /* ==========================================================================

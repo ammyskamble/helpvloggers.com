@@ -148,7 +148,6 @@ export default function CategoryBrandBanners() {
         style={{
           position: 'relative',
           width: '100%',
-          height: '530px',
           overflow: 'hidden',
           background: '#070a14'
         }}

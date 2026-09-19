@@ -35,9 +35,11 @@ export default function CategoryNavBar() {
           display: 'flex',
           alignItems: 'center',
           gap: '6px',
-          overflowX: 'visible',
+          overflowX: 'auto',
+          scrollBehavior: 'smooth',
+          WebkitOverflowScrolling: 'touch',
           whiteSpace: 'nowrap',
-          padding: '2px 0'
+          padding: '2px 4px'
         }}
       >
         {/* Home */}

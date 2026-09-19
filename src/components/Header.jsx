@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Camera, Search, Heart, MapPin, ShoppingBag, ArrowRight, X, Globe, Layers, ChevronDown, Smartphone, Mic, Sliders, Zap, Sparkles, BookOpen } from 'lucide-react';
+import { Camera, Search, Heart, MapPin, ShoppingBag, ArrowRight, X, Globe, Layers, ChevronDown, Smartphone, Mic, Sliders, Zap, Sparkles, BookOpen, Menu } from 'lucide-react';
 import { useEcommerce } from '../context/EcommerceContext';
 import { TAXONOMY, VLOGGING_PRODUCTS } from '../data/vloggingProducts';
 
@@ -86,6 +86,7 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [isAnnouncementVisible, setIsAnnouncementVisible] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const searchWrapRef = useRef(null);
   const categoriesMenuRef = useRef(null);
 
@@ -240,14 +241,14 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
           </div>
           <div>
             <span style={{ letterSpacing: '-0.5px', fontSize: '1.25rem', fontWeight: 900 }}>HelpVloggers</span>
-            <span style={{ color: '#ff9900', fontSize: '0.7rem', display: 'block', fontWeight: 800, letterSpacing: '0.5px' }}>
+            <span className="logo-sub" style={{ color: '#ff9900', fontSize: '0.7rem', display: 'block', fontWeight: 800, letterSpacing: '0.5px' }}>
               {market === 'india' ? '🇮🇳 INDIA CREATOR HUB' : '🌐 GLOBAL CREATOR HUB'}
             </span>
           </div>
         </Link>
 
         {/* Sticky Categories Dropdown Trigger & Mega-Menu (Saves Vertical Height) */}
-        <div ref={categoriesMenuRef} style={{ position: 'relative', flexShrink: 0 }}>
+        <div ref={categoriesMenuRef} className="categories-desktop-btn" style={{ position: 'relative', flexShrink: 0 }}>
           <button
             type="button"
             onClick={() => setIsCategoriesOpen(!isCategoriesOpen)}
@@ -458,6 +459,7 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
           >
             {/* Category Filter Select */}
             <select
+              className="search-cat-select"
               value={searchCategory}
               onChange={(e) => setSearchCategory(e.target.value)}
               style={{
@@ -646,9 +648,9 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
           )}
         </div>
 
-        {/* Header Right Actions */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-          {/* Wishlist Link */}
+        {/* Header Right Actions — desktop only */}
+        <div className="header-right-desktop" style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+          {/* Wishlist */}
           <div 
             onClick={() => alert(`Your Wishlist contains ${wishlist.length} creator products.`)}
             style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', color: '#fff' }}
@@ -661,7 +663,6 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
                 </span>
               )}
             </div>
-            <span style={{ display: 'none', lg: 'inline' }}>Wishlist</span>
           </div>
 
           {/* Reviews & Blog Hub Link */}
@@ -683,7 +684,7 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
             }}
           >
             <BookOpen size={15} color="#00f2fe" />
-            <span>Reviews & Blogs</span>
+            <span>Reviews</span>
           </Link>
 
           {/* Shop All Link */}
@@ -707,7 +708,158 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
             <span>Catalog</span>
           </Link>
         </div>
+
+        {/* Mobile Hamburger Button — shown only on mobile */}
+        <button
+          className="mobile-menu-btn"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle navigation menu"
+          style={{
+            display: 'none',
+            background: isMobileMenuOpen ? 'rgba(0, 242, 254, 0.12)' : 'rgba(255, 255, 255, 0.07)',
+            border: isMobileMenuOpen ? '1px solid rgba(0, 242, 254, 0.4)' : '1px solid rgba(255, 255, 255, 0.14)',
+            borderRadius: '10px',
+            width: '40px',
+            height: '40px',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: isMobileMenuOpen ? '#00f2fe' : '#ffffff',
+            cursor: 'pointer',
+            flexShrink: 0,
+            transition: 'all 0.2s ease'
+          }}
+        >
+          {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
       </div>
+
+      {/* ── MOBILE FULL-SCREEN NAV DRAWER ── */}
+      {isMobileMenuOpen && (
+        <div
+          className="mobile-nav-drawer"
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(7, 10, 28, 0.98)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            zIndex: 2000,
+            display: 'flex',
+            flexDirection: 'column',
+            overflowY: 'auto',
+            padding: '0 0 40px'
+          }}
+        >
+          {/* Drawer Header */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: '14px 20px',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+            position: 'sticky',
+            top: 0,
+            background: 'rgba(7, 10, 28, 0.98)',
+            backdropFilter: 'blur(12px)',
+            zIndex: 1
+          }}>
+            <Link to="/" onClick={() => setIsMobileMenuOpen(false)} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div style={{ width: '34px', height: '34px', borderRadius: '10px', background: 'linear-gradient(135deg, #ff9900 0%, #00f2fe 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Camera size={18} color="#050714" />
+              </div>
+              <span style={{ fontWeight: 900, fontSize: '1.1rem', color: '#fff' }}>HelpVloggers</span>
+            </Link>
+            <button
+              onClick={() => setIsMobileMenuOpen(false)}
+              style={{ background: 'rgba(255, 255, 255, 0.08)', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '10px', width: '38px', height: '38px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', cursor: 'pointer' }}
+            >
+              <X size={20} />
+            </button>
+          </div>
+
+          {/* Market Switcher inside drawer */}
+          <div style={{ padding: '16px 20px', borderBottom: '1px solid rgba(255, 255, 255, 0.06)' }}>
+            <div style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: '10px' }}>Market</div>
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <button
+                onClick={() => { setMarket('india'); }}
+                style={{
+                  flex: 1, padding: '10px', borderRadius: '10px', fontSize: '0.88rem', fontWeight: 800, cursor: 'pointer', border: 'none', transition: 'all 0.2s ease',
+                  background: market === 'india' ? 'linear-gradient(135deg, #00f2fe, #4facfe)' : 'rgba(255, 255, 255, 0.06)',
+                  color: market === 'india' ? '#050714' : '#fff'
+                }}
+              >🇮🇳 India (₹)</button>
+              <button
+                onClick={() => { setMarket('global'); }}
+                style={{
+                  flex: 1, padding: '10px', borderRadius: '10px', fontSize: '0.88rem', fontWeight: 800, cursor: 'pointer', border: 'none', transition: 'all 0.2s ease',
+                  background: market === 'global' ? 'linear-gradient(135deg, #ff9900, #ff5722)' : 'rgba(255, 255, 255, 0.06)',
+                  color: market === 'global' ? '#fff' : '#fff'
+                }}
+              >🌐 Global ($)</button>
+            </div>
+          </div>
+
+          {/* Primary Links */}
+          <div style={{ padding: '16px 20px', borderBottom: '1px solid rgba(255, 255, 255, 0.06)' }}>
+            {[
+              { to: '/', label: '🏠 Home' },
+              { to: '/shop', label: '🛍️ Full Gear Catalog', accent: '#ff9900' },
+              { to: '/blog', label: '📖 Reviews & Buying Guides', accent: '#00f2fe' },
+              { to: '/vlogging-smartphones', label: '📱 Vlogging Smartphones', accent: '#00e676' },
+              { to: '/compare/digitek-dwm101-vs-boya-byv20', label: '⚖️ Product Comparisons' }
+            ].map(link => (
+              <Link
+                key={link.to}
+                to={link.to}
+                onClick={() => setIsMobileMenuOpen(false)}
+                style={{
+                  display: 'flex', alignItems: 'center', padding: '13px 0',
+                  borderBottom: '1px solid rgba(255, 255, 255, 0.04)',
+                  color: link.accent || '#fff', textDecoration: 'none',
+                  fontSize: '1rem', fontWeight: 700
+                }}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+
+          {/* Category Hubs */}
+          <div style={{ padding: '16px 20px' }}>
+            <div style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: '12px' }}>Gear Categories</div>
+            {CATEGORY_ITEMS.map(cat => {
+              const Icon = cat.icon;
+              return (
+                <Link
+                  key={cat.id}
+                  to={`/category/${cat.id}`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: '12px',
+                    padding: '12px 14px', borderRadius: '12px', marginBottom: '8px',
+                    background: 'rgba(255, 255, 255, 0.04)',
+                    border: '1px solid rgba(255, 255, 255, 0.06)',
+                    textDecoration: 'none', color: '#fff'
+                  }}
+                >
+                  <div style={{ width: '36px', height: '36px', borderRadius: '9px', background: `${cat.accent}18`, border: `1px solid ${cat.accent}44`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <Icon size={18} color={cat.accent} />
+                  </div>
+                  <div>
+                    <div style={{ fontWeight: 800, fontSize: '0.92rem' }}>{cat.name}</div>
+                    <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '2px' }}>{cat.desc}</div>
+                  </div>
+                  <ArrowRight size={14} color="var(--text-muted)" style={{ marginLeft: 'auto' }} />
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </header>
   );
 }

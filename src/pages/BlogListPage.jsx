@@ -65,7 +65,7 @@ export default function BlogListPage() {
       </nav>
 
       {/* Hero Header */}
-      <header className="glass-panel" style={{ 
+      <header className="glass-panel blog-page-hero" style={{ 
         padding: '40px 32px', 
         borderRadius: '24px', 
         marginBottom: '36px',
@@ -92,11 +92,11 @@ export default function BlogListPage() {
             <span>Field-Tested Creator Reviews & Complete Buying Guides</span>
           </div>
 
-          <h1 style={{ fontSize: '2.6rem', fontWeight: 900, lineHeight: 1.2, marginBottom: '14px', color: '#fff' }}>
+          <h1 className="blog-hero-h1" style={{ fontSize: '2.6rem', fontWeight: 900, lineHeight: 1.2, marginBottom: '14px', color: '#fff' }}>
             The HelpVloggers <span className="gradient-text">Gear Review Hub</span>
           </h1>
 
-          <p style={{ fontSize: '1.05rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '28px' }}>
+          <p className="blog-hero-sub" style={{ fontSize: '1.05rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '28px' }}>
             Honest, no-BS lab tests for every single microphone, 4K vlogging camera, smartphone, gimbal, and studio light available in India and globally. We cover launch timelines, real street pricing, who can use it, pros and cons, and creator FAQs.
           </p>
 
@@ -140,7 +140,7 @@ export default function BlogListPage() {
       </header>
 
       {/* Category Filter Chips */}
-      <div style={{ display: 'flex', gap: '10px', overflowX: 'auto', paddingBottom: '14px', marginBottom: '32px' }}>
+      <div style={{ display: 'flex', gap: '10px', overflowX: 'auto', paddingBottom: '14px', marginBottom: '32px', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none' }}>
         {CATEGORY_TABS.map(tab => {
           const isActive = activeTab === tab.id;
           return (
@@ -197,9 +197,9 @@ export default function BlogListPage() {
           </button>
         </div>
       ) : (
-        <div style={{ 
+        <div className="blog-cards-grid" style={{ 
           display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', 
+          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', 
           gap: '26px' 
         }}>
           {filteredBlogs.map(blog => {

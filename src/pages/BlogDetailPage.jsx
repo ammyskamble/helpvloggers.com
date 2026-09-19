@@ -60,7 +60,7 @@ export default function BlogDetailPage() {
   } : null;
 
   return (
-    <article style={{ padding: '20px 0 80px', maxWidth: '920px', margin: '0 auto' }}>
+    <article className="blog-article-wrap" style={{ padding: '20px 0 80px', maxWidth: '920px', margin: '0 auto' }}>
       {/* Dynamic FAQ Schema Injection for Google SEO */}
       {faqSchema && (
         <script type="application/ld+json">
