@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  ShieldCheck, ArrowRight, 
-  ChevronLeft, ChevronRight, CheckCircle,
+  ChevronLeft, ChevronRight,
   Mic, Camera, Smartphone, Sliders, Zap
 } from 'lucide-react';
 
@@ -12,70 +11,40 @@ const CATEGORY_BANNERS = [
     categorySlug: "audio-microphones",
     name: "Audio & Microphones",
     icon: Mic,
-    titleLight: "Best Microphones",
-    titleBold: "for Mobiles & Cameras",
-    trustTag: "100% GENUINE AUDIO LAB TESTED • ZERO CLIPPING VERIFIED",
-    subtext: "Field-tested frequency response, active DSP noise reduction, and factory-sealed units. Authentic brand warranties from Digitek, Boya, DJI & Grenaro.",
-    brands: ["Digitek", "Boya", "DJI", "Grenaro", "Maono"],
     accentColor: "#00f2fe",
-    bannerImage: "/banners/mic_studio_hero.jpg",
-    guaranteeSpecs: ["Zero-Clipping Benchmarked", "1-Year Official Brand Warranty", "Hologram Sealed Units"]
+    bannerImage: "/banners/mic_studio_hero.jpg"
   },
   {
     id: "cameras-recorders",
     categorySlug: "cameras-recorders",
     name: "Cameras & Recorders",
     icon: Camera,
-    titleLight: "Cinema 4K Cameras",
-    titleBold: "for Vlogging & Creators",
-    trustTag: "OFFICIAL SONY & DJI INDIA WARRANTY • 100% SENSOR INSPECTED",
-    subtext: "Cinema-grade 10-bit 4:2:2 color, flip touchscreens, and lightning Eye-Autofocus. Rigorously heat-tested under continuous 4K 60fps/120fps recording.",
-    brands: ["Sony", "DJI", "Insta360"],
     accentColor: "#f43f5e",
-    bannerImage: "/banners/camera_studio_hero.jpg",
-    guaranteeSpecs: ["Official 2-Year Manufacturer Warranty", "Zero Dead-Pixel Sensor Purity", "4K 60/120p Uncropped Tested"]
+    bannerImage: "/banners/camera_studio_hero.jpg"
   },
   {
     id: "smartphone-rigs",
     categorySlug: "smartphone-rigs",
     name: "Smartphone Rigs & Cages",
     icon: Smartphone,
-    titleLight: "Universal Phone Rigs",
-    titleBold: "for Mobile Filmmaking",
-    trustTag: "AIRCRAFT CNC ALUMINUM • MULTI-COLD SHOE MOUNT CERTIFIED",
-    subtext: "Transform any iPhone or Android into a professional handheld cinema rig. Drop-tested CNC aluminum with dual rotating handles and 5 cold shoes.",
-    brands: ["SmallRig", "Ulanzi", "Neewer"],
     accentColor: "#00e676",
-    bannerImage: "/banners/phone_rig_hero.jpg",
-    guaranteeSpecs: ["Aircraft 6061-T6 Aluminum Alloy", "Universal Arca-Swiss & 5 Cold Shoes", "100% Genuine SmallRig Certified"]
+    bannerImage: "/banners/phone_rig_hero.jpg"
   },
   {
     id: "gimbals-tripods",
     categorySlug: "gimbals-tripods",
     name: "Gimbals & Tripods",
     icon: Sliders,
-    titleLight: "3-Axis Gimbals",
-    titleBold: "& Heavy-Duty Tripods",
-    trustTag: "ZERO-SHAKE MOTOR CALIBRATION • 5KG LOAD FLUID VIDEO HEADS",
-    subtext: "Buttery smooth motorized AI face-tracking gimbals and heavy-duty hydraulic fluid drag tripods designed for seamless cinematic panning shots.",
-    brands: ["DJI", "Digitek", "Tygot"],
     accentColor: "#ff9900",
-    bannerImage: "/banners/gimbal_studio_hero.jpg",
-    guaranteeSpecs: ["Smooth Hydraulic Fluid Drag Pan & Tilt", "Up to 5kg Payload Tested", "Anti-Slip Rubberized Leg Joints"]
+    bannerImage: "/banners/gimbal_studio_hero.jpg"
   },
   {
     id: "creator-lighting",
     categorySlug: "creator-lighting",
     name: "Lighting & Power",
     icon: Zap,
-    titleLight: "Studio Ring Lights",
-    titleBold: "& High-Speed 4K SDXC",
-    trustTag: "CRI 95+ TRUE SKIN TONES • 200MB/S V30 ZERO-DROP FRAMES",
-    subtext: "Flicker-free studio lighting with step-less bi-color dimming, paired with broadcast-certified V30 memory cards guaranteed never to drop frames.",
-    brands: ["Digitek", "Osaka", "SanDisk", "Ulanzi"],
     accentColor: "#f6d365",
-    bannerImage: "/banners/lighting_studio_hero.jpg",
-    guaranteeSpecs: ["95+ High Color Rendering (CRI)", "200MB/s V30 4K Zero-Drop Media", "Safe USB Pass-Through Charging"]
+    bannerImage: "/banners/lighting_studio_hero.jpg"
   }
 ];
 
@@ -191,19 +160,22 @@ export default function CategoryBrandBanners() {
           }}
         >
           {CATEGORY_BANNERS.map((banner) => (
-            <div
+            <Link
               key={banner.id}
+              to={`/category/${banner.categorySlug}`}
               style={{
                 width: `${100 / CATEGORY_BANNERS.length}%`,
                 height: '100%',
                 position: 'relative',
                 flexShrink: 0,
                 overflow: 'hidden',
-                display: 'flex',
-                alignItems: 'center'
+                display: 'block',
+                textDecoration: 'none',
+                cursor: 'pointer'
               }}
+              title={`Explore ${banner.name}`}
             >
-              {/* Full-bleed Studio Background Image */}
+              {/* Pure Aesthetic Full-Bleed Studio Background Image - Zero Clutter / Zero Details */}
               <div 
                 style={{
                   position: 'absolute',
@@ -213,172 +185,11 @@ export default function CategoryBrandBanners() {
                   bottom: 0,
                   backgroundImage: `url(${banner.bannerImage})`,
                   backgroundSize: 'cover',
-                  backgroundPosition: 'center right',
-                  zIndex: 1
+                  backgroundPosition: 'center',
+                  transition: 'transform 0.4s ease'
                 }}
               />
-
-              {/* Dark Linear Vignette Overlay (Leaves studio gear photography crisp on right, ensures ultra-crisp typography on left) */}
-              <div 
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  background: 'linear-gradient(90deg, rgba(5, 8, 18, 0.95) 0%, rgba(5, 8, 18, 0.82) 44%, rgba(5, 8, 18, 0.22) 75%, rgba(5, 8, 18, 0.02) 100%)',
-                  zIndex: 2
-                }}
-              />
-
-              {/* Aesthetic Slide Content Box (Spacious Editorial Layout - No product cards) */}
-              <div 
-                style={{
-                  position: 'relative',
-                  zIndex: 3,
-                  maxWidth: '1280px',
-                  margin: '0 auto',
-                  width: '100%',
-                  padding: '0 50px'
-                }}
-              >
-                <div style={{ maxWidth: '720px' }}>
-                  {/* Reliability Trust Seal Tag */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '18px', flexWrap: 'wrap' }}>
-                    <span style={{
-                      background: 'rgba(255, 255, 255, 0.08)',
-                      border: `1px solid ${banner.accentColor}66`,
-                      color: banner.accentColor,
-                      fontSize: '0.74rem',
-                      fontWeight: 900,
-                      padding: '4px 12px',
-                      borderRadius: '20px',
-                      letterSpacing: '0.8px',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '6px'
-                    }}>
-                      <ShieldCheck size={14} color={banner.accentColor} />
-                      {banner.trustTag}
-                    </span>
-
-                    <span style={{ 
-                      background: 'rgba(0, 230, 118, 0.15)', 
-                      color: '#00e676', 
-                      fontSize: '0.72rem', 
-                      fontWeight: 800, 
-                      padding: '4px 10px', 
-                      borderRadius: '20px',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '5px'
-                    }}>
-                      <CheckCircle size={12} /> 100% GENUINE
-                    </span>
-                  </div>
-
-                  {/* Clean 2-Line Headline: Light 300 line 1 + Heavy 900 line 2 */}
-                  <h1 style={{ margin: '0 0 16px', color: '#ffffff', lineHeight: 1.15 }}>
-                    <span style={{ 
-                      display: 'block', 
-                      fontSize: 'clamp(2rem, 3.8vw, 3rem)', 
-                      fontWeight: 300, 
-                      letterSpacing: '-0.5px',
-                      opacity: 0.95
-                    }}>
-                      {banner.titleLight}
-                    </span>
-                    <span style={{ 
-                      display: 'block', 
-                      fontSize: 'clamp(2.4rem, 4.4vw, 3.6rem)', 
-                      fontWeight: 900, 
-                      letterSpacing: '-0.5px' 
-                    }}>
-                      {banner.titleBold}
-                    </span>
-                  </h1>
-
-                  {/* Editorial Description */}
-                  <p style={{ 
-                    color: 'rgba(240, 244, 255, 0.85)', 
-                    fontSize: '1rem', 
-                    lineHeight: 1.65, 
-                    marginBottom: '24px', 
-                    maxWidth: '620px' 
-                  }}>
-                    {banner.subtext}
-                  </p>
-
-                  {/* 3 Reliability Guarantee Points */}
-                  <div style={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    gap: '20px', 
-                    marginBottom: '32px', 
-                    flexWrap: 'wrap' 
-                  }}>
-                    {banner.guaranteeSpecs.map((spec, i) => (
-                      <div key={i} style={{ 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        gap: '6px', 
-                        fontSize: '0.84rem', 
-                        fontWeight: 700, 
-                        color: '#e2e8f0' 
-                      }}>
-                        <span style={{ color: banner.accentColor, fontWeight: 900 }}>✓</span>
-                        <span>{spec}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Clean Call To Action & Authorized Brands */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '20px', flexWrap: 'wrap' }}>
-                    <Link
-                      to={`/category/${banner.categorySlug}`}
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '10px',
-                        padding: '14px 30px',
-                        borderRadius: '30px',
-                        background: banner.accentColor,
-                        color: '#050714',
-                        fontWeight: 900,
-                        fontSize: '0.96rem',
-                        textDecoration: 'none',
-                        boxShadow: `0 8px 24px ${banner.accentColor}55`,
-                        transition: 'transform 0.2s ease'
-                      }}
-                    >
-                      <span>Explore {banner.name}</span>
-                      <ArrowRight size={18} />
-                    </Link>
-
-                    {/* Authorized Brand Badges */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
-                      <span style={{ fontSize: '0.76rem', color: 'rgba(255, 255, 255, 0.5)', fontWeight: 600 }}>Tested Brands:</span>
-                      {banner.brands.map((b, i) => (
-                        <span 
-                          key={i} 
-                          style={{ 
-                            background: 'rgba(255, 255, 255, 0.08)', 
-                            border: '1px solid rgba(255, 255, 255, 0.14)', 
-                            padding: '4px 10px', 
-                            borderRadius: '6px', 
-                            fontSize: '0.76rem', 
-                            fontWeight: 800, 
-                            color: '#ffffff' 
-                          }}
-                        >
-                          {b}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            </Link>
           ))}
         </div>
 
