@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { VLOGGING_PRODUCTS, BLOG_CLUSTERS, HEAD_TO_HEAD_COMPARISONS } from '../data/vloggingProducts';
 import { useEcommerce } from '../context/EcommerceContext';
-import { Star, Volume2, ShieldCheck, ShoppingBag, ChevronRight, CheckCircle2, XCircle, ArrowLeft, ExternalLink, Zap, Heart, Truck, Tag } from 'lucide-react';
+import { Star, Volume2, ShieldCheck, ShoppingBag, ChevronRight, CheckCircle2, XCircle, ArrowLeft, ExternalLink, Zap, Heart, Truck, Tag, BookOpen, ArrowRight } from 'lucide-react';
 
 export default function ProductDetailPage() {
   const { productId } = useParams();
@@ -261,6 +261,61 @@ export default function ProductDetailPage() {
           </div>
         </div>
       </div>
+
+      {/* Dedicated Editorial Review & In-Depth Buying Guide Link */}
+      {relatedBlogs.length > 0 && (
+        <div 
+          className="glass-panel glow-border" 
+          style={{ 
+            padding: '26px 30px', 
+            borderRadius: '20px', 
+            marginBottom: '40px',
+            background: 'linear-gradient(135deg, rgba(0, 242, 254, 0.08) 0%, rgba(255, 153, 0, 0.06) 100%)',
+            border: '1px solid rgba(0, 242, 254, 0.3)',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            gap: '20px'
+          }}
+        >
+          <div style={{ maxWidth: '650px' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: '#ff9900', fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '6px' }}>
+              <BookOpen size={14} /> Full Editorial Lab Review Available
+            </div>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#fff', marginBottom: '8px' }}>
+              {relatedBlogs[0].title}
+            </h3>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.5, margin: 0 }}>
+              {relatedBlogs[0].excerpt}
+            </p>
+            {relatedBlogs[0].launchTimeline && (
+              <div style={{ fontSize: '0.75rem', color: '#00f2fe', marginTop: '8px', fontWeight: 700 }}>
+                🚀 {relatedBlogs[0].launchTimeline}
+              </div>
+            )}
+          </div>
+
+          <Link
+            to={`/blog/${relatedBlogs[0].id}`}
+            className="btn-gradient-primary"
+            style={{
+              textDecoration: 'none',
+              padding: '12px 22px',
+              borderRadius: '12px',
+              fontSize: '0.9rem',
+              fontWeight: 800,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              whiteSpace: 'nowrap'
+            }}
+          >
+            <span>Read In-Depth Review & FAQs</span>
+            <ArrowRight size={16} />
+          </Link>
+        </div>
+      )}
 
       {/* Deep Specs & Pros/Cons Section */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '30px', marginBottom: '50px' }}>

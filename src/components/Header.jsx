@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Camera, Search, Heart, MapPin, ShoppingBag, ArrowRight, X, Globe, Layers, ChevronDown, Smartphone, Mic, Sliders, Zap, Sparkles } from 'lucide-react';
+import { Camera, Search, Heart, MapPin, ShoppingBag, ArrowRight, X, Globe, Layers, ChevronDown, Smartphone, Mic, Sliders, Zap, Sparkles, BookOpen } from 'lucide-react';
 import { useEcommerce } from '../context/EcommerceContext';
 import { TAXONOMY, VLOGGING_PRODUCTS } from '../data/vloggingProducts';
 
@@ -407,21 +407,29 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
               </div>
 
               {/* Popover Footer */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '10px', fontSize: '0.78rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '10px', fontSize: '0.78rem', flexWrap: 'wrap', gap: '8px' }}>
                 <Link 
                   to="/shop" 
                   onClick={() => setIsCategoriesOpen(false)}
                   style={{ color: '#00f2fe', textDecoration: 'none', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '4px' }}
                 >
-                  <span>Shop All Gear Catalog</span>
+                  <span>Shop All Gear</span>
                   <ArrowRight size={13} />
+                </Link>
+                <Link 
+                  to="/blog" 
+                  onClick={() => setIsCategoriesOpen(false)}
+                  style={{ color: '#00e676', textDecoration: 'none', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '4px' }}
+                >
+                  <BookOpen size={13} />
+                  <span>24 Product Reviews & Blogs</span>
                 </Link>
                 <Link 
                   to="/compare/digitek-dwm101-vs-boya-byv20" 
                   onClick={() => setIsCategoriesOpen(false)}
                   style={{ color: '#ff9900', textDecoration: 'none', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '4px' }}
                 >
-                  <span>Head-to-Head Comparisons</span>
+                  <span>Comparisons</span>
                   <ArrowRight size={13} />
                 </Link>
               </div>
@@ -656,6 +664,28 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
             <span style={{ display: 'none', lg: 'inline' }}>Wishlist</span>
           </div>
 
+          {/* Reviews & Blog Hub Link */}
+          <Link
+            to="/blog"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '8px 14px',
+              borderRadius: '8px',
+              background: 'rgba(0, 242, 254, 0.08)',
+              border: '1px solid rgba(0, 242, 254, 0.28)',
+              color: '#00f2fe',
+              fontSize: '0.82rem',
+              fontWeight: 800,
+              textDecoration: 'none',
+              transition: 'all 0.2s ease'
+            }}
+          >
+            <BookOpen size={15} color="#00f2fe" />
+            <span>Reviews & Blogs</span>
+          </Link>
+
           {/* Shop All Link */}
           <Link
             to="/shop"
@@ -673,7 +703,7 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
               textDecoration: 'none'
             }}
           >
-            <ShoppingBag size={15} color="#00f2fe" />
+            <ShoppingBag size={15} color="#ff9900" />
             <span>Catalog</span>
           </Link>
         </div>

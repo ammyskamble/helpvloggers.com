@@ -634,13 +634,34 @@ export default function HomePage() {
 
       {/* 4. FEW BLOGS RELATED TO PRODUCT (MicPrice.com Latest Blog Section) */}
       <section style={{ marginBottom: '55px' }}>
-        <div style={{ marginBottom: '20px' }}>
-          <h2 style={{ fontSize: '1.6rem', fontWeight: 900, margin: 0 }}>
-            Latest Buying Guides & Reviews
-          </h2>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', margin: '4px 0 0' }}>
-            Real test recordings and honest opinions to help you choose the right gear
-          </p>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '20px', flexWrap: 'wrap', gap: '12px' }}>
+          <div>
+            <h2 style={{ fontSize: '1.6rem', fontWeight: 900, margin: 0 }}>
+              Latest Buying Guides & Reviews
+            </h2>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', margin: '4px 0 0' }}>
+              Real test recordings, launch timelines, street pricing, and honest creator opinions
+            </p>
+          </div>
+          <Link
+            to="/blog"
+            style={{
+              color: '#00f2fe',
+              textDecoration: 'none',
+              fontWeight: 800,
+              fontSize: '0.88rem',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '6px 14px',
+              borderRadius: '20px',
+              background: 'rgba(0, 242, 254, 0.08)',
+              border: '1px solid rgba(0, 242, 254, 0.25)'
+            }}
+          >
+            <span>View All 24 Product Reviews</span>
+            <ArrowRight size={14} />
+          </Link>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '22px' }}>

@@ -10,6 +10,7 @@ import CategoryPage from './pages/CategoryPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import ComparisonDetailPage from './pages/ComparisonDetailPage';
 import BlogDetailPage from './pages/BlogDetailPage';
+import BlogListPage from './pages/BlogListPage';
 import AffiliateRedirectPage from './pages/AffiliateRedirectPage';
 import SmartphoneGuidePage from './pages/SmartphoneGuidePage';
 import { TAXONOMY } from './data/vloggingProducts';
@@ -51,6 +52,9 @@ export default function App() {
             <Route path="/category/:categorySlug" element={<div style={{ maxWidth: '1280px', margin: '0 auto', padding: '24px 20px 60px' }}><CategoryPage /></div>} />
             <Route path="/product/:productId" element={<div style={{ maxWidth: '1280px', margin: '0 auto', padding: '24px 20px 60px' }}><ProductDetailPage /></div>} />
             <Route path="/compare/:vsId" element={<div style={{ maxWidth: '1280px', margin: '0 auto', padding: '24px 20px 60px' }}><ComparisonDetailPage /></div>} />
+            <Route path="/blog" element={<BlogListPage />} />
+            <Route path="/blogs" element={<BlogListPage />} />
+            <Route path="/reviews" element={<BlogListPage />} />
             <Route path="/blog/:blogId" element={<div style={{ maxWidth: '1280px', margin: '0 auto', padding: '24px 20px 60px' }}><BlogDetailPage /></div>} />
             <Route path="/smartphones" element={<SmartphoneGuidePage />} />
             <Route path="/vlogging-smartphones" element={<SmartphoneGuidePage />} />
@@ -111,6 +115,24 @@ export default function App() {
                 <li><Link to="/shop?brand=DJI" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>DJI Mic 2 & Osmo Pocket 3</Link></li>
                 <li><Link to="/shop?brand=Grenaro" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Grenaro Wireless Lapels</Link></li>
                 <li><Link to="/shop?brand=Sony" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Sony ZV Vlogging Cameras</Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 style={{ fontSize: '0.95rem', fontWeight: 800, color: '#ff9900', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                Creator Blogs & Reviews
+              </h4>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.85rem' }}>
+                <li>
+                  <Link to="/blog" style={{ color: '#00f2fe', textDecoration: 'none', fontWeight: 700 }}>
+                    🔥 All 24 Product Reviews (/blog)
+                  </Link>
+                </li>
+                <li><Link to="/vlogging-smartphones" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Vlogging Smartphones Hub</Link></li>
+                <li><Link to="/blog/digitek-dwm-101-review" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Digitek DWM-101 Review</Link></li>
+                <li><Link to="/blog/boya-by-m1-review" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Boya BY-M1 Lapel Review</Link></li>
+                <li><Link to="/blog/dji-mic-2-review" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>DJI Mic 2 32-Bit Float Review</Link></li>
+                <li><Link to="/blog/sony-zv-e10-ii-review" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Sony ZV-E10 II Camera Review</Link></li>
               </ul>
             </div>
 

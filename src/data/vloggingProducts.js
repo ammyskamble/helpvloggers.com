@@ -1,4 +1,5 @@
 // Comprehensive E-Commerce Vlogging Products Database with 3-Tier Taxonomy & Indian Creator Market Integration
+import { PRODUCT_BLOGS } from './productBlogsData.js';
 
 export const TAXONOMY = [
   {
@@ -849,7 +850,7 @@ export const HEAD_TO_HEAD_COMPARISONS = [
   }
 ];
 
-export const BLOG_CLUSTERS = [
+const EDITORIAL_GUIDES = [
   {
     id: "budget-youtube-setup-india-under-5000",
     title: "Complete YouTube Studio Setup in India Under ₹5,000 (Mic, Tripod & Ring Light)",
@@ -939,3 +940,13 @@ export const BLOG_CLUSTERS = [
     ]
   }
 ];
+
+// Unified Blog Directory: 20 dedicated product review blogs + 4 setup playbooks
+export const BLOG_CLUSTERS = [
+  ...PRODUCT_BLOGS.map(blog => ({
+    ...blog,
+    relatedProductIds: blog.relatedProductIds || (blog.productId ? [blog.productId] : [])
+  })),
+  ...EDITORIAL_GUIDES
+];
+
