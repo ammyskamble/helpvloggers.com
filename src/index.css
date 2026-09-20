@@ -557,6 +557,14 @@ button {
   box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
 }
 
+/* Subnav Desktop vs Mobile display */
+.category-subnav-desktop {
+  display: flex;
+}
+.category-subnav-mobile {
+  display: none;
+}
+
 /* Cross-browser scrollbar hiding for horizontal tab strips */
 .no-scrollbar {
   scrollbar-width: none;
@@ -683,30 +691,52 @@ button {
   .announcement-pincode { display: none !important; }
   .search-cat-select { display: none !important; }
 
-  /* Category subnav tabs: smooth horizontal scrolling + quick dropdown button */
+  /* Category subnav tabs: Dedicated 5-item zero-horizontal-scroll mobile bar */
   .category-subnav { 
-    padding: 3px 6px !important; 
+    padding: 4px 6px !important; 
     max-width: 100% !important; 
-    overflow-x: auto !important; 
-    -webkit-overflow-scrolling: touch !important;
+    overflow: visible !important; 
     position: relative !important;
   }
-  .category-subnav-inner { 
-    display: flex !important;
-    align-items: center !important;
-    gap: 5px !important; 
+  .category-subnav-desktop { 
+    display: none !important; 
+  }
+  .category-subnav-mobile { 
+    display: flex !important; 
+    width: 100% !important; 
     max-width: 100% !important; 
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-    scrollbar-width: none !important;
+    align-items: center !important; 
+    justify-content: space-between !important; 
+    gap: 4px !important;
+    padding: 0 !important;
   }
-  .category-subnav-inner::-webkit-scrollbar {
-    display: none !important;
+  .category-mobile-tab {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 6px 2px !important;
+    font-size: 0.68rem !important;
+    font-weight: 800 !important;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: 10px;
+    gap: 2px !important;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    cursor: pointer;
+    background: transparent;
+    white-space: nowrap;
   }
-  .subnav-pill { padding: 5px 10px !important; font-size: 0.74rem !important; gap: 4px !important; flex-shrink: 0 !important; }
-  .nav-label-desktop { display: none !important; }
-  .nav-label-mobile { display: inline !important; }
-  .subnav-categories-dropdown-btn { display: inline-flex !important; }
+  .category-mobile-tab.active,
+  .category-mobile-tab:hover {
+    color: #00f2fe !important;
+    background: rgba(0, 242, 254, 0.12) !important;
+    border-color: rgba(0, 242, 254, 0.3) !important;
+    box-shadow: 0 0 12px rgba(0, 242, 254, 0.15);
+  }
 
   /* Hide duplicate category pills bar inside Hero on mobile (saves vertical height) */
   .hero-category-pills-bar { display: none !important; }

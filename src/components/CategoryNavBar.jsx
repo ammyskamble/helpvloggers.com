@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import { TAXONOMY } from '../data/vloggingProducts';
 import { 
   Mic, Camera, Smartphone, Sliders, Sparkles, Package, ShoppingBag, 
@@ -27,21 +27,49 @@ const SHORT_LABELS = {
 export default function CategoryNavBar({ onOpenBuilder }) {
   const [hoveredCat, setHoveredCat] = useState(null);
   const [isMobileCatDropdownOpen, setIsMobileCatDropdownOpen] = useState(false);
+  const location = useLocation();
+  const dropdownRef = useRef(null);
+
+  // Close dropdown on route change
+  useEffect(() => {
+    setIsMobileCatDropdownOpen(false);
+  }, [location.pathname]);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    function handleOutsideClick(e) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setIsMobileCatDropdownOpen(false);
+      }
+    }
+    if (isMobileCatDropdownOpen) {
+      document.addEventListener('mousedown', handleOutsideClick);
+      document.addEventListener('touchstart', handleOutsideClick);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+      document.removeEventListener('touchstart', handleOutsideClick);
+    };
+  }, [isMobileCatDropdownOpen]);
+
+  const isCategoryActive = location.pathname.startsWith('/category/') || location.pathname.startsWith('/compare');
 
   return (
     <nav 
       className="category-subnav" 
+      ref={dropdownRef}
       style={{
         borderTop: '1px solid rgba(255, 255, 255, 0.06)',
         borderBottom: '1px solid rgba(0, 242, 254, 0.12)',
         padding: '5px 16px',
         background: 'rgba(7, 10, 26, 0.98)',
         boxShadow: '0 4px 18px rgba(0, 0, 0, 0.35)',
-        width: '100%'
+        width: '100%',
+        position: 'relative'
       }}
     >
       <div 
-        className="no-scrollbar category-subnav-inner"
+        className="category-subnav-desktop no-scrollbar category-subnav-inner"
         style={{
           maxWidth: '1360px',
           margin: '0 auto',
@@ -202,31 +230,6 @@ export default function CategoryNavBar({ onOpenBuilder }) {
             </div>
           )}
         </div>
-
-        {/* Categories Quick Dropdown Trigger Pill */}
-        <button
-          type="button"
-          className="subnav-pill subnav-categories-dropdown-btn"
-          onClick={() => setIsMobileCatDropdownOpen(!isMobileCatDropdownOpen)}
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '5px',
-            padding: '6px 12px',
-            borderRadius: '20px',
-            fontSize: '0.82rem',
-            fontWeight: 800,
-            background: isMobileCatDropdownOpen ? 'rgba(0, 242, 254, 0.25)' : 'rgba(0, 242, 254, 0.1)',
-            border: '1px solid rgba(0, 242, 254, 0.35)',
-            color: '#00f2fe',
-            flexShrink: 0,
-            cursor: 'pointer',
-            transition: 'all 0.2s ease'
-          }}
-        >
-          <Sparkles size={13} color="#00f2fe" />
-          <span>Categories ▾</span>
-        </button>
 
         {/* 4. Taxonomy Category Tabs with Fast-Jump Dropdowns */}
         {TAXONOMY.map(cat => {
@@ -433,6 +436,55 @@ export default function CategoryNavBar({ onOpenBuilder }) {
             <span className="nav-label-mobile">Builder</span>
           </button>
         )}
+      </div>
+
+      {/* ── MOBILE 5-ITEM ZERO-SCROLL SUBNAV BAR (≤ 768px: Fits 100% viewport width, zero horizontal scrolling) ── */}
+      <div className="category-subnav-mobile">
+        <NavLink
+          to="/"
+          end
+          className={({ isActive }) => `category-mobile-tab ${isActive ? 'active' : ''}`}
+        >
+          <Home size={15} color="#ff9900" />
+          <span>Home</span>
+        </NavLink>
+
+        <NavLink
+          to="/shop"
+          className={({ isActive }) => `category-mobile-tab ${isActive ? 'active' : ''}`}
+        >
+          <ShoppingBag size={15} color="#00f2fe" />
+          <span>Shop</span>
+        </NavLink>
+
+        <NavLink
+          to="/vlogging-smartphones"
+          className={({ isActive }) => `category-mobile-tab ${isActive ? 'active' : ''}`}
+        >
+          <Smartphone size={15} color="#00e676" />
+          <span>Phones</span>
+        </NavLink>
+
+        <NavLink
+          to="/blog"
+          className={({ isActive }) => `category-mobile-tab ${isActive ? 'active' : ''}`}
+        >
+          <BookOpen size={15} color="#4facfe" />
+          <span>Reviews</span>
+        </NavLink>
+
+        <button
+          type="button"
+          className={`category-mobile-tab ${isCategoryActive || isMobileCatDropdownOpen ? 'active' : ''}`}
+          onClick={() => setIsMobileCatDropdownOpen(!isMobileCatDropdownOpen)}
+          aria-label="Toggle All Categories Menu"
+        >
+          <Sparkles size={15} color={isCategoryActive || isMobileCatDropdownOpen ? '#00f2fe' : 'var(--text-secondary)'} />
+          <span style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
+            Categories
+            <ChevronDown size={10} style={{ transform: isMobileCatDropdownOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s ease' }} />
+          </span>
+        </button>
       </div>
 
       {/* Streamlined Categories Popover Panel */}
