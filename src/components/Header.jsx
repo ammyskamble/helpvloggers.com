@@ -158,55 +158,57 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            {/* Region / Market Switcher */}
-            <div style={{ display: 'flex', alignItems: 'center', background: 'rgba(5, 7, 20, 0.85)', borderRadius: '16px', padding: '1px' }}>
-              <button
-                onClick={() => setMarket('india')}
-                style={{
-                  background: market === 'india' ? '#00f2fe' : 'transparent',
-                  color: market === 'india' ? '#050714' : '#fff',
-                  border: 'none',
-                  borderRadius: '14px',
-                  padding: '3px 10px',
-                  fontSize: '0.7rem',
-                  fontWeight: 800,
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease'
-                }}
-              >
-                🇮🇳 India (₹)
-              </button>
-              <button
-                onClick={() => setMarket('global')}
-                style={{
-                  background: market === 'global' ? '#ff9900' : 'transparent',
-                  color: market === 'global' ? '#050714' : '#fff',
-                  border: 'none',
-                  borderRadius: '14px',
-                  padding: '3px 10px',
-                  fontSize: '0.7rem',
-                  fontWeight: 800,
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease'
-                }}
-              >
-                🌐 Global ($)
-              </button>
-            </div>
-
-            {/* Pincode Selector (When India is active) */}
-            {market === 'india' && (
-              <div 
-                className="announcement-pincode"
-                onClick={() => {
-                  const code = prompt('Enter delivery pincode (e.g. 110001 Delhi, 560001 Bengaluru, 400001 Mumbai):', '400001');
-                  if (code) setSelectedPincode(code);
-                }}
-                style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '3px', textDecoration: 'underline', color: '#050714', fontSize: '0.72rem' }}
-              >
-                <MapPin size={11} /> {selectedPincode}
+            {/* Region / Market Switcher (Desktop only in top banner, available in mobile menu) */}
+            <div className="announcement-market-switcher" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', background: 'rgba(5, 7, 20, 0.85)', borderRadius: '16px', padding: '1px' }}>
+                <button
+                  onClick={() => setMarket('india')}
+                  style={{
+                    background: market === 'india' ? '#00f2fe' : 'transparent',
+                    color: market === 'india' ? '#050714' : '#fff',
+                    border: 'none',
+                    borderRadius: '14px',
+                    padding: '3px 10px',
+                    fontSize: '0.7rem',
+                    fontWeight: 800,
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  🇮🇳 India (₹)
+                </button>
+                <button
+                  onClick={() => setMarket('global')}
+                  style={{
+                    background: market === 'global' ? '#ff9900' : 'transparent',
+                    color: market === 'global' ? '#050714' : '#fff',
+                    border: 'none',
+                    borderRadius: '14px',
+                    padding: '3px 10px',
+                    fontSize: '0.7rem',
+                    fontWeight: 800,
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  🌐 Global ($)
+                </button>
               </div>
-            )}
+
+              {/* Pincode Selector (When India is active) */}
+              {market === 'india' && (
+                <div 
+                  className="announcement-pincode"
+                  onClick={() => {
+                    const code = prompt('Enter delivery pincode (e.g. 110001 Delhi, 560001 Bengaluru, 400001 Mumbai):', '400001');
+                    if (code) setSelectedPincode(code);
+                  }}
+                  style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '3px', textDecoration: 'underline', color: '#050714', fontSize: '0.72rem' }}
+                >
+                  <MapPin size={11} /> {selectedPincode}
+                </div>
+              )}
+            </div>
 
             {/* Dismiss Announcement Button */}
             <button

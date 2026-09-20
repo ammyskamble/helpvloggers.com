@@ -15,9 +15,9 @@ export default function SmartphoneGuidePage() {
   ).slice(0, 4);
 
   return (
-    <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '24px 20px 60px' }}>
+    <div className="smartphone-guide-page-container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '24px 20px 60px' }}>
       {/* Breadcrumb Navigation */}
-      <nav style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.82rem', color: 'var(--text-muted)', marginBottom: '24px' }}>
+      <nav className="smartphone-guide-breadcrumb" style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.82rem', color: 'var(--text-muted)', marginBottom: '24px' }}>
         <Link to="/" style={{ color: 'var(--text-muted)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
           <Home size={14} /> Home
         </Link>

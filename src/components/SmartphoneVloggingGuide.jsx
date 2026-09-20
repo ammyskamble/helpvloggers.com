@@ -55,38 +55,24 @@ export default function SmartphoneVloggingGuide() {
         boxShadow: '0 20px 50px rgba(0, 0, 0, 0.4)'
       }}
     >
-      {/* 1. Header & Authority Hook */}
-      <div style={{ textAlign: 'center', maxWidth: '840px', margin: '0 auto 32px' }}>
-        <div style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '8px',
-          background: 'rgba(0, 242, 254, 0.1)',
-          border: '1px solid rgba(0, 242, 254, 0.3)',
-          padding: '6px 16px',
-          borderRadius: '20px',
-          color: '#00f2fe',
-          fontSize: '0.8rem',
-          fontWeight: 800,
-          textTransform: 'uppercase',
-          letterSpacing: '1px',
-          marginBottom: '14px'
-        }}>
-          <Smartphone size={15} /> 2026 Mobile Creator Testing Lab
+      {/* 1. Header & Hero Value Proposition */}
+      <div className="smartphone-guide-header" style={{ marginBottom: '32px' }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(0, 242, 254, 0.1)', border: '1px solid rgba(0, 242, 254, 0.25)', borderRadius: '20px', padding: '4px 12px', color: '#00f2fe', fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '12px' }}>
+          <Sparkles size={13} /> 2025/2026 Camera Shootout & Dynamic Log Matrix
         </div>
 
-        <h2 style={{ fontSize: '2.1rem', fontWeight: 900, lineHeight: 1.25, margin: '0 0 12px' }}>
-          Which Smartphone is <span className="gradient-text">Better for Vlogging?</span>
+        <h2 className="smartphone-guide-title" style={{ fontSize: '2rem', fontWeight: 900, lineHeight: 1.25, margin: '0 0 12px', color: '#fff' }}>
+          Which Smartphone is Better for Vlogging?
         </h2>
 
-        <p style={{ color: 'var(--text-secondary)', fontSize: '0.96rem', lineHeight: 1.6, margin: 0 }}>
+        <p className="smartphone-guide-desc" style={{ color: 'var(--text-secondary)', fontSize: '0.96rem', lineHeight: 1.6, margin: 0 }}>
           Over 85% of YouTube creators and Instagram reel artists film entirely on smartphones. We lab-tested stabilization, ProRes Log grading, front selfie autofocus, wind audio, and thermal endurance to rank the absolute best phones for creators.
         </p>
       </div>
 
       {/* 2. Top Smartphone Selector Tabs */}
       <div 
-        className="no-scrollbar"
+        className="smartphone-ranking-tabs no-scrollbar"
         style={{
           display: 'flex',
           gap: '10px',
@@ -102,6 +88,7 @@ export default function SmartphoneVloggingGuide() {
             <button
               key={phone.id}
               onClick={() => setSelectedPhoneId(phone.id)}
+              className={`smartphone-ranking-tab-item rank-${phone.rank} ${isSelected ? 'active' : ''}`}
               style={{
                 flexShrink: 0,
                 padding: '12px 18px',
@@ -144,16 +131,18 @@ export default function SmartphoneVloggingGuide() {
       </div>
 
       {/* 3. Deep-Dive Showcase for Selected Phone */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-        gap: '30px',
-        background: 'rgba(5, 8, 22, 0.7)',
-        borderRadius: '20px',
-        padding: '28px',
-        border: '1px solid rgba(255, 255, 255, 0.06)',
-        marginBottom: '40px'
-      }}>
+      <div 
+        className="smartphone-showcase-panel"
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '30px',
+          background: 'rgba(5, 8, 22, 0.7)',
+          borderRadius: '20px',
+          padding: '28px',
+          border: '1px solid rgba(255, 255, 255, 0.06)',
+          marginBottom: '40px'
+        }}>
         {/* Left Column: Device Hero, Badges, Price, Pros & Cons */}
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <div>
@@ -184,14 +173,16 @@ export default function SmartphoneVloggingGuide() {
             </p>
 
             {/* Product Image & Key Specs Pill Banner */}
-            <div style={{
-              position: 'relative',
-              borderRadius: '16px',
-              overflow: 'hidden',
-              height: '240px',
-              marginBottom: '20px',
-              background: '#0a0d26'
-            }}>
+            <div 
+              className="smartphone-hero-img-wrap"
+              style={{
+                position: 'relative',
+                borderRadius: '16px',
+                overflow: 'hidden',
+                height: '240px',
+                marginBottom: '20px',
+                background: '#0a0d26'
+              }}>
               <img 
                 src={selectedPhone.image} 
                 alt={selectedPhone.name}

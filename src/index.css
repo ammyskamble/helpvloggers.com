@@ -666,31 +666,47 @@ button {
   /* Hide desktop header-right */
   .header-right-desktop { display: none !important; }
 
-  /* Announcement bar */
+  /* Announcement bar: ultra-slim single-line on mobile */
   .announcement-bar-top { 
-    padding: 5px 10px !important; 
+    padding: 4px 12px !important; 
     font-size: 0.68rem !important; 
-    justify-content: center !important; 
-    text-align: center !important; 
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important; 
+    align-items: center !important; 
+    text-align: left !important; 
+    min-height: 26px !important;
   }
   .announcement-bar-text-full { display: none !important; }
   .announcement-bar-text-mobile { display: inline !important; }
+  .announcement-market-switcher { display: none !important; }
   .announcement-pincode { display: none !important; }
   .search-cat-select { display: none !important; }
 
-  /* Category subnav tabs: compact padding & short mobile labels */
+  /* Category subnav tabs: smooth horizontal scrolling + quick dropdown button */
   .category-subnav { 
     padding: 3px 6px !important; 
     max-width: 100% !important; 
-    overflow-x: hidden !important; 
+    overflow-x: auto !important; 
+    -webkit-overflow-scrolling: touch !important;
+    position: relative !important;
   }
   .category-subnav-inner { 
-    gap: 4px !important; 
+    display: flex !important;
+    align-items: center !important;
+    gap: 5px !important; 
     max-width: 100% !important; 
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
   }
-  .subnav-pill { padding: 5px 9px !important; font-size: 0.74rem !important; gap: 4px !important; }
+  .category-subnav-inner::-webkit-scrollbar {
+    display: none !important;
+  }
+  .subnav-pill { padding: 5px 10px !important; font-size: 0.74rem !important; gap: 4px !important; flex-shrink: 0 !important; }
   .nav-label-desktop { display: none !important; }
   .nav-label-mobile { display: inline !important; }
+  .subnav-categories-dropdown-btn { display: inline-flex !important; }
 
   /* Hide duplicate category pills bar inside Hero on mobile (saves vertical height) */
   .hero-category-pills-bar { display: none !important; }
@@ -751,6 +767,53 @@ button {
   .main-container { padding: 0 12px 60px; max-width: 100%; box-sizing: border-box; }
   .products-grid { grid-template-columns: 1fr !important; gap: 16px; }
   .section-title { font-size: 1.3rem; }
+
+  /* Smartphone Guide Mobile Ranking Grid (Fix cut-off cards & cramped carousel) */
+  .smartphone-ranking-tabs {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+    overflow-x: visible !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 20px !important;
+  }
+  .smartphone-ranking-tab-item {
+    width: 100% !important;
+    padding: 10px 12px !important;
+    box-sizing: border-box !important;
+  }
+  .smartphone-ranking-tab-item.rank-1 {
+    grid-column: 1 / -1 !important;
+    background: linear-gradient(135deg, rgba(0, 242, 254, 0.22) 0%, rgba(246, 211, 101, 0.12) 100%) !important;
+    border-color: rgba(0, 242, 254, 0.45) !important;
+  }
+  .smartphone-showcase-panel {
+    padding: 16px !important;
+    gap: 18px !important;
+    border-radius: 16px !important;
+    margin-bottom: 24px !important;
+  }
+  .smartphone-hero-img-wrap {
+    height: 185px !important;
+    margin-bottom: 14px !important;
+  }
+  .smartphone-guide-header {
+    margin-bottom: 18px !important;
+  }
+  .smartphone-guide-title {
+    font-size: 1.45rem !important;
+    margin-bottom: 8px !important;
+  }
+  .smartphone-guide-desc {
+    font-size: 0.85rem !important;
+    line-height: 1.45 !important;
+  }
+  .smartphone-guide-page-container {
+    padding: 12px 12px 40px !important;
+  }
+  .smartphone-guide-breadcrumb {
+    margin-bottom: 12px !important;
+  }
 
   /* Kit builder banner */
   .builder-banner {

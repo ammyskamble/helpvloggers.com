@@ -3,7 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { TAXONOMY } from '../data/vloggingProducts';
 import { 
   Mic, Camera, Smartphone, Sliders, Sparkles, Package, ShoppingBag, 
-  Home, ChevronDown, ArrowRight, BookOpen, ArrowLeftRight
+  Home, ChevronDown, ArrowRight, BookOpen, ArrowLeftRight, X
 } from 'lucide-react';
 
 const ICON_MAP = {
@@ -26,6 +26,7 @@ const SHORT_LABELS = {
 
 export default function CategoryNavBar({ onOpenBuilder }) {
   const [hoveredCat, setHoveredCat] = useState(null);
+  const [isMobileCatDropdownOpen, setIsMobileCatDropdownOpen] = useState(false);
 
   return (
     <nav 
@@ -201,6 +202,31 @@ export default function CategoryNavBar({ onOpenBuilder }) {
             </div>
           )}
         </div>
+
+        {/* Categories Quick Dropdown Trigger Pill */}
+        <button
+          type="button"
+          className="subnav-pill subnav-categories-dropdown-btn"
+          onClick={() => setIsMobileCatDropdownOpen(!isMobileCatDropdownOpen)}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '5px',
+            padding: '6px 12px',
+            borderRadius: '20px',
+            fontSize: '0.82rem',
+            fontWeight: 800,
+            background: isMobileCatDropdownOpen ? 'rgba(0, 242, 254, 0.25)' : 'rgba(0, 242, 254, 0.1)',
+            border: '1px solid rgba(0, 242, 254, 0.35)',
+            color: '#00f2fe',
+            flexShrink: 0,
+            cursor: 'pointer',
+            transition: 'all 0.2s ease'
+          }}
+        >
+          <Sparkles size={13} color="#00f2fe" />
+          <span>Categories ▾</span>
+        </button>
 
         {/* 4. Taxonomy Category Tabs with Fast-Jump Dropdowns */}
         {TAXONOMY.map(cat => {
@@ -408,6 +434,102 @@ export default function CategoryNavBar({ onOpenBuilder }) {
           </button>
         )}
       </div>
+
+      {/* Streamlined Categories Popover Panel */}
+      {isMobileCatDropdownOpen && (
+        <div 
+          className="glass-panel mobile-categories-popover"
+          style={{
+            position: 'absolute',
+            top: '100%',
+            left: '8px',
+            right: '8px',
+            marginTop: '6px',
+            borderRadius: '16px',
+            background: 'rgba(8, 12, 30, 0.98)',
+            border: '1px solid rgba(0, 242, 254, 0.35)',
+            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.85)',
+            padding: '16px',
+            zIndex: 1500,
+            maxHeight: '75vh',
+            overflowY: 'auto'
+          }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', borderBottom: '1px solid rgba(255, 255, 255, 0.08)', paddingBottom: '10px' }}>
+            <div style={{ fontSize: '0.85rem', fontWeight: 900, color: '#fff', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <Sparkles size={16} color="#00f2fe" /> All Categories & Tools
+            </div>
+            <button
+              type="button"
+              onClick={() => setIsMobileCatDropdownOpen(false)}
+              aria-label="Close categories menu"
+              style={{ background: 'rgba(255, 255, 255, 0.08)', border: 'none', borderRadius: '50%', width: '26px', height: '26px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', cursor: 'pointer' }}
+            >
+              <X size={14} />
+            </button>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '8px', marginBottom: '14px' }}>
+            <Link
+              to="/vlogging-smartphones"
+              onClick={() => setIsMobileCatDropdownOpen(false)}
+              style={{ padding: '10px', borderRadius: '10px', background: 'rgba(0, 230, 118, 0.08)', border: '1px solid rgba(0, 230, 118, 0.25)', textDecoration: 'none', color: '#fff', display: 'flex', flexDirection: 'column', gap: '4px' }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#00e676', fontWeight: 800, fontSize: '0.8rem' }}>
+                <Smartphone size={14} /> Smartphones
+              </div>
+              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Top 5 Ranked & Specs</span>
+            </Link>
+
+            <Link
+              to="/shop"
+              onClick={() => setIsMobileCatDropdownOpen(false)}
+              style={{ padding: '10px', borderRadius: '10px', background: 'rgba(0, 242, 254, 0.08)', border: '1px solid rgba(0, 242, 254, 0.25)', textDecoration: 'none', color: '#fff', display: 'flex', flexDirection: 'column', gap: '4px' }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#00f2fe', fontWeight: 800, fontSize: '0.8rem' }}>
+                <ShoppingBag size={14} /> Full Catalog
+              </div>
+              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Shop 70+ Creator Gear</span>
+            </Link>
+
+            {TAXONOMY.map(cat => {
+              const IconComponent = ICON_MAP[cat.id] || Sparkles;
+              return (
+                <Link
+                  key={cat.id}
+                  to={`/category/${cat.id}`}
+                  onClick={() => setIsMobileCatDropdownOpen(false)}
+                  style={{ padding: '10px', borderRadius: '10px', background: 'rgba(255, 255, 255, 0.04)', border: '1px solid rgba(255, 255, 255, 0.08)', textDecoration: 'none', color: '#fff', display: 'flex', flexDirection: 'column', gap: '4px' }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#fff', fontWeight: 800, fontSize: '0.8rem' }}>
+                    <IconComponent size={14} color="#00f2fe" /> {SHORT_LABELS[cat.id] || cat.name}
+                  </div>
+                  <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>{cat.name}</span>
+                </Link>
+              );
+            })}
+          </div>
+
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <Link
+              to="/blog"
+              onClick={() => setIsMobileCatDropdownOpen(false)}
+              style={{ flex: 1, padding: '9px 12px', borderRadius: '8px', background: 'rgba(255, 255, 255, 0.05)', border: '1px solid rgba(255, 255, 255, 0.1)', textDecoration: 'none', color: '#fff', fontSize: '0.78rem', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
+            >
+              <BookOpen size={14} color="#00f2fe" /> Reviews & Buying Guides
+            </Link>
+            {onOpenBuilder && (
+              <button
+                type="button"
+                onClick={() => { setIsMobileCatDropdownOpen(false); onOpenBuilder(); }}
+                style={{ padding: '9px 12px', borderRadius: '8px', background: 'rgba(255, 153, 0, 0.15)', border: '1px solid rgba(255, 153, 0, 0.35)', color: '#ff9900', fontSize: '0.78rem', fontWeight: 800, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px' }}
+              >
+                <Sparkles size={14} /> Kit Builder
+              </button>
+            )}
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
