@@ -223,7 +223,7 @@ export const VLOGGING_PRODUCTS = [
     priceINR: 699,
     mrpINR: 1999,
     priceUSD: 8.50,
-    image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=800&q=80",
     inStock: true,
     deliverySpeed: "Same-Day / Next-Day Delivery",
     specs: {
@@ -264,7 +264,7 @@ export const VLOGGING_PRODUCTS = [
     priceINR: 1499,
     mrpINR: 3999,
     priceUSD: 18.00,
-    image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1590658006821-04f4008d5717?auto=format&fit=crop&w=800&q=80",
     inStock: true,
     deliverySpeed: "Next-Day Delivery",
     specs: {
@@ -304,7 +304,7 @@ export const VLOGGING_PRODUCTS = [
     priceINR: 4999,
     mrpINR: 9999,
     priceUSD: 60.00,
-    image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=800&q=80",
     inStock: true,
     deliverySpeed: "Express Next-Day",
     specs: {
@@ -344,7 +344,7 @@ export const VLOGGING_PRODUCTS = [
     priceINR: 2499,
     mrpINR: 4995,
     priceUSD: 30.00,
-    image: "https://images.unsplash.com/photo-1512790182412-b19e6d61b39a?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1495707902641-75cac588d2e9?auto=format&fit=crop&w=800&q=80",
     inStock: true,
     deliverySpeed: "Standard 2-Day Delivery",
     specs: {
@@ -384,7 +384,7 @@ export const VLOGGING_PRODUCTS = [
     priceINR: 349,
     mrpINR: 999,
     priceUSD: 4.20,
-    image: "https://images.unsplash.com/photo-1512790182412-b19e6d61b39a?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=800&q=80",
     inStock: true,
     deliverySpeed: "Prime Next-Day Delivery",
     specs: {
@@ -464,7 +464,7 @@ export const VLOGGING_PRODUCTS = [
     priceINR: 1199,
     mrpINR: 2999,
     priceUSD: 14.50,
-    image: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?auto=format&fit=crop&w=800&q=80",
     inStock: true,
     deliverySpeed: "Next-Day Delivery",
     specs: {
@@ -590,7 +590,7 @@ export const VLOGGING_PRODUCTS = [
     priceINR: 34990,
     mrpINR: 39990,
     priceUSD: 349.00,
-    image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=80",
     inStock: true,
     deliverySpeed: "Express Next-Day",
     specs: {
@@ -717,7 +717,7 @@ export const VLOGGING_PRODUCTS = [
     priceINR: 1899,
     mrpINR: 3499,
     priceUSD: 22.95,
-    image: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80",
     inStock: true,
     deliverySpeed: "Next-Day Delivery",
     specs: {
@@ -757,7 +757,7 @@ export const VLOGGING_PRODUCTS = [
     priceINR: 2899,
     mrpINR: 4850,
     priceUSD: 34.99,
-    image: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80",
     inStock: true,
     deliverySpeed: "Prime Next-Day Delivery",
     specs: {
@@ -860,7 +860,7 @@ const EDITORIAL_GUIDES = [
     publishedDate: "March 2026",
     targetKeyword: "best budget youtube setup under 5000 india",
     excerpt: "The exact 3-piece gear combo used by top rising Indian YouTubers: Digitek DWM-101 mic, DPTR-890VD tripod, and Osaka LED light under ₹5,000 total.",
-    image: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=80",
     relatedProductIds: ["digitek-dwm-101", "digitek-dptr-890vd", "osaka-pocket-led"],
     sections: [
       {

@@ -88,7 +88,7 @@ export const PRODUCT_BLOGS = [
       usd: 8.50,
       badge: "65% OFF BESTSELLER"
     },
-    image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=800&q=80",
     excerpt: "The microphone that started over 10 million YouTube channels. Here is our full breakdown of the legendary Boya BY-M1 omnidirectional lapel mic, its 20ft cable ergonomics, and battery toggle secrets.",
     whoCanUseIt: "Complete beginners starting a YouTube channel, college students, voiceover artists, and teachers on a tight budget under ₹1,000 who need broadcast-quality vocal isolation.",
     creatorSuggestion: "Remember to keep the battery power switch on 'OFF / Smartphone' when connecting to phones or PCs (no battery power needed), and switch to 'Cameras' only when connecting to DSLR/Mirrorless cameras.",
@@ -155,7 +155,7 @@ export const PRODUCT_BLOGS = [
       usd: 18.00,
       badge: "62% OFF VIRAL DEAL"
     },
-    image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1590658006821-04f4008d5717?auto=format&fit=crop&w=800&q=80",
     excerpt: "Testing the Grenaro J13 ultra-compact wireless collar mic for Instagram Reels and YouTube Shorts. Under ₹1,500, it provides instant plug-and-play mobile recording without cords.",
     whoCanUseIt: "Solo reel creators, fashion and lifestyle vloggers, gym workout recorders, and street interviewers wanting an ultra-light collar mic that sets up in 2 seconds.",
     creatorSuggestion: "Great for quick conversational videos. When recording outside on busy streets, activate the noise suppression mode to eliminate motorbikes and traffic hum.",
@@ -222,7 +222,7 @@ export const PRODUCT_BLOGS = [
       usd: 60.00,
       badge: "50% OFF MID-TIER PICK"
     },
-    image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=800&q=80",
     excerpt: "Field test of the Maono AU-WM820 Tikmic wireless system. Features dual transmitters, 50m range, professional gain control, and external lavalier support under ₹5,000.",
     whoCanUseIt: "Couple vloggers, podcast hosts, YouTube documentary filmmakers, and educators who need reliable dual-mic recording with physical gain control knobs.",
     creatorSuggestion: "Use the included 3.5mm external lavalier mics when you want the transmitter box hidden inside the speaker's pocket for a cleaner, broadcast-ready appearance.",
@@ -289,7 +289,7 @@ export const PRODUCT_BLOGS = [
       usd: 30.00,
       badge: "50% OFF STUDIO BESTSELLER"
     },
-    image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1495707902641-75cac588d2e9?auto=format&fit=crop&w=800&q=80",
     excerpt: "Review of the Digitek Platinum DPTR 890VD 5.8ft professional tripod. Features a genuine dampened fluid video head for silky-smooth 360-degree pans and tilts on heavy camera setups.",
     whoCanUseIt: "Studio YouTubers, product review channels, wedding videographers, and tech unboxers needing butter-smooth pan shots without jerky camera shaking.",
     creatorSuggestion: "Adjust the pan drag knob to medium-high resistance when capturing slow-motion cinematic B-roll of gadgets or food for ultra-smooth cinema motion.",
@@ -356,7 +356,7 @@ export const PRODUCT_BLOGS = [
       usd: 4.20,
       badge: "65% OFF BUDGET STEAL"
     },
-    image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=800&q=80",
     excerpt: "Our testing of the Tygot 10-inch flexible wrappable gorilla tripod. At just ₹349, it acts as a tabletop tripod, selfie extension grip, and tree/railing wrappable mount.",
     whoCanUseIt: "Every vlogger who films outdoors, travel creators, moto-vloggers, and smartphone reel creators who need a light bendable grip.",
     creatorSuggestion: "Bend the three legs together into a single curved handle to use as an ergonomic handheld selfie grip when filming walk-and-talk vlogs.",
@@ -490,7 +490,7 @@ export const PRODUCT_BLOGS = [
       usd: 14.50,
       badge: "52% OFF POCKET PICK"
     },
-    image: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?auto=format&fit=crop&w=800&q=80",
     excerpt: "Reviewing the Osaka Bi-Color pocket LED video light. Featuring a built-in rechargeable battery, cold shoe camera mount, and adjustable 3000K-6500K warmth under ₹1,200.",
     whoCanUseIt: "Night street vloggers, event videographers, food vloggers in dim restaurants, and creators needing a compact on-camera fill light.",
     creatorSuggestion: "Mount this on top of your smartphone cage or camera cold shoe during evening walks to illuminate your face without blinding bystanders.",
@@ -625,7 +625,7 @@ export const PRODUCT_BLOGS = [
       usd: 519.00,
       badge: "GLOBAL BESTSELLER"
     },
-    image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=800&q=80",
     excerpt: "Our definitive review of the DJI Osmo Pocket 3. With its rotatable 2-inch OLED screen, 1-inch CMOS sensor, mechanical 3-axis gimbal, and 4K120p, why is every creator switching to this?",
     whoCanUseIt: "Travel vloggers, solo creators, street videographers, and food travelers who want cinematic gimbal-stabilized 4K video from a device smaller than a soda can.",
     creatorSuggestion: "Buy the Creator Combo if possible; the included DJI Mic 2 transmitter connects wirelessly to the Pocket 3 with zero receiver dongles, giving you flawless broadcast audio anywhere in the world.",
@@ -693,7 +693,7 @@ export const PRODUCT_BLOGS = [
       usd: 349.00,
       badge: "STUDIO STANDARD"
     },
-    image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=80",
     excerpt: "In-depth review of the DJI Mic 2. Featuring transparent transmitter bodies, 32-bit float internal onboard recording, smart active noise cancellation, and seamless Bluetooth connectivity.",
     whoCanUseIt: "Professional YouTubers, commercial filmmakers, documentary shooters, and podcasters who cannot afford ruined audio from microphone clipping.",
     creatorSuggestion: "Always keep 32-bit float internal recording set to 'Auto-Record On'. If the wireless link ever gets interrupted or your speaker yells loudly, the onboard backup file will save your video.",
@@ -828,7 +828,7 @@ export const PRODUCT_BLOGS = [
       usd: 139.00,
       badge: "19% OFF SMART GIMBAL"
     },
-    image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=800&q=80",
     excerpt: "Our full review of the DJI Osmo Mobile 6 (OM 6). Features built-in 215mm extension selfie rod, side control wheel, Quick Launch for iPhone, and ActiveTrack 6.0 face tracking.",
     whoCanUseIt: "Solo vloggers who need automatic AI tracking to follow them around rooms, travel creators wanting sweeping cinematic crane shots, and active outdoor creators.",
     creatorSuggestion: "Use the built-in extension rod tilted slightly downward to capture low-angle pet walking shots or high-angle drone-like crowd perspectives.",
@@ -896,7 +896,7 @@ export const PRODUCT_BLOGS = [
       usd: 22.95,
       badge: "37% OFF RGB PICK"
     },
-    image: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80",
     excerpt: "Review of the Ulanzi VL49 RGB pocket LED light. Offering 360 full RGB colors, 2500K-9000K bi-color temperature, magnetic back, and 3 cold shoe expansions for under ₹1,900.",
     whoCanUseIt: "Desk YouTubers, tech reviewers, and TikTok creators wanting colorful ambient background washes, rim lighting, or creative mood lighting.",
     creatorSuggestion: "Stick the magnetic back against metal shelves or room fixtures behind your chair to project a neon cyan or purple gradient wash onto your background wall.",
@@ -963,7 +963,7 @@ export const PRODUCT_BLOGS = [
       usd: 34.99,
       badge: "55% OFF 4K ESSENTIAL"
     },
-    image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80",
     excerpt: "Testing the SanDisk Extreme PRO 256GB V30 UHS-I SDXC memory card. Speeds up to 200MB/s with QuickFlow technology ensure zero dropped frames when filming 4K 60p and high-bitrate video.",
     whoCanUseIt: "Sony, Canon, and Panasonic mirrorless camera shooters, action cam users, and creators recording 4K video who cannot risk corrupt files or recording halts.",
     creatorSuggestion: "For high-bitrate 4K 10-bit recording on Sony ZV-E10 II or FX30, format the card in-camera before every major shoot to maintain peak write integrity.",
@@ -1097,7 +1097,7 @@ export const PRODUCT_BLOGS = [
       usd: 1199.00,
       badge: "8K ZOOM BEAST"
     },
-    image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=800&q=80",
+    image: "https://m.media-amazon.com/images/I/717Qo4MH97L._SL1500_.jpg",
     excerpt: "Testing the Samsung Galaxy S24 Ultra for content creators. Features 200MP main sensor, 8K video, 5x optical telephoto 4K60, titanium chassis, and anti-reflective display.",
     whoCanUseIt: "Android power users, wildlife and concert vloggers, sports creators, and tech vloggers who require long-distance optical zoom and 8K reframing flexibility.",
     creatorSuggestion: "Use the 5x optical periscope telephoto lens when filming in crowded markets or concerts. It delivers razor-sharp 4K60 video with natural optical compression without standing in crowds.",
@@ -1233,7 +1233,7 @@ export const PRODUCT_BLOGS = [
       usd: 799.00,
       badge: "BEST VALUE FLAGSHIP"
     },
-    image: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
     excerpt: "Reviewing the OnePlus 12 for video creators. Sony LYT-808 sensor, 4K Dolby Vision, Hasselblad natural color science, and 100W fast charging under ₹65,000.",
     whoCanUseIt: "Creators who want flagship-grade 4K video, phenomenal thermal cooling, and all-day battery without paying over ₹1,00,000.",
     creatorSuggestion: "Enable 4K Dolby Vision in the camera settings for lush contrast on OLED TVs. Pair it with an external USB-C mic for an unbeatable sub-₹70,000 complete mobile rig.",
@@ -1301,7 +1301,7 @@ export const PRODUCT_BLOGS = [
       usd: 429.00,
       badge: "43% OFF BUDGET CHAMPION"
     },
-    image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=800&q=80",
+    image: "https://m.media-amazon.com/images/I/71qGismu6NL._SL1500_.jpg",
     excerpt: "Testing the Samsung Galaxy S23 FE for student and beginner vloggers. At ₹33,999, it offers flagship 4K60fps video on both front and rear cameras, OIS, and Samsung Pro Video mode.",
     whoCanUseIt: "College students, beginner YouTubers, and lifestyle reel creators on a ₹35,000 budget who demand reliable 4K video and Samsung's reliable camera software.",
     creatorSuggestion: "Use Samsung's Pro Video mode to lock exposure when moving between indoor lights and windows, preventing distracting exposure flickers in your videos.",
