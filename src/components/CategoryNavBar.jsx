@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { TAXONOMY } from '../data/vloggingProducts';
-import { Mic, Camera, Smartphone, Sliders, Sparkles, Package, ShoppingBag, Home, ChevronDown, ArrowRight } from 'lucide-react';
+import { 
+  Mic, Camera, Smartphone, Sliders, Sparkles, Package, ShoppingBag, 
+  Home, ChevronDown, ArrowRight, BookOpen, ArrowLeftRight, Wrench
+} from 'lucide-react';
 
 const ICON_MAP = {
   'audio-microphones': Mic,
@@ -12,25 +15,25 @@ const ICON_MAP = {
   'creator-tech': Package
 };
 
-export default function CategoryNavBar() {
+export default function CategoryNavBar({ onOpenBuilder }) {
   const [hoveredCat, setHoveredCat] = useState(null);
 
   return (
-    <nav className="category-subnav glass-panel" style={{
-      borderTop: '1px solid rgba(255, 255, 255, 0.05)',
-      borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-      padding: '6px 16px',
-      position: 'sticky',
-      top: '102px',
-      zIndex: 90,
-      backdropFilter: 'blur(16px)',
-      background: 'rgba(7, 10, 24, 0.96)',
-      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)'
-    }}>
+    <nav 
+      className="category-subnav" 
+      style={{
+        borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+        borderBottom: '1px solid rgba(0, 242, 254, 0.12)',
+        padding: '5px 16px',
+        background: 'rgba(7, 10, 26, 0.98)',
+        boxShadow: '0 4px 18px rgba(0, 0, 0, 0.35)',
+        width: '100%'
+      }}
+    >
       <div 
-        className="no-scrollbar"
+        className="no-scrollbar category-subnav-inner"
         style={{
-          maxWidth: '1280px',
+          maxWidth: '1360px',
           margin: '0 auto',
           display: 'flex',
           alignItems: 'center',
@@ -42,7 +45,7 @@ export default function CategoryNavBar() {
           padding: '2px 4px'
         }}
       >
-        {/* Home */}
+        {/* 1. Home */}
         <NavLink
           to="/"
           end
@@ -51,19 +54,21 @@ export default function CategoryNavBar() {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '6px',
-            padding: '6px 14px',
+            padding: '6px 13px',
             borderRadius: '20px',
             fontSize: '0.82rem',
             fontWeight: 700,
             textDecoration: 'none',
             color: 'var(--text-secondary)',
+            flexShrink: 0,
             transition: 'all 0.2s ease'
           }}
         >
-          <Home size={14} color="#ff9900" /> Home
+          <Home size={14} color="#ff9900" /> 
+          <span>Home</span>
         </NavLink>
 
-        {/* Shop All Gear */}
+        {/* 2. Shop All Gear */}
         <NavLink
           to="/shop"
           className={({ isActive }) => `subnav-pill ${isActive ? 'active' : ''}`}
@@ -71,42 +76,45 @@ export default function CategoryNavBar() {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '6px',
-            padding: '6px 14px',
+            padding: '6px 13px',
             borderRadius: '20px',
             fontSize: '0.82rem',
             fontWeight: 700,
             textDecoration: 'none',
             color: 'var(--text-secondary)',
+            flexShrink: 0,
             transition: 'all 0.2s ease'
           }}
         >
-          <ShoppingBag size={14} color="#00f2fe" /> Shop All Gear
+          <ShoppingBag size={14} color="#00f2fe" /> 
+          <span>Shop All Gear</span>
         </NavLink>
 
-        {/* Smartphone Vlogging Guide with Quick Dropdown */}
+        {/* 3. Vlogging Smartphones Hub */}
         <div 
-          style={{ position: 'relative' }}
+          style={{ position: 'relative', flexShrink: 0 }}
           onMouseEnter={() => setHoveredCat('smartphones')}
           onMouseLeave={() => setHoveredCat(null)}
         >
           <NavLink
-            to="/smartphones"
+            to="/vlogging-smartphones"
             className={({ isActive }) => `subnav-pill ${isActive ? 'active' : ''}`}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: '6px',
-              padding: '6px 14px',
+              padding: '6px 13px',
               borderRadius: '20px',
               fontSize: '0.82rem',
               fontWeight: 700,
               textDecoration: 'none',
               color: 'var(--text-secondary)',
+              flexShrink: 0,
               transition: 'all 0.2s ease'
             }}
           >
             <Smartphone size={14} color="#00e676" />
-            <span>Vlogging Smartphones</span>
+            <span>Smartphones Hub</span>
             <ChevronDown size={11} style={{ opacity: 0.6 }} />
           </NavLink>
 
@@ -118,20 +126,20 @@ export default function CategoryNavBar() {
                 top: '100%',
                 left: 0,
                 marginTop: '4px',
-                minWidth: '220px',
+                minWidth: '240px',
                 borderRadius: '12px',
                 background: '#090d22',
                 border: '1px solid rgba(0, 230, 118, 0.3)',
                 boxShadow: '0 15px 35px rgba(0, 0, 0, 0.85)',
-                zIndex: 200,
+                zIndex: 300,
                 padding: '8px',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '2px'
+                gap: '3px'
               }}
             >
               <Link
-                to="/smartphones"
+                to="/vlogging-smartphones"
                 style={{
                   padding: '8px 12px',
                   borderRadius: '8px',
@@ -150,7 +158,7 @@ export default function CategoryNavBar() {
                 <ArrowRight size={12} color="#00e676" />
               </Link>
               <Link
-                to="/smartphones"
+                to="/vlogging-smartphones"
                 style={{
                   padding: '8px 12px',
                   borderRadius: '8px',
@@ -165,7 +173,7 @@ export default function CategoryNavBar() {
                 ⚡ Side-by-Side Spec Matrix
               </Link>
               <Link
-                to="/smartphones"
+                to="/vlogging-smartphones"
                 style={{
                   padding: '8px 12px',
                   borderRadius: '8px',
@@ -183,7 +191,7 @@ export default function CategoryNavBar() {
           )}
         </div>
 
-        {/* Categories with Fast-Jump Sub-Category Dropdowns */}
+        {/* 4. Taxonomy Category Tabs with Fast-Jump Dropdowns */}
         {TAXONOMY.map(cat => {
           const IconComponent = ICON_MAP[cat.id] || Sparkles;
           const isHovered = hoveredCat === cat.id;
@@ -191,7 +199,7 @@ export default function CategoryNavBar() {
           return (
             <div 
               key={cat.id}
-              style={{ position: 'relative' }}
+              style={{ position: 'relative', flexShrink: 0 }}
               onMouseEnter={() => setHoveredCat(cat.id)}
               onMouseLeave={() => setHoveredCat(null)}
             >
@@ -202,12 +210,13 @@ export default function CategoryNavBar() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '6px',
-                  padding: '6px 14px',
+                  padding: '6px 13px',
                   borderRadius: '20px',
                   fontSize: '0.82rem',
                   fontWeight: 700,
                   textDecoration: 'none',
                   color: 'var(--text-secondary)',
+                  flexShrink: 0,
                   transition: 'all 0.2s ease'
                 }}
               >
@@ -227,12 +236,12 @@ export default function CategoryNavBar() {
                     top: '100%',
                     left: 0,
                     marginTop: '4px',
-                    minWidth: '230px',
+                    minWidth: '240px',
                     borderRadius: '12px',
                     background: '#090d22',
                     border: '1px solid rgba(0, 242, 254, 0.3)',
                     boxShadow: '0 15px 35px rgba(0, 0, 0, 0.85)',
-                    zIndex: 200,
+                    zIndex: 300,
                     padding: '8px',
                     display: 'flex',
                     flexDirection: 'column',
@@ -292,6 +301,96 @@ export default function CategoryNavBar() {
             </div>
           );
         })}
+
+        {/* 5. Reviews & Blogs Tab */}
+        <NavLink
+          to="/blog"
+          className={({ isActive }) => `subnav-pill ${isActive ? 'active' : ''}`}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '6px',
+            padding: '6px 13px',
+            borderRadius: '20px',
+            fontSize: '0.82rem',
+            fontWeight: 700,
+            textDecoration: 'none',
+            color: '#00e676',
+            flexShrink: 0,
+            transition: 'all 0.2s ease'
+          }}
+        >
+          <BookOpen size={14} color="#00e676" />
+          <span>Reviews & Blogs</span>
+          <span style={{
+            background: 'rgba(0, 230, 118, 0.18)',
+            color: '#00e676',
+            border: '1px solid rgba(0, 230, 118, 0.35)',
+            fontSize: '0.66rem',
+            fontWeight: 800,
+            padding: '1px 6px',
+            borderRadius: '10px'
+          }}>
+            24
+          </span>
+        </NavLink>
+
+        {/* 6. Comparisons Tab */}
+        <NavLink
+          to="/compare/digitek-dwm101-vs-boya-byv20"
+          className={({ isActive }) => `subnav-pill ${isActive ? 'active' : ''}`}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '6px',
+            padding: '6px 13px',
+            borderRadius: '20px',
+            fontSize: '0.82rem',
+            fontWeight: 700,
+            textDecoration: 'none',
+            color: 'var(--text-secondary)',
+            flexShrink: 0,
+            transition: 'all 0.2s ease'
+          }}
+        >
+          <ArrowLeftRight size={14} color="#f6d365" />
+          <span>Comparisons</span>
+        </NavLink>
+
+        {/* 7. Kit Builder Trigger Button */}
+        {onOpenBuilder && (
+          <button
+            type="button"
+            onClick={onOpenBuilder}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '6px 13px',
+              borderRadius: '20px',
+              fontSize: '0.82rem',
+              fontWeight: 800,
+              background: 'linear-gradient(135deg, rgba(255, 153, 0, 0.15), rgba(255, 87, 34, 0.15))',
+              border: '1px solid rgba(255, 153, 0, 0.35)',
+              color: '#ff9900',
+              cursor: 'pointer',
+              flexShrink: 0,
+              marginLeft: 'auto',
+              transition: 'all 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'linear-gradient(135deg, rgba(255, 153, 0, 0.3), rgba(255, 87, 34, 0.3))';
+              e.currentTarget.style.borderColor = '#ff9900';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'linear-gradient(135deg, rgba(255, 153, 0, 0.15), rgba(255, 87, 34, 0.15))';
+              e.currentTarget.style.borderColor = 'rgba(255, 153, 0, 0.35)';
+            }}
+          >
+            <Sparkles size={14} color="#ff9900" />
+            <span>Kit Builder</span>
+          </button>
+        )}
       </div>
     </nav>
   );

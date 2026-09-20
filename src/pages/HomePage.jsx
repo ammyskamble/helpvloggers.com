@@ -411,7 +411,7 @@ export default function HomePage() {
 
         {/* Brand Category Filter Pills (Tailored to active market) */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px', marginBottom: '22px' }}>
-          <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '4px' }}>
+          <div className="no-scrollbar" style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '6px', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', maxWidth: '100%' }}>
             {currentTabs.map(tab => {
               const isActive = tab.id === activeTabId;
               return (
@@ -419,6 +419,7 @@ export default function HomePage() {
                   key={tab.id}
                   onClick={() => setActiveTabId(tab.id)}
                   style={{
+                    flexShrink: 0,
                     padding: '7px 18px',
                     borderRadius: '20px',
                     background: isActive 

@@ -506,9 +506,33 @@ button {
   overflow-y: auto;
 }
 
-/* Category Subnav Pills */
+/* Category Subnav Pills & Sticky Tab Bar */
+.category-subnav {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(0, 242, 254, 0.12);
+  padding: 5px 16px;
+  background: rgba(7, 10, 26, 0.98);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.category-subnav-inner {
+  max-width: 1360px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+  padding: 2px 4px;
+}
+
 .subnav-pill {
   border: 1px solid transparent;
+  flex-shrink: 0;
+  white-space: nowrap;
+  transition: all 0.2s ease;
 }
 .subnav-pill:hover {
   color: #fff !important;
@@ -519,6 +543,33 @@ button {
   background: rgba(0, 242, 254, 0.12);
   border-color: rgba(0, 242, 254, 0.35);
   box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+}
+
+/* Cross-browser scrollbar hiding for horizontal tab strips */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Responsive 2-Column Marketplace / Shop Layout */
+.marketplace-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Desktop Header Defaults */
+.header-right-desktop { 
+  display: flex; 
+  align-items: center; 
+  gap: 12px; 
+}
+.mobile-menu-btn { 
+  display: none; 
 }
 
 /* =============================================
@@ -536,13 +587,34 @@ button {
   .hero-title { font-size: 2.6rem; }
 }
 
+/* Tablet/Mobile Breakpoint for Sidebar: ≤ 900px */
+@media (max-width: 900px) {
+  .marketplace-layout {
+    grid-template-columns: 1fr !important;
+    gap: 20px;
+  }
+}
+
 /* Mobile: ≤ 768px */
 @media (max-width: 768px) {
   /* Header */
-  .header-bar { padding: 10px 16px; gap: 10px; }
+  .header-bar { padding: 8px 12px !important; gap: 8px !important; }
   .logo-brand { font-size: 1.1rem; gap: 8px; }
   .logo-icon { width: 34px; height: 34px; border-radius: 10px; }
+  .logo-sub { display: none !important; }
   .search-box-wrap { max-width: 100%; flex: 1; }
+
+  /* Hide desktop header-right, show mobile hamburger button */
+  .header-right-desktop { display: none !important; }
+  .mobile-menu-btn { display: flex !important; }
+
+  /* Announcement bar */
+  .announcement-pincode { display: none !important; }
+  .search-cat-select { display: none !important; }
+
+  /* Category subnav tabs: compact padding on mobile */
+  .category-subnav { padding: 4px 8px !important; }
+  .category-subnav-inner { gap: 4px !important; }
 
   /* Hero Banner text */
   .hero-title { font-size: 2rem; }
@@ -623,43 +695,6 @@ button {
 
   /* Brands strip: 2 columns on tiny screens */
   .brands-strip-grid { grid-template-columns: repeat(2, 1fr) !important; }
-}
-
-/* =============================================
-   MOBILE HEADER — Hamburger Toggle Logic
-   ============================================= */
-
-/* Desktop: show right-side nav, hide hamburger */
-.header-right-desktop { display: flex !important; }
-.mobile-menu-btn { display: none !important; }
-
-/* Categories dropdown: hide on mobile (drawer replaces it) */
-@media (max-width: 768px) {
-  /* Hide desktop-only nav actions */
-  .header-right-desktop { display: none !important; }
-  /* Show hamburger button */
-  .mobile-menu-btn { display: flex !important; }
-
-  /* Hide the full Categories mega-menu button on mobile (accessible via drawer) */
-  .categories-desktop-btn { display: none !important; }
-
-  /* Announcement bar: smaller text, don't show pincode on mobile */
-  .announcement-pincode { display: none !important; }
-
-  /* Search bar: hide the category select on very small screens to save space */
-  .search-cat-select { display: none !important; }
-
-  /* Make the header-bar row tighter */
-  .header-bar { padding: 8px 12px !important; gap: 8px !important; }
-
-  /* Logo: hide subtitle on mobile */
-  .logo-sub { display: none !important; }
-}
-
-@media (max-width: 480px) {
-  /* On tiny screens also hide the Categories dropdown button */
-  .header-right-desktop { display: none !important; }
-  .mobile-menu-btn { display: flex !important; }
 }
 
 /* ==========================================================================

@@ -296,7 +296,7 @@ export default function CategoryPage() {
               )}
             </div>
             
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+            <div className="no-scrollbar" style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', overflowX: 'auto', paddingBottom: '4px' }}>
               <button
                 onClick={() => handleSubCategorySelect('all')}
                 className={`btn-filter-pill ${subSlug === 'all' ? 'active' : ''}`}
@@ -306,7 +306,9 @@ export default function CategoryPage() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '6px',
-                  borderRadius: '20px'
+                  borderRadius: '20px',
+                  flexShrink: 0,
+                  whiteSpace: 'nowrap'
                 }}
               >
                 <span>All {categoryName}</span>
@@ -336,7 +338,9 @@ export default function CategoryPage() {
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '6px',
-                      borderRadius: '20px'
+                      borderRadius: '20px',
+                      flexShrink: 0,
+                      whiteSpace: 'nowrap'
                     }}
                   >
                     <span>{sub.name}</span>
@@ -429,7 +433,7 @@ export default function CategoryPage() {
       </div>
 
       {/* Main 2-Column Marketplace Grid: Sidebar + Products */}
-      <div style={{ display: 'grid', gridTemplateColumns: '260px 1fr', gap: '24px', alignItems: 'start' }}>
+      <div className="marketplace-layout">
         {/* Left Sidebar Faceted Filter */}
         <EcommerceSidebarFilter
           selectedBrand={selectedBrand}

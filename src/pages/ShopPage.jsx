@@ -153,7 +153,7 @@ export default function ShopPage() {
       </div>
 
       {/* Main 2-Column Layout: Sidebar Filter + Products Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: '260px 1fr', gap: '26px', alignItems: 'start' }}>
+      <div className="marketplace-layout">
         {/* Left Column: Faceted Sidebar Filter */}
         <EcommerceSidebarFilter
           selectedBrand={selectedBrand}

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Camera, Search, Heart, MapPin, ShoppingBag, ArrowRight, X, Globe, Layers, ChevronDown, Smartphone, Mic, Sliders, Zap, Sparkles, BookOpen, Menu } from 'lucide-react';
 import { useEcommerce } from '../context/EcommerceContext';
 import { TAXONOMY, VLOGGING_PRODUCTS } from '../data/vloggingProducts';
+import CategoryNavBar from './CategoryNavBar';
 
 const CATEGORY_ITEMS = [
   {
@@ -247,196 +248,7 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
           </div>
         </Link>
 
-        {/* Sticky Categories Dropdown Trigger & Mega-Menu (Saves Vertical Height) */}
-        <div ref={categoriesMenuRef} className="categories-desktop-btn" style={{ position: 'relative', flexShrink: 0 }}>
-          <button
-            type="button"
-            onClick={() => setIsCategoriesOpen(!isCategoriesOpen)}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '9px 16px',
-              borderRadius: '24px',
-              background: isCategoriesOpen 
-                ? 'linear-gradient(135deg, rgba(0, 242, 254, 0.22), rgba(0, 242, 254, 0.08))' 
-                : 'rgba(255, 255, 255, 0.07)',
-              border: isCategoriesOpen ? '1px solid #00f2fe' : '1px solid rgba(255, 255, 255, 0.14)',
-              color: isCategoriesOpen ? '#00f2fe' : '#ffffff',
-              fontSize: '0.84rem',
-              fontWeight: 800,
-              cursor: 'pointer',
-              transition: 'all 0.2s ease',
-              whiteSpace: 'nowrap'
-            }}
-            onMouseEnter={(e) => {
-              if (!isCategoriesOpen) {
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.12)';
-                e.currentTarget.style.borderColor = 'rgba(0, 242, 254, 0.4)';
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (!isCategoriesOpen) {
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.07)';
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.14)';
-              }
-            }}
-          >
-            <Layers size={16} color={isCategoriesOpen ? '#00f2fe' : '#ff9900'} />
-            <span>Categories</span>
-            <ChevronDown 
-              size={14} 
-              style={{ 
-                transform: isCategoriesOpen ? 'rotate(180deg)' : 'rotate(0deg)', 
-                transition: 'transform 0.2s ease' 
-              }} 
-            />
-          </button>
 
-          {/* Categories Mega Dropdown Menu Popover */}
-          {isCategoriesOpen && (
-            <div 
-              className="glass-panel"
-              style={{
-                position: 'absolute',
-                top: 'calc(100% + 12px)',
-                left: 0,
-                width: '640px',
-                maxWidth: '90vw',
-                background: '#070a1c',
-                border: '1px solid rgba(0, 242, 254, 0.3)',
-                borderRadius: '16px',
-                boxShadow: '0 24px 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 242, 254, 0.15)',
-                zIndex: 350,
-                padding: '18px 20px',
-                animation: 'fadeIn 0.2s ease-out'
-              }}
-            >
-              {/* Header inside popover */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', borderBottom: '1px solid rgba(255, 255, 255, 0.08)', paddingBottom: '10px' }}>
-                <span style={{ fontSize: '0.74rem', fontWeight: 800, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>
-                  Creator Gear Categories & Guides
-                </span>
-                <button 
-                  onClick={() => setIsCategoriesOpen(false)}
-                  style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', padding: '2px' }}
-                >
-                  <X size={16} />
-                </button>
-              </div>
-
-              {/* Featured Guide Banner: Vlogging Smartphones */}
-              <Link
-                to="/vlogging-smartphones"
-                onClick={() => setIsCategoriesOpen(false)}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: '10px 14px',
-                  borderRadius: '10px',
-                  background: 'linear-gradient(135deg, rgba(0, 242, 254, 0.12) 0%, rgba(255, 153, 0, 0.12) 100%)',
-                  border: '1px solid rgba(0, 242, 254, 0.28)',
-                  textDecoration: 'none',
-                  marginBottom: '14px',
-                  transition: 'all 0.2s ease'
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <div style={{ width: '34px', height: '34px', borderRadius: '8px', background: 'rgba(0, 242, 254, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#00f2fe' }}>
-                    <Smartphone size={18} />
-                  </div>
-                  <div>
-                    <div style={{ fontSize: '0.86rem', fontWeight: 800, color: '#fff' }}>
-                      Vlogging Smartphones Hub & Shootout Matrix
-                    </div>
-                    <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
-                      iPhone 16 Pro vs S24 Ultra vs Vivo X100 Pro • Specs, Log Video & Thermals
-                    </div>
-                  </div>
-                </div>
-                <span style={{ fontSize: '0.7rem', fontWeight: 800, background: '#00f2fe', color: '#050714', padding: '2px 8px', borderRadius: '4px' }}>
-                  FEATURED
-                </span>
-              </Link>
-
-              {/* 5 Categories Grid */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px', marginBottom: '14px' }}>
-                {CATEGORY_ITEMS.map(cat => {
-                  const Icon = cat.icon;
-                  return (
-                    <div 
-                      key={cat.id}
-                      style={{
-                        padding: '10px 12px',
-                        borderRadius: '10px',
-                        background: 'rgba(255, 255, 255, 0.03)',
-                        border: '1px solid rgba(255, 255, 255, 0.06)',
-                        transition: 'background 0.15s ease'
-                      }}
-                    >
-                      <Link 
-                        to={`/category/${cat.id}`}
-                        onClick={() => setIsCategoriesOpen(false)}
-                        style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: '#fff', marginBottom: '6px' }}
-                      >
-                        <Icon size={16} color={cat.accent} />
-                        <span style={{ fontSize: '0.84rem', fontWeight: 800 }}>{cat.name}</span>
-                      </Link>
-                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
-                        {cat.subs.map(sub => (
-                          <Link
-                            key={sub.id}
-                            to={`/category/${cat.id}?sub=${sub.id}`}
-                            onClick={() => setIsCategoriesOpen(false)}
-                            style={{
-                              fontSize: '0.68rem',
-                              padding: '2px 6px',
-                              borderRadius: '4px',
-                              background: 'rgba(255, 255, 255, 0.05)',
-                              color: 'var(--text-secondary)',
-                              textDecoration: 'none'
-                            }}
-                          >
-                            {sub.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Popover Footer */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '10px', fontSize: '0.78rem', flexWrap: 'wrap', gap: '8px' }}>
-                <Link 
-                  to="/shop" 
-                  onClick={() => setIsCategoriesOpen(false)}
-                  style={{ color: '#00f2fe', textDecoration: 'none', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '4px' }}
-                >
-                  <span>Shop All Gear</span>
-                  <ArrowRight size={13} />
-                </Link>
-                <Link 
-                  to="/blog" 
-                  onClick={() => setIsCategoriesOpen(false)}
-                  style={{ color: '#00e676', textDecoration: 'none', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '4px' }}
-                >
-                  <BookOpen size={13} />
-                  <span>24 Product Reviews & Blogs</span>
-                </Link>
-                <Link 
-                  to="/compare/digitek-dwm101-vs-boya-byv20" 
-                  onClick={() => setIsCategoriesOpen(false)}
-                  style={{ color: '#ff9900', textDecoration: 'none', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '4px' }}
-                >
-                  <span>Comparisons</span>
-                  <ArrowRight size={13} />
-                </Link>
-              </div>
-            </div>
-          )}
-        </div>
 
         {/* E-Commerce Search Bar with Centered Modern Layout & Instant Suggestions */}
         <div ref={searchWrapRef} style={{ position: 'relative', maxWidth: '680px', flex: 1, margin: '0 24px' }}>
@@ -733,6 +545,9 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
         </button>
       </div>
 
+      {/* 3. Sticky Dedicated Category & Navigation Tabs Bar */}
+      <CategoryNavBar onOpenBuilder={onOpenBuilder} />
+
       {/* ── MOBILE FULL-SCREEN NAV DRAWER ── */}
       {isMobileMenuOpen && (
         <div
@@ -826,6 +641,29 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
                 {link.label}
               </Link>
             ))}
+            {onOpenBuilder && (
+              <button
+                type="button"
+                onClick={() => { setIsMobileMenuOpen(false); onOpenBuilder(); }}
+                style={{
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '13px 0',
+                  background: 'transparent',
+                  border: 'none',
+                  borderBottom: '1px solid rgba(255, 255, 255, 0.04)',
+                  color: '#ff9900',
+                  fontSize: '1rem',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  textAlign: 'left'
+                }}
+              >
+                🛠️ Interactive Kit Builder
+              </button>
+            )}
           </div>
 
           {/* Category Hubs */}

@@ -140,7 +140,7 @@ export default function BlogListPage() {
       </header>
 
       {/* Category Filter Chips */}
-      <div style={{ display: 'flex', gap: '10px', overflowX: 'auto', paddingBottom: '14px', marginBottom: '32px', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none' }}>
+      <div className="no-scrollbar" style={{ display: 'flex', gap: '10px', overflowX: 'auto', paddingBottom: '14px', marginBottom: '32px', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none' }}>
         {CATEGORY_TABS.map(tab => {
           const isActive = activeTab === tab.id;
           return (
@@ -148,6 +148,7 @@ export default function BlogListPage() {
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               style={{
+                flexShrink: 0,
                 padding: '10px 18px',
                 borderRadius: '24px',
                 background: isActive 

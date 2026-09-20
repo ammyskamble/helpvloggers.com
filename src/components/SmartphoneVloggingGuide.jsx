@@ -440,12 +440,13 @@ export default function SmartphoneVloggingGuide() {
           </div>
 
           {/* Matrix Category Filter Pills */}
-          <div style={{ display: 'flex', gap: '6px', overflowX: 'auto', paddingBottom: '4px' }}>
+          <div className="no-scrollbar" style={{ display: 'flex', gap: '6px', overflowX: 'auto', paddingBottom: '6px', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', maxWidth: '100%' }}>
             {matrixCategories.map(cat => (
               <button
                 key={cat}
                 onClick={() => setActiveMatrixFilter(cat)}
                 style={{
+                  flexShrink: 0,
                   padding: '6px 14px',
                   borderRadius: '20px',
                   background: activeMatrixFilter === cat ? '#00f2fe' : 'rgba(255, 255, 255, 0.05)',
