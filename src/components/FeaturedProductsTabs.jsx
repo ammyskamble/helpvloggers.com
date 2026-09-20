@@ -53,15 +53,16 @@ export default function FeaturedProductsTabs() {
         </Link>
       </div>
 
-      {/* Clean Brand / Category Filter Tabs (MicPrice.com Style) */}
+      {/* Clean Brand / Category Filter Tabs (Responsive Wrapping - Fits Mobile Screens 100%) */}
       <div 
         style={{ 
           display: 'flex', 
+          flexWrap: 'wrap',
           gap: '8px', 
-          overflowX: 'auto', 
-          paddingBottom: '10px', 
+          paddingBottom: '12px', 
           borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-          marginBottom: '24px' 
+          marginBottom: '24px',
+          width: '100%'
         }}
       >
         {TABS.map(tab => {
@@ -71,15 +72,14 @@ export default function FeaturedProductsTabs() {
               key={tab.id}
               onClick={() => setActiveTabId(tab.id)}
               style={{
-                padding: '8px 18px',
+                padding: '7px 15px',
                 borderRadius: '20px',
                 background: isActive ? 'linear-gradient(135deg, #00f2fe, #4facfe)' : 'rgba(255, 255, 255, 0.04)',
                 color: isActive ? '#000' : 'var(--text-secondary)',
                 border: isActive ? 'none' : '1px solid rgba(255, 255, 255, 0.08)',
                 fontWeight: isActive ? 800 : 600,
-                fontSize: '0.85rem',
+                fontSize: '0.82rem',
                 cursor: 'pointer',
-                whiteSpace: 'nowrap',
                 transition: 'all 0.2s ease'
               }}
             >

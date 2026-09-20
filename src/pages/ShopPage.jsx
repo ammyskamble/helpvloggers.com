@@ -186,7 +186,7 @@ export default function ShopPage() {
             }}
           >
             {/* Market Segmented Filter Pills */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
               <button
                 onClick={() => handleMarketChange('all')}
                 style={{

@@ -139,8 +139,8 @@ export default function BlogListPage() {
         </div>
       </header>
 
-      {/* Category Filter Chips */}
-      <div className="no-scrollbar" style={{ display: 'flex', gap: '10px', overflowX: 'auto', paddingBottom: '14px', marginBottom: '32px', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none' }}>
+      {/* Category Filter Chips (Responsive Wrapping - No Horizontal Scroll on Mobile) */}
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '28px', width: '100%' }}>
         {CATEGORY_TABS.map(tab => {
           const isActive = activeTab === tab.id;
           return (
@@ -148,18 +148,16 @@ export default function BlogListPage() {
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               style={{
-                flexShrink: 0,
-                padding: '10px 18px',
-                borderRadius: '24px',
+                padding: '8px 15px',
+                borderRadius: '20px',
                 background: isActive 
                   ? 'linear-gradient(135deg, rgba(0, 242, 254, 0.25), rgba(0, 242, 254, 0.1))' 
                   : 'rgba(255, 255, 255, 0.05)',
                 border: isActive ? '1px solid #00f2fe' : '1px solid rgba(255, 255, 255, 0.1)',
                 color: isActive ? '#00f2fe' : 'var(--text-secondary)',
                 fontWeight: isActive ? 800 : 600,
-                fontSize: '0.85rem',
+                fontSize: '0.82rem',
                 cursor: 'pointer',
-                whiteSpace: 'nowrap',
                 transition: 'all 0.2s ease',
                 boxShadow: isActive ? '0 0 16px rgba(0, 242, 254, 0.2)' : 'none'
               }}

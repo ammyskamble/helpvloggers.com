@@ -430,15 +430,14 @@ export default function SmartphoneVloggingGuide() {
             </p>
           </div>
 
-          {/* Matrix Category Filter Pills */}
-          <div className="no-scrollbar" style={{ display: 'flex', gap: '6px', overflowX: 'auto', paddingBottom: '6px', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', maxWidth: '100%' }}>
+          {/* Matrix Category Filter Pills (Responsive Wrap - Fits Mobile Screens) */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', maxWidth: '100%' }}>
             {matrixCategories.map(cat => (
               <button
                 key={cat}
                 onClick={() => setActiveMatrixFilter(cat)}
                 style={{
-                  flexShrink: 0,
-                  padding: '6px 14px',
+                  padding: '6px 13px',
                   borderRadius: '20px',
                   background: activeMatrixFilter === cat ? '#00f2fe' : 'rgba(255, 255, 255, 0.05)',
                   color: activeMatrixFilter === cat ? '#050714' : 'var(--text-secondary)',
@@ -446,7 +445,6 @@ export default function SmartphoneVloggingGuide() {
                   fontSize: '0.75rem',
                   fontWeight: activeMatrixFilter === cat ? 800 : 600,
                   cursor: 'pointer',
-                  whiteSpace: 'nowrap',
                   transition: 'all 0.2s ease'
                 }}
               >

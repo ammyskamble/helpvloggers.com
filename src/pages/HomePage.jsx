@@ -411,7 +411,7 @@ export default function HomePage() {
 
         {/* Brand Category Filter Pills (Tailored to active market) */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px', marginBottom: '22px' }}>
-          <div className="no-scrollbar" style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '6px', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', maxWidth: '100%' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', maxWidth: '100%' }}>
             {currentTabs.map(tab => {
               const isActive = tab.id === activeTabId;
               return (
@@ -419,8 +419,7 @@ export default function HomePage() {
                   key={tab.id}
                   onClick={() => setActiveTabId(tab.id)}
                   style={{
-                    flexShrink: 0,
-                    padding: '7px 18px',
+                    padding: '7px 14px',
                     borderRadius: '20px',
                     background: isActive 
                       ? (market === 'india' ? '#00f2fe' : '#ff9900') 
@@ -428,9 +427,8 @@ export default function HomePage() {
                     color: isActive ? '#050714' : 'var(--text-secondary)',
                     border: isActive ? 'none' : '1px solid rgba(255, 255, 255, 0.08)',
                     fontWeight: isActive ? 800 : 600,
-                    fontSize: '0.85rem',
+                    fontSize: '0.82rem',
                     cursor: 'pointer',
-                    whiteSpace: 'nowrap',
                     transition: 'all 0.2s ease'
                   }}
                 >

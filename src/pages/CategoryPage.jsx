@@ -296,7 +296,7 @@ export default function CategoryPage() {
               )}
             </div>
             
-            <div className="no-scrollbar" style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', overflowX: 'auto', paddingBottom: '4px' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', paddingBottom: '4px', width: '100%' }}>
               <button
                 onClick={() => handleSubCategorySelect('all')}
                 className={`btn-filter-pill ${subSlug === 'all' ? 'active' : ''}`}
@@ -306,9 +306,7 @@ export default function CategoryPage() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '6px',
-                  borderRadius: '20px',
-                  flexShrink: 0,
-                  whiteSpace: 'nowrap'
+                  borderRadius: '20px'
                 }}
               >
                 <span>All {categoryName}</span>
@@ -338,9 +336,7 @@ export default function CategoryPage() {
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '6px',
-                      borderRadius: '20px',
-                      flexShrink: 0,
-                      whiteSpace: 'nowrap'
+                      borderRadius: '20px'
                     }}
                   >
                     <span>{sub.name}</span>

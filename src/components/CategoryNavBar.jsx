@@ -521,43 +521,92 @@ export default function CategoryNavBar({ onOpenBuilder }) {
             </button>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '8px', marginBottom: '14px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginBottom: '14px' }}>
             <Link
               to="/vlogging-smartphones"
               onClick={() => setIsMobileCatDropdownOpen(false)}
-              style={{ padding: '10px', borderRadius: '10px', background: 'rgba(0, 230, 118, 0.08)', border: '1px solid rgba(0, 230, 118, 0.25)', textDecoration: 'none', color: '#fff', display: 'flex', flexDirection: 'column', gap: '4px' }}
+              style={{ padding: '9px 12px', borderRadius: '10px', background: 'rgba(0, 230, 118, 0.08)', border: '1px solid rgba(0, 230, 118, 0.25)', textDecoration: 'none', color: '#fff', display: 'flex', alignItems: 'center', gap: '8px' }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#00e676', fontWeight: 800, fontSize: '0.8rem' }}>
-                <Smartphone size={14} /> Smartphones
+              <Smartphone size={16} color="#00e676" />
+              <div>
+                <div style={{ color: '#00e676', fontWeight: 800, fontSize: '0.8rem' }}>Smartphones</div>
+                <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>Top 5 Ranked</div>
               </div>
-              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Top 5 Ranked & Specs</span>
             </Link>
 
             <Link
               to="/shop"
               onClick={() => setIsMobileCatDropdownOpen(false)}
-              style={{ padding: '10px', borderRadius: '10px', background: 'rgba(0, 242, 254, 0.08)', border: '1px solid rgba(0, 242, 254, 0.25)', textDecoration: 'none', color: '#fff', display: 'flex', flexDirection: 'column', gap: '4px' }}
+              style={{ padding: '9px 12px', borderRadius: '10px', background: 'rgba(0, 242, 254, 0.08)', border: '1px solid rgba(0, 242, 254, 0.25)', textDecoration: 'none', color: '#fff', display: 'flex', alignItems: 'center', gap: '8px' }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#00f2fe', fontWeight: 800, fontSize: '0.8rem' }}>
-                <ShoppingBag size={14} /> Full Catalog
+              <ShoppingBag size={16} color="#00f2fe" />
+              <div>
+                <div style={{ color: '#00f2fe', fontWeight: 800, fontSize: '0.8rem' }}>Full Catalog</div>
+                <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>Shop All 70+ Gear</div>
               </div>
-              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Shop 70+ Creator Gear</span>
             </Link>
+          </div>
 
+          {/* All 6 Categories with Direct Sub-Category Jump Tags */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '16px' }}>
             {TAXONOMY.map(cat => {
               const IconComponent = ICON_MAP[cat.id] || Sparkles;
               return (
-                <Link
+                <div 
                   key={cat.id}
-                  to={`/category/${cat.id}`}
-                  onClick={() => setIsMobileCatDropdownOpen(false)}
-                  style={{ padding: '10px', borderRadius: '10px', background: 'rgba(255, 255, 255, 0.04)', border: '1px solid rgba(255, 255, 255, 0.08)', textDecoration: 'none', color: '#fff', display: 'flex', flexDirection: 'column', gap: '4px' }}
+                  style={{
+                    padding: '10px 12px',
+                    borderRadius: '12px',
+                    background: 'rgba(255, 255, 255, 0.03)',
+                    border: '1px solid rgba(255, 255, 255, 0.07)'
+                  }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#fff', fontWeight: 800, fontSize: '0.8rem' }}>
-                    <IconComponent size={14} color="#00f2fe" /> {SHORT_LABELS[cat.id] || cat.name}
-                  </div>
-                  <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>{cat.name}</span>
-                </Link>
+                  <Link
+                    to={`/category/${cat.id}`}
+                    onClick={() => setIsMobileCatDropdownOpen(false)}
+                    style={{
+                      textDecoration: 'none',
+                      color: '#fff',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      marginBottom: cat.subCategories?.length ? '8px' : '0'
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 800, fontSize: '0.82rem' }}>
+                      <IconComponent size={15} color="#00f2fe" />
+                      <span>{cat.name}</span>
+                    </div>
+                    <span style={{ fontSize: '0.72rem', color: '#00f2fe', fontWeight: 700 }}>
+                      All →
+                    </span>
+                  </Link>
+
+                  {/* Subcategories Clean Wrapping Chips */}
+                  {cat.subCategories && cat.subCategories.length > 0 && (
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                      {cat.subCategories.map(sub => (
+                        <Link
+                          key={sub.id}
+                          to={`/category/${cat.id}?sub=${sub.id}`}
+                          onClick={() => setIsMobileCatDropdownOpen(false)}
+                          style={{
+                            fontSize: '0.72rem',
+                            padding: '3px 9px',
+                            borderRadius: '12px',
+                            background: 'rgba(255, 255, 255, 0.06)',
+                            color: 'var(--text-secondary)',
+                            textDecoration: 'none',
+                            border: '1px solid rgba(255, 255, 255, 0.08)',
+                            transition: 'all 0.15s ease'
+                          }}
+                        >
+                          {sub.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               );
             })}
           </div>
