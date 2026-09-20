@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { createPortal } from 'react-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Camera, Search, Heart, MapPin, ShoppingBag, ArrowRight, X, Globe, Layers, ChevronDown, Smartphone, Mic, Sliders, Zap, Sparkles, BookOpen, Menu } from 'lucide-react';
 import { useEcommerce } from '../context/EcommerceContext';
 import { TAXONOMY, VLOGGING_PRODUCTS } from '../data/vloggingProducts';
@@ -88,8 +89,28 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [isAnnouncementVisible, setIsAnnouncementVisible] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [expandedCat, setExpandedCat] = useState(null);
+  const location = useLocation();
   const searchWrapRef = useRef(null);
   const categoriesMenuRef = useRef(null);
+
+  // Close mobile drawer on route change
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+    setExpandedCat(null);
+  }, [location.pathname]);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
 
   // Close search suggestions and categories menu on outside click
   useEffect(() => {
@@ -238,9 +259,9 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
         </div>
       )}
 
-      {/* 2. Main Sticky Header (Only search bar + compact category subnav stick!) */}
-      <header className="sticky-header-container" style={{ position: 'sticky', top: 0, zIndex: 1000, backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)' }}>
-        <div className="header-bar glass-panel" style={{ borderRadius: 0, padding: '10px 20px' }}>
+      {/* 2. Main Sticky Header (No backdropFilter on outer container to prevent fixed-child containing block trap!) */}
+      <header className="sticky-header-container" style={{ position: 'sticky', top: 0, zIndex: 1000 }}>
+        <div className="header-bar glass-panel" style={{ borderRadius: 0, padding: '10px 20px', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)' }}>
         <Link to="/" className="logo-brand" style={{ textDecoration: 'none' }}>
           <div className="logo-icon" style={{ background: 'linear-gradient(135deg, #ff9900 0%, #00f2fe 100%)' }}>
             <Camera size={22} color="#050714" />
@@ -582,159 +603,323 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
       </div>
 
       {/* 3. Sticky Dedicated Category & Navigation Tabs Bar */}
-      <CategoryNavBar onOpenBuilder={onOpenBuilder} />
+      <CategoryNavBar 
+        onOpenBuilder={onOpenBuilder} 
+        isMobileMenuOpen={isMobileMenuOpen}
+        setIsMobileMenuOpen={setIsMobileMenuOpen}
+      />
+    </header>
 
-      {/* ── MOBILE FULL-SCREEN NAV DRAWER ── */}
-      {isMobileMenuOpen && (
-        <div
-          className="mobile-nav-drawer"
+    {/* ── UNIFIED FULL-SCREEN SOLID MOBILE NAV DRAWER (ATTACHED DIRECTLY TO BODY VIA PORTAL) ── */}
+    {isMobileMenuOpen && typeof document !== 'undefined' && createPortal(
+      <div 
+        className="mobile-nav-portal-overlay" 
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100vw',
+          height: '100vh',
+          zIndex: 999999,
+          background: 'rgba(0, 0, 0, 0.78)',
+          display: 'flex',
+          justifyContent: 'flex-end',
+          backdropFilter: 'blur(6px)',
+          WebkitBackdropFilter: 'blur(6px)'
+        }}
+      >
+        {/* Backdrop click to close */}
+        <div 
+          style={{ position: 'absolute', inset: 0 }} 
+          onClick={() => setIsMobileMenuOpen(false)} 
+          aria-label="Close menu backdrop"
+        />
+
+        {/* Slide-out Drawer Panel with 100% Solid Dark Slate Background (Zero Bleed-Through) */}
+        <div 
+          className="mobile-nav-drawer-content"
           style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'rgba(7, 10, 28, 0.98)',
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
-            zIndex: 2000,
+            position: 'relative',
+            width: '100%',
+            maxWidth: '380px',
+            height: '100%',
+            background: '#070a1e',
+            borderLeft: '1px solid rgba(0, 242, 254, 0.25)',
             display: 'flex',
             flexDirection: 'column',
-            overflowY: 'auto',
-            padding: '0 0 40px'
+            zIndex: 1000000,
+            boxShadow: '-12px 0 40px rgba(0, 0, 0, 0.95)',
+            overflowY: 'auto'
           }}
         >
-          {/* Drawer Header */}
+          {/* Drawer Header with Brand, Market Toggle & Close Button */}
           <div style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: '14px 20px',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+            padding: '14px 18px',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+            background: '#0a0e29',
             position: 'sticky',
             top: 0,
-            background: 'rgba(7, 10, 28, 0.98)',
-            backdropFilter: 'blur(12px)',
-            zIndex: 1
+            zIndex: 10
           }}>
-            <Link to="/" onClick={() => setIsMobileMenuOpen(false)} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <div style={{ width: '34px', height: '34px', borderRadius: '10px', background: 'linear-gradient(135deg, #ff9900 0%, #00f2fe 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Link to="/" onClick={() => setIsMobileMenuOpen(false)} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'linear-gradient(135deg, #ff9900 0%, #00f2fe 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Camera size={18} color="#050714" />
               </div>
               <span style={{ fontWeight: 900, fontSize: '1.1rem', color: '#fff' }}>HelpVloggers</span>
             </Link>
+            
             <button
+              type="button"
               onClick={() => setIsMobileMenuOpen(false)}
-              style={{ background: 'rgba(255, 255, 255, 0.08)', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '10px', width: '38px', height: '38px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', cursor: 'pointer' }}
+              aria-label="Close navigation menu"
+              style={{
+                background: 'rgba(255, 255, 255, 0.08)',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                borderRadius: '8px',
+                width: '36px',
+                height: '36px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#fff',
+                cursor: 'pointer'
+              }}
             >
-              <X size={20} />
+              <X size={18} />
             </button>
           </div>
 
-          {/* Market Switcher inside drawer */}
-          <div style={{ padding: '16px 20px', borderBottom: '1px solid rgba(255, 255, 255, 0.06)' }}>
-            <div style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: '10px' }}>Market</div>
-            <div style={{ display: 'flex', gap: '10px' }}>
+          {/* Market & Currency Selector */}
+          <div style={{ padding: '14px 18px', background: 'rgba(0, 242, 254, 0.03)', borderBottom: '1px solid rgba(255, 255, 255, 0.08)' }}>
+            <div style={{ fontSize: '0.68rem', fontWeight: 800, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: '8px' }}>
+              Select Creator Market
+            </div>
+            <div style={{ display: 'flex', gap: '8px' }}>
               <button
-                onClick={() => { setMarket('india'); }}
+                onClick={() => setMarket('india')}
                 style={{
-                  flex: 1, padding: '10px', borderRadius: '10px', fontSize: '0.88rem', fontWeight: 800, cursor: 'pointer', border: 'none', transition: 'all 0.2s ease',
-                  background: market === 'india' ? 'linear-gradient(135deg, #00f2fe, #4facfe)' : 'rgba(255, 255, 255, 0.06)',
-                  color: market === 'india' ? '#050714' : '#fff'
+                  flex: 1,
+                  padding: '8px 12px',
+                  borderRadius: '8px',
+                  fontSize: '0.8rem',
+                  fontWeight: 800,
+                  cursor: 'pointer',
+                  border: market === 'india' ? '1px solid #00f2fe' : '1px solid rgba(255, 255, 255, 0.1)',
+                  background: market === 'india' ? 'linear-gradient(135deg, #00f2fe, #4facfe)' : 'rgba(255, 255, 255, 0.05)',
+                  color: market === 'india' ? '#050714' : '#fff',
+                  transition: 'all 0.2s ease'
                 }}
-              >🇮🇳 India (₹)</button>
+              >
+                🇮🇳 India (₹ INR)
+              </button>
               <button
-                onClick={() => { setMarket('global'); }}
+                onClick={() => setMarket('global')}
                 style={{
-                  flex: 1, padding: '10px', borderRadius: '10px', fontSize: '0.88rem', fontWeight: 800, cursor: 'pointer', border: 'none', transition: 'all 0.2s ease',
-                  background: market === 'global' ? 'linear-gradient(135deg, #ff9900, #ff5722)' : 'rgba(255, 255, 255, 0.06)',
-                  color: market === 'global' ? '#fff' : '#fff'
+                  flex: 1,
+                  padding: '8px 12px',
+                  borderRadius: '8px',
+                  fontSize: '0.8rem',
+                  fontWeight: 800,
+                  cursor: 'pointer',
+                  border: market === 'global' ? '1px solid #ff9900' : '1px solid rgba(255, 255, 255, 0.1)',
+                  background: market === 'global' ? 'linear-gradient(135deg, #ff9900, #ff5722)' : 'rgba(255, 255, 255, 0.05)',
+                  color: market === 'global' ? '#050714' : '#fff',
+                  transition: 'all 0.2s ease'
                 }}
-              >🌐 Global ($)</button>
+              >
+                🌐 Global ($ USD)
+              </button>
             </div>
           </div>
 
-          {/* Primary Links */}
-          <div style={{ padding: '16px 20px', borderBottom: '1px solid rgba(255, 255, 255, 0.06)' }}>
-            {[
-              { to: '/', label: '🏠 Home' },
-              { to: '/shop', label: '🛍️ Full Gear Catalog', accent: '#ff9900' },
-              { to: '/blog', label: '📖 Reviews & Buying Guides', accent: '#00f2fe' },
-              { to: '/vlogging-smartphones', label: '📱 Vlogging Smartphones', accent: '#00e676' },
-              { to: '/compare/digitek-dwm101-vs-boya-byv20', label: '⚖️ Product Comparisons' }
-            ].map(link => (
+          {/* Quick Navigation Hub Links */}
+          <div style={{ padding: '12px 18px', borderBottom: '1px solid rgba(255, 255, 255, 0.08)' }}>
+            <div style={{ fontSize: '0.68rem', fontWeight: 800, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: '8px' }}>
+              Quick Links
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
               <Link
-                key={link.to}
-                to={link.to}
+                to="/"
                 onClick={() => setIsMobileMenuOpen(false)}
-                style={{
-                  display: 'flex', alignItems: 'center', padding: '13px 0',
-                  borderBottom: '1px solid rgba(255, 255, 255, 0.04)',
-                  color: link.accent || '#fff', textDecoration: 'none',
-                  fontSize: '1rem', fontWeight: 700
-                }}
+                style={{ padding: '9px 12px', borderRadius: '8px', background: 'rgba(255, 255, 255, 0.04)', border: '1px solid rgba(255, 255, 255, 0.08)', textDecoration: 'none', color: '#fff', fontSize: '0.8rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px' }}
               >
-                {link.label}
+                🏠 Home
               </Link>
-            ))}
-            {onOpenBuilder && (
+              <Link
+                to="/shop"
+                onClick={() => setIsMobileMenuOpen(false)}
+                style={{ padding: '9px 12px', borderRadius: '8px', background: 'rgba(0, 242, 254, 0.08)', border: '1px solid rgba(0, 242, 254, 0.25)', textDecoration: 'none', color: '#00f2fe', fontSize: '0.8rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '6px' }}
+              >
+                🛍️ Shop (70+)
+              </Link>
+              <Link
+                to="/vlogging-smartphones"
+                onClick={() => setIsMobileMenuOpen(false)}
+                style={{ padding: '9px 12px', borderRadius: '8px', background: 'rgba(0, 230, 118, 0.08)', border: '1px solid rgba(0, 230, 118, 0.25)', textDecoration: 'none', color: '#00e676', fontSize: '0.8rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '6px' }}
+              >
+                📱 Phones #1–#5
+              </Link>
+              <Link
+                to="/blog"
+                onClick={() => setIsMobileMenuOpen(false)}
+                style={{ padding: '9px 12px', borderRadius: '8px', background: 'rgba(255, 153, 0, 0.08)', border: '1px solid rgba(255, 153, 0, 0.25)', textDecoration: 'none', color: '#ff9900', fontSize: '0.8rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '6px' }}
+              >
+                📖 24 Reviews
+              </Link>
+            </div>
+          </div>
+
+          {/* Interactive Kit Builder */}
+          {onOpenBuilder && (
+            <div style={{ padding: '10px 18px', borderBottom: '1px solid rgba(255, 255, 255, 0.08)' }}>
               <button
                 type="button"
                 onClick={() => { setIsMobileMenuOpen(false); onOpenBuilder(); }}
                 style={{
                   width: '100%',
+                  padding: '10px 14px',
+                  borderRadius: '8px',
+                  background: 'linear-gradient(135deg, rgba(255, 153, 0, 0.2), rgba(255, 87, 34, 0.2))',
+                  border: '1px solid rgba(255, 153, 0, 0.4)',
+                  color: '#ff9900',
+                  fontWeight: 800,
+                  fontSize: '0.82rem',
+                  cursor: 'pointer',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '8px',
-                  padding: '13px 0',
-                  background: 'transparent',
-                  border: 'none',
-                  borderBottom: '1px solid rgba(255, 255, 255, 0.04)',
-                  color: '#ff9900',
-                  fontSize: '1rem',
-                  fontWeight: 700,
-                  cursor: 'pointer',
-                  textAlign: 'left'
+                  justifyContent: 'center',
+                  gap: '8px'
                 }}
               >
-                🛠️ Interactive Kit Builder
+                <Sparkles size={16} /> Interactive Kit Builder Tool
               </button>
-            )}
-          </div>
+            </div>
+          )}
 
-          {/* Category Hubs */}
-          <div style={{ padding: '16px 20px' }}>
-            <div style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: '12px' }}>Gear Categories</div>
-            {CATEGORY_ITEMS.map(cat => {
-              const Icon = cat.icon;
-              return (
-                <Link
-                  key={cat.id}
-                  to={`/category/${cat.id}`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  style={{
-                    display: 'flex', alignItems: 'center', gap: '12px',
-                    padding: '12px 14px', borderRadius: '12px', marginBottom: '8px',
-                    background: 'rgba(255, 255, 255, 0.04)',
-                    border: '1px solid rgba(255, 255, 255, 0.06)',
-                    textDecoration: 'none', color: '#fff'
-                  }}
-                >
-                  <div style={{ width: '36px', height: '36px', borderRadius: '9px', background: `${cat.accent}18`, border: `1px solid ${cat.accent}44`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <Icon size={18} color={cat.accent} />
+          {/* Category & Subcategory Accordion */}
+          <div style={{ padding: '14px 18px', flex: 1 }}>
+            <div style={{ fontSize: '0.68rem', fontWeight: 800, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: '10px' }}>
+              All Categories & Subcategories
+            </div>
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              {TAXONOMY.map(cat => {
+                const isExpanded = expandedCat === cat.id;
+                const Icon = cat.id === 'audio-microphones' ? Mic : cat.id === 'cameras-recorders' ? Camera : cat.id === 'smartphone-rigs' ? Smartphone : cat.id === 'gimbals-tripods' ? Sliders : cat.id === 'creator-lighting' ? Zap : ShoppingBag;
+
+                return (
+                  <div
+                    key={cat.id}
+                    style={{
+                      borderRadius: '10px',
+                      background: isExpanded ? 'rgba(0, 242, 254, 0.06)' : 'rgba(255, 255, 255, 0.03)',
+                      border: isExpanded ? '1px solid rgba(0, 242, 254, 0.3)' : '1px solid rgba(255, 255, 255, 0.07)',
+                      overflow: 'hidden',
+                      transition: 'all 0.2s ease'
+                    }}
+                  >
+                    {/* Accordion Header Row */}
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 12px' }}>
+                      <Link
+                        to={`/category/${cat.id}`}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '10px',
+                          textDecoration: 'none',
+                          color: isExpanded ? '#00f2fe' : '#fff',
+                          fontWeight: 800,
+                          fontSize: '0.85rem',
+                          flex: 1
+                        }}
+                      >
+                        <Icon size={16} color={isExpanded ? '#00f2fe' : '#94a3b8'} />
+                        <span>{cat.name}</span>
+                      </Link>
+
+                      <button
+                        type="button"
+                        onClick={() => setExpandedCat(isExpanded ? null : cat.id)}
+                        aria-label={`Toggle ${cat.name} subcategories`}
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.06)',
+                          border: 'none',
+                          borderRadius: '6px',
+                          width: '28px',
+                          height: '28px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: isExpanded ? '#00f2fe' : '#94a3b8',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        <ChevronDown size={14} style={{ transform: isExpanded ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s ease' }} />
+                      </button>
+                    </div>
+
+                    {/* Subcategories Accordion Drawer */}
+                    {isExpanded && cat.subCategories && (
+                      <div style={{ padding: '0 12px 12px', display: 'flex', flexDirection: 'column', gap: '6px', borderTop: '1px solid rgba(255, 255, 255, 0.05)', paddingTop: '8px' }}>
+                        <Link
+                          to={`/category/${cat.id}`}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          style={{
+                            fontSize: '0.78rem',
+                            fontWeight: 800,
+                            color: '#00f2fe',
+                            textDecoration: 'none',
+                            padding: '6px 10px',
+                            borderRadius: '6px',
+                            background: 'rgba(0, 242, 254, 0.1)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between'
+                          }}
+                        >
+                          <span>Browse All {cat.name}</span>
+                          <ArrowRight size={12} />
+                        </Link>
+
+                        {cat.subCategories.map(sub => (
+                          <Link
+                            key={sub.id}
+                            to={`/category/${cat.id}?sub=${sub.id}`}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            style={{
+                              fontSize: '0.78rem',
+                              color: 'var(--text-secondary)',
+                              textDecoration: 'none',
+                              padding: '6px 10px',
+                              borderRadius: '6px',
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '8px'
+                            }}
+                            onMouseEnter={(e) => { e.currentTarget.style.color = '#fff'; e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'; }}
+                            onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-secondary)'; e.currentTarget.style.background = 'transparent'; }}
+                          >
+                            <span style={{ color: '#00f2fe', fontWeight: 800 }}>•</span>
+                            <span>{sub.name}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                  <div>
-                    <div style={{ fontWeight: 800, fontSize: '0.92rem' }}>{cat.name}</div>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '2px' }}>{cat.desc}</div>
-                  </div>
-                  <ArrowRight size={14} color="var(--text-muted)" style={{ marginLeft: 'auto' }} />
-                </Link>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
-      )}
-    </header>
+      </div>,
+      document.body
+    )}
   </>
   );
 }

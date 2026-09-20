@@ -24,33 +24,10 @@ const SHORT_LABELS = {
   'creator-tech': 'Tech'
 };
 
-export default function CategoryNavBar({ onOpenBuilder }) {
+export default function CategoryNavBar({ onOpenBuilder, isMobileMenuOpen, setIsMobileMenuOpen }) {
   const [hoveredCat, setHoveredCat] = useState(null);
-  const [isMobileCatDropdownOpen, setIsMobileCatDropdownOpen] = useState(false);
   const location = useLocation();
   const dropdownRef = useRef(null);
-
-  // Close dropdown on route change
-  useEffect(() => {
-    setIsMobileCatDropdownOpen(false);
-  }, [location.pathname]);
-
-  // Close dropdown on outside click
-  useEffect(() => {
-    function handleOutsideClick(e) {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setIsMobileCatDropdownOpen(false);
-      }
-    }
-    if (isMobileCatDropdownOpen) {
-      document.addEventListener('mousedown', handleOutsideClick);
-      document.addEventListener('touchstart', handleOutsideClick);
-    }
-    return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
-      document.removeEventListener('touchstart', handleOutsideClick);
-    };
-  }, [isMobileCatDropdownOpen]);
 
   const isCategoryActive = location.pathname.startsWith('/category/') || location.pathname.startsWith('/compare');
 
@@ -475,162 +452,21 @@ export default function CategoryNavBar({ onOpenBuilder }) {
 
         <button
           type="button"
-          className={`category-mobile-tab ${isCategoryActive || isMobileCatDropdownOpen ? 'active' : ''}`}
-          onClick={() => setIsMobileCatDropdownOpen(!isMobileCatDropdownOpen)}
+          className={`category-mobile-tab ${isCategoryActive || isMobileMenuOpen ? 'active' : ''}`}
+          onClick={() => {
+            if (setIsMobileMenuOpen) {
+              setIsMobileMenuOpen(!isMobileMenuOpen);
+            }
+          }}
           aria-label="Toggle All Categories Menu"
         >
-          <Sparkles size={15} color={isCategoryActive || isMobileCatDropdownOpen ? '#00f2fe' : 'var(--text-secondary)'} />
+          <Sparkles size={15} color={isCategoryActive || isMobileMenuOpen ? '#00f2fe' : 'var(--text-secondary)'} />
           <span style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
             Categories
-            <ChevronDown size={10} style={{ transform: isMobileCatDropdownOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s ease' }} />
+            <ChevronDown size={10} style={{ transform: isMobileMenuOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s ease' }} />
           </span>
         </button>
       </div>
-
-      {/* Streamlined Categories Popover Panel */}
-      {isMobileCatDropdownOpen && (
-        <div 
-          className="glass-panel mobile-categories-popover"
-          style={{
-            position: 'absolute',
-            top: '100%',
-            left: '8px',
-            right: '8px',
-            marginTop: '6px',
-            borderRadius: '16px',
-            background: 'rgba(8, 12, 30, 0.98)',
-            border: '1px solid rgba(0, 242, 254, 0.35)',
-            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.85)',
-            padding: '16px',
-            zIndex: 1500,
-            maxHeight: '75vh',
-            overflowY: 'auto'
-          }}
-        >
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', borderBottom: '1px solid rgba(255, 255, 255, 0.08)', paddingBottom: '10px' }}>
-            <div style={{ fontSize: '0.85rem', fontWeight: 900, color: '#fff', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <Sparkles size={16} color="#00f2fe" /> All Categories & Tools
-            </div>
-            <button
-              type="button"
-              onClick={() => setIsMobileCatDropdownOpen(false)}
-              aria-label="Close categories menu"
-              style={{ background: 'rgba(255, 255, 255, 0.08)', border: 'none', borderRadius: '50%', width: '26px', height: '26px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', cursor: 'pointer' }}
-            >
-              <X size={14} />
-            </button>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginBottom: '14px' }}>
-            <Link
-              to="/vlogging-smartphones"
-              onClick={() => setIsMobileCatDropdownOpen(false)}
-              style={{ padding: '9px 12px', borderRadius: '10px', background: 'rgba(0, 230, 118, 0.08)', border: '1px solid rgba(0, 230, 118, 0.25)', textDecoration: 'none', color: '#fff', display: 'flex', alignItems: 'center', gap: '8px' }}
-            >
-              <Smartphone size={16} color="#00e676" />
-              <div>
-                <div style={{ color: '#00e676', fontWeight: 800, fontSize: '0.8rem' }}>Smartphones</div>
-                <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>Top 5 Ranked</div>
-              </div>
-            </Link>
-
-            <Link
-              to="/shop"
-              onClick={() => setIsMobileCatDropdownOpen(false)}
-              style={{ padding: '9px 12px', borderRadius: '10px', background: 'rgba(0, 242, 254, 0.08)', border: '1px solid rgba(0, 242, 254, 0.25)', textDecoration: 'none', color: '#fff', display: 'flex', alignItems: 'center', gap: '8px' }}
-            >
-              <ShoppingBag size={16} color="#00f2fe" />
-              <div>
-                <div style={{ color: '#00f2fe', fontWeight: 800, fontSize: '0.8rem' }}>Full Catalog</div>
-                <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>Shop All 70+ Gear</div>
-              </div>
-            </Link>
-          </div>
-
-          {/* All 6 Categories with Direct Sub-Category Jump Tags */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '16px' }}>
-            {TAXONOMY.map(cat => {
-              const IconComponent = ICON_MAP[cat.id] || Sparkles;
-              return (
-                <div 
-                  key={cat.id}
-                  style={{
-                    padding: '10px 12px',
-                    borderRadius: '12px',
-                    background: 'rgba(255, 255, 255, 0.03)',
-                    border: '1px solid rgba(255, 255, 255, 0.07)'
-                  }}
-                >
-                  <Link
-                    to={`/category/${cat.id}`}
-                    onClick={() => setIsMobileCatDropdownOpen(false)}
-                    style={{
-                      textDecoration: 'none',
-                      color: '#fff',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      marginBottom: cat.subCategories?.length ? '8px' : '0'
-                    }}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 800, fontSize: '0.82rem' }}>
-                      <IconComponent size={15} color="#00f2fe" />
-                      <span>{cat.name}</span>
-                    </div>
-                    <span style={{ fontSize: '0.72rem', color: '#00f2fe', fontWeight: 700 }}>
-                      All →
-                    </span>
-                  </Link>
-
-                  {/* Subcategories Clean Wrapping Chips */}
-                  {cat.subCategories && cat.subCategories.length > 0 && (
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-                      {cat.subCategories.map(sub => (
-                        <Link
-                          key={sub.id}
-                          to={`/category/${cat.id}?sub=${sub.id}`}
-                          onClick={() => setIsMobileCatDropdownOpen(false)}
-                          style={{
-                            fontSize: '0.72rem',
-                            padding: '3px 9px',
-                            borderRadius: '12px',
-                            background: 'rgba(255, 255, 255, 0.06)',
-                            color: 'var(--text-secondary)',
-                            textDecoration: 'none',
-                            border: '1px solid rgba(255, 255, 255, 0.08)',
-                            transition: 'all 0.15s ease'
-                          }}
-                        >
-                          {sub.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-
-          <div style={{ display: 'flex', gap: '8px' }}>
-            <Link
-              to="/blog"
-              onClick={() => setIsMobileCatDropdownOpen(false)}
-              style={{ flex: 1, padding: '9px 12px', borderRadius: '8px', background: 'rgba(255, 255, 255, 0.05)', border: '1px solid rgba(255, 255, 255, 0.1)', textDecoration: 'none', color: '#fff', fontSize: '0.78rem', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
-            >
-              <BookOpen size={14} color="#00f2fe" /> Reviews & Buying Guides
-            </Link>
-            {onOpenBuilder && (
-              <button
-                type="button"
-                onClick={() => { setIsMobileCatDropdownOpen(false); onOpenBuilder(); }}
-                style={{ padding: '9px 12px', borderRadius: '8px', background: 'rgba(255, 153, 0, 0.15)', border: '1px solid rgba(255, 153, 0, 0.35)', color: '#ff9900', fontSize: '0.78rem', fontWeight: 800, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px' }}
-              >
-                <Sparkles size={14} /> Kit Builder
-              </button>
-            )}
-          </div>
-        </div>
-      )}
     </nav>
   );
 }
