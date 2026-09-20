@@ -25,8 +25,8 @@ export default function ComparisonDetailPage() {
   }
 
   // Find underlying product records if available
-  const prodAObj = VLOGGING_PRODUCTS.find(p => p.id === comparison.prodA.id);
-  const prodBObj = VLOGGING_PRODUCTS.find(p => p.id === comparison.prodB.id);
+  const prodAObj = VLOGGING_PRODUCTS.find(p => p.id === comparison.prodA?.id);
+  const prodBObj = VLOGGING_PRODUCTS.find(p => p.id === comparison.prodB?.id);
 
   return (
     <div style={{ padding: '16px 0 60px' }}>

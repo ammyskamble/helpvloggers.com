@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Star, Heart, Volume2, ShoppingBag, ArrowRight, Truck, Check, ArrowLeftRight } from 'lucide-react';
+import { Star, Heart, ShoppingBag, Truck, ArrowLeftRight, Sparkles, Clock, ShoppingCart, CheckCircle2 } from 'lucide-react';
 import { useEcommerce } from '../context/EcommerceContext';
 
 export default function ProductCard({ product }) {
@@ -10,21 +10,36 @@ export default function ProductCard({ product }) {
   const isWishlisted = wishlist.includes(product.id);
   const isCompared = compareList.includes(product.id);
 
-  const handleAudioToggle = () => {
-    setIsPlayingAudio(!isPlayingAudio);
-    if (!isPlayingAudio) {
-      setTimeout(() => setIsPlayingAudio(false), 4000);
+  // Normalize prices: support both VLOGGING_PRODUCTS (prices[]) and VLOGGING_SMARTPHONES (storeUrls {})
+  const pricesList = Array.isArray(product.prices) && product.prices.length > 0
+    ? product.prices
+    : product.storeUrls
+      ? [
+          product.storeUrls.amazon ? { store: 'Amazon.in', priceINR: product.priceINR || product.price || 0, priceUSD: product.priceUSD || 0, url: product.storeUrls.amazon, inStock: true, bestDeal: true } : null,
+          product.storeUrls.flipkart ? { store: 'Flipkart', priceINR: (product.priceINR || product.price || 0) + (product.priceINR > 50000 ? 1000 : 150), priceUSD: (product.priceUSD || 0) + 12, url: product.storeUrls.flipkart, inStock: true, bestDeal: false } : null,
+          product.storeUrls.apple ? { store: product.brand === 'Apple' ? 'Apple Store' : 'Official Brand Store', priceINR: product.mrpINR || product.priceINR || 0, priceUSD: (product.priceUSD || 0) + 50, url: product.storeUrls.apple, inStock: true, bestDeal: false } : null,
+        ].filter(Boolean)
+      : [{ store: 'Official Store', priceINR: product.priceINR || product.price || 0, priceUSD: product.priceUSD || 0, url: '#', inStock: true, bestDeal: true }];
+
+  const lowestStore = pricesList.find(p => p.bestDeal) || pricesList[0];
+
+  const getMarketStatusStyle = (status) => {
+    switch (status) {
+      case 'live-current':    return { bg: 'rgba(0,242,254,0.12)', color: '#00f2fe', label: '✨ Live Flagship', border: 'rgba(0,242,254,0.3)' };
+      case 'live-discounted': return { bg: 'rgba(255,170,0,0.12)', color: '#ffaa00', label: '🏷️ Discounted Stock', border: 'rgba(255,170,0,0.3)' };
+      case 'renewed-refurbished': return { bg: 'rgba(168,85,247,0.12)', color: '#c084fc', label: '🔄 Certified Renewed', border: 'rgba(168,85,247,0.3)' };
+      case 'legacy-archive': return { bg: 'rgba(255,255,255,0.06)', color: '#94a3b8', label: '📜 Historical Archive', border: 'rgba(255,255,255,0.12)' };
+      default: return null;
     }
   };
-
-  const lowestStore = product.prices.find(p => p.bestDeal) || product.prices[0];
+  const statusStyle = product.marketStatus ? getMarketStatusStyle(product.marketStatus) : null;
 
   return (
     <div className="product-card glass-panel glow-border" style={{ position: 'relative', display: 'flex', flexDirection: 'column' }}>
       {/* Top Badges & Wishlist Action */}
       <div className="card-img-wrap" style={{ position: 'relative' }}>
         <Link to={`/product/${product.id}`}>
-          <img src={product.image} alt={product.title} className="card-img" />
+          <img src={product.image} alt={product.title || product.name} className="card-img" />
         </Link>
 
         {/* Prominent High-Contrast % OFF Discount Badge */}
@@ -76,23 +91,58 @@ export default function ProductCard({ product }) {
         <div className="keyword-tag-float" style={{ bottom: '10px', left: '10px', zIndex: 2 }}>
           🏷️ {product.subCategoryName || product.categoryName}
         </div>
+
+        {/* Generation + Market Status Badge Overlay */}
+        {product.generation && (
+          <div style={{
+            position: 'absolute',
+            bottom: '10px',
+            right: '10px',
+            background: 'rgba(5,8,25,0.85)',
+            border: '1px solid rgba(0,242,254,0.3)',
+            borderRadius: '8px',
+            padding: '3px 8px',
+            fontSize: '0.68rem',
+            fontWeight: 800,
+            color: '#38bdf8',
+            backdropFilter: 'blur(8px)',
+            zIndex: 3,
+            letterSpacing: '0.3px'
+          }}>
+            {product.generation}
+          </div>
+        )}
       </div>
 
       <div className="card-body" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-        {/* Brand & Origin */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+        {/* Brand & Origin + Market Status Pill */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px', flexWrap: 'wrap', gap: '4px' }}>
           <span style={{ fontSize: '0.76rem', fontWeight: 800, color: '#ff9900', textTransform: 'uppercase' }}>
             {product.brand}
           </span>
-          <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>
-            {product.origin || 'Certified Creator Gear'}
-          </span>
+          {statusStyle ? (
+            <span style={{
+              fontSize: '0.65rem',
+              fontWeight: 800,
+              color: statusStyle.color,
+              background: statusStyle.bg,
+              border: `1px solid ${statusStyle.border}`,
+              padding: '2px 7px',
+              borderRadius: '10px'
+            }}>
+              {statusStyle.label}
+            </span>
+          ) : (
+            <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>
+              {product.origin || 'Certified Creator Gear'}
+            </span>
+          )}
         </div>
 
         {/* Product Title */}
         <h3 className="card-title" style={{ fontSize: '1.02rem', minHeight: '42px', marginBottom: '8px', lineHeight: 1.35 }}>
           <Link to={`/product/${product.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
-            {product.title}
+            {product.name || product.title}
           </Link>
         </h3>
 
@@ -144,13 +194,29 @@ export default function ProductCard({ product }) {
           </div>
         </div>
 
+        {/* Key Upgrade note for historical lineage products */}
+        {product.keyUpgrade && (
+          <div style={{
+            fontSize: '0.7rem',
+            color: '#e2e8f0',
+            background: 'rgba(0,0,0,0.2)',
+            borderLeft: '2px solid #00f2fe',
+            padding: '5px 8px',
+            borderRadius: '0 6px 6px 0',
+            marginBottom: '10px',
+            lineHeight: 1.4
+          }}>
+            🔼 {product.keyUpgrade}
+          </div>
+        )}
+
         {/* Multi-Store Real-Time Price Rows */}
         <div className="price-matrix" style={{ marginBottom: '14px', flex: 1 }}>
           <div className="price-matrix-title" style={{ fontSize: '0.72rem', display: 'flex', justifyContent: 'space-between' }}>
             <span>🛒 Live Multi-Store Deals</span>
             <span style={{ color: '#00f2fe' }}>Verified</span>
           </div>
-          {product.prices.map((p, idx) => (
+          {pricesList.map((p, idx) => (
             <Link
               key={idx}
               to={p.url}
@@ -162,7 +228,7 @@ export default function ProductCard({ product }) {
                 {p.store}
               </span>
               <span className="store-price" style={{ fontSize: '0.85rem' }}>
-                {currency === 'INR' ? `₹${p.priceINR.toLocaleString('en-IN')}` : `$${p.priceUSD.toFixed(2)}`}
+                {currency === 'INR' ? `₹${(p.priceINR || 0).toLocaleString('en-IN')}` : `$${(p.priceUSD || 0).toFixed(2)}`}
               </span>
             </Link>
           ))}

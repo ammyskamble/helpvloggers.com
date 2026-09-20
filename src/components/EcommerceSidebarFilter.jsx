@@ -12,6 +12,8 @@ export default function EcommerceSidebarFilter({
   setMinRating,
   selectedMarket = 'all',
   setSelectedMarket,
+  selectedMarketStatus = 'all',
+  setSelectedMarketStatus,
   onReset
 }) {
   const markets = [
@@ -20,8 +22,16 @@ export default function EcommerceSidebarFilter({
     { label: "🌐 Global Pro Market ($ USD)", value: "global" }
   ];
 
+  const marketStatuses = [
+    { label: "All Versions & Live Market", value: "all" },
+    { label: "✨ Live Flagships (2025-2026)", value: "live-current" },
+    { label: "🏷️ Discounted New Stock", value: "live-discounted" },
+    { label: "🔄 Certified Renewed / Pre-Owned", value: "renewed-refurbished" },
+    { label: "📜 Historical Archive Lineage", value: "legacy-archive" }
+  ];
+
   const brands = [
-    "Digitek", "Boya", "Grenaro", "Maono", "Tygot", "Osaka", "DJI", "Sony", "SmallRig", "Ulanzi", "SanDisk"
+    "Apple", "Samsung", "Google", "Vivo", "OnePlus", "Digitek", "Boya", "Grenaro", "Maono", "Tygot", "Osaka", "DJI", "GoPro", "Sony", "SmallRig", "Ulanzi", "SanDisk"
   ];
 
   const priceRanges = [
@@ -91,6 +101,39 @@ export default function EcommerceSidebarFilter({
                   onChange={() => setSelectedMarket(m.value)}
                 />
                 {m.label}
+              </label>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* 0.5 Version Lineage & Market Status Facet */}
+      {setSelectedMarketStatus && (
+        <div style={{ marginBottom: '22px' }}>
+          <h4 style={{ fontSize: '0.85rem', fontWeight: 800, color: '#38bdf8', textTransform: 'uppercase', marginBottom: '10px' }}>
+            Version Lineage & Availability
+          </h4>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+            {marketStatuses.map(ms => (
+              <label 
+                key={ms.value}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  fontSize: '0.82rem',
+                  color: selectedMarketStatus === ms.value ? '#38bdf8' : 'var(--text-secondary)',
+                  fontWeight: selectedMarketStatus === ms.value ? 700 : 500,
+                  cursor: 'pointer'
+                }}
+              >
+                <input
+                  type="radio"
+                  name="marketStatusFacet"
+                  checked={selectedMarketStatus === ms.value}
+                  onChange={() => setSelectedMarketStatus(ms.value)}
+                />
+                {ms.label}
               </label>
             ))}
           </div>

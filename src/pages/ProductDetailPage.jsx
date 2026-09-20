@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { VLOGGING_PRODUCTS, BLOG_CLUSTERS, HEAD_TO_HEAD_COMPARISONS } from '../data/vloggingProducts';
+import { VLOGGING_SMARTPHONES } from '../data/vloggingSmartphones';
+import ProductLineageTimeline from '../components/ProductLineageTimeline';
 import { useEcommerce } from '../context/EcommerceContext';
 import { Star, Volume2, ShieldCheck, ShoppingBag, ChevronRight, CheckCircle2, XCircle, ArrowLeft, ExternalLink, Zap, Heart, Truck, Tag, BookOpen, ArrowRight } from 'lucide-react';
 
@@ -9,7 +11,8 @@ export default function ProductDetailPage() {
   const { currency, formatPrice, wishlist, toggleWishlist, compareList, toggleCompare } = useEcommerce();
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
 
-  const product = VLOGGING_PRODUCTS.find(p => p.id === productId);
+  const allCatalogProducts = [...VLOGGING_PRODUCTS, ...VLOGGING_SMARTPHONES];
+  const product = allCatalogProducts.find(p => p.id === productId);
 
   if (!product) {
     return (
@@ -36,14 +39,20 @@ export default function ProductDetailPage() {
   };
 
   const relatedComparisons = HEAD_TO_HEAD_COMPARISONS.filter(
-    c => c.prodA.id === product.id || c.prodB.id === product.id
+    c => c.prodA?.id === product.id || c.prodB?.id === product.id
   );
 
   const relatedBlogs = BLOG_CLUSTERS.filter(
     b => b.relatedProductIds && b.relatedProductIds.includes(product.id)
   );
 
-  const bestStore = product.prices.find(p => p.bestDeal) || product.prices[0];
+  const pricesList = product.prices || (product.storeUrls ? [
+    { store: "Amazon.in", priceINR: product.priceINR || product.price, priceUSD: product.priceUSD, url: product.storeUrls.amazon || "/go/amazon-in/" + product.id, inStock: true, bestDeal: true },
+    { store: "Flipkart", priceINR: product.priceINR || product.price, priceUSD: product.priceUSD, url: product.storeUrls.flipkart || "/go/flipkart/" + product.id, inStock: true, bestDeal: false },
+    ...(product.storeUrls.apple ? [{ store: "Apple Store", priceINR: product.priceINR || product.price, priceUSD: product.priceUSD, url: product.storeUrls.apple, inStock: true, bestDeal: false }] : [])
+  ] : [{ store: "Official Store", priceINR: product.priceINR || product.price || 0, priceUSD: product.priceUSD || 0, url: "#", inStock: true, bestDeal: true }]);
+
+  const bestStore = pricesList.find(p => p.bestDeal) || pricesList[0];
 
   return (
     <div style={{ padding: '20px 0 60px' }}>
@@ -61,7 +70,7 @@ export default function ProductDetailPage() {
           </>
         )}
         <ChevronRight size={14} />
-        <span style={{ color: '#00f2fe', fontWeight: 700 }}>{product.title}</span>
+        <span style={{ color: '#00f2fe', fontWeight: 700 }}>{product.title || product.name}</span>
       </nav>
 
       {/* Product Hero Layout: Image + Buying Box */}
@@ -71,7 +80,7 @@ export default function ProductDetailPage() {
           <div className="glass-panel glow-border" style={{ borderRadius: '20px', overflow: 'hidden', position: 'relative' }}>
             <img 
               src={product.image} 
-              alt={product.title} 
+              alt={product.title || product.name} 
               style={{ width: '100%', height: '420px', objectFit: 'cover' }} 
             />
 
@@ -130,7 +139,7 @@ export default function ProductDetailPage() {
         {/* Right: Key Specs, Pricing Box & Multi-Store Grid */}
         <div>
           <h1 style={{ fontSize: '2.1rem', fontWeight: 900, marginBottom: '10px', lineHeight: 1.25 }}>
-            {product.title}
+            {product.title || product.name}
           </h1>
 
           {/* Ratings */}
@@ -203,7 +212,7 @@ export default function ProductDetailPage() {
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              {product.prices.map((p, idx) => (
+              {pricesList.map((p, idx) => (
                 <div 
                   key={idx} 
                   style={{
@@ -261,6 +270,9 @@ export default function ProductDetailPage() {
           </div>
         </div>
       </div>
+
+      {/* Model Version History Lineage Component */}
+      <ProductLineageTimeline currentProduct={product} />
 
       {/* Dedicated Editorial Review & In-Depth Buying Guide Link */}
       {relatedBlogs.length > 0 && (

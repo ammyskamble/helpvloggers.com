@@ -3,6 +3,7 @@ import { useParams, useSearchParams, Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import EcommerceSidebarFilter from '../components/EcommerceSidebarFilter';
 import { VLOGGING_PRODUCTS, TAXONOMY, CATEGORIES } from '../data/vloggingProducts';
+import { VLOGGING_SMARTPHONES } from '../data/vloggingSmartphones';
 import { useEcommerce } from '../context/EcommerceContext';
 import { 
   ChevronRight, ArrowLeft, Sparkles, Layers, HelpCircle, 
@@ -14,7 +15,11 @@ const CATEGORY_ALIASES = {
   'vlogging-cameras': 'cameras-recorders',
   'smartphone-vlogging': 'smartphone-rigs',
   'vlogging-lighting': 'creator-lighting',
-  'creator-accessories': 'creator-tech'
+  'creator-accessories': 'creator-tech',
+  'smartphones': 'smartphone-rigs',
+  'flagship-smartphones': 'smartphone-rigs',
+  'flagship-cinema': 'smartphone-rigs',
+  'vlogging-phones': 'smartphone-rigs'
 };
 
 const CATEGORY_BUYING_TIPS = {
@@ -85,6 +90,19 @@ const CATEGORY_BUYING_TIPS = {
     faqs: [
       { q: "Can I use a cheap Class 10 SD card for 4K video?", a: "No. Standard Class 10 cards lack sustained write speeds, causing cameras to abruptly stop recording. Look for cards marked V30 or V60 (like SanDisk Extreme PRO)." }
     ]
+  },
+  'flagship-cinema': {
+    title: "Vlogging Smartphones Version History & Complete Lineage Guide (2017–2026)",
+    tips: [
+      "iPhone X → 18 Pro: Every generation from the original 2017 iPhone X/10 (Face ID debut) through iPhone 18 Pro (2026 variable aperture) is catalogued with INR prices & online availability.",
+      "Filter by market status: Use the Availability bar above to toggle between \"Live Flagship\", \"Discounted Previous-Gen Stock\", \"Certified Renewed/Pre-Owned\", or the full historical archive.",
+      "Upgrade worthiness: The biggest jumps happened at iPhone 15 Pro (USB-C, 5x Zoom) and iPhone 16 Pro (Camera Control, 4K 120fps Log). Don't overpay for incremental updates in between."
+    ],
+    faqs: [
+      { q: "Is the iPhone X/10 still worth buying in 2026?", a: "Only as a legacy/budget secondary device. iPhone X lacks USB-C, 5G, and the computational photography from the Neural Engine generations of iPhone 15+. Refurbished units are available from \u20b99,999-\u20b914,999 on Amazon Renewed." },
+      { q: "Which iPhone generation has the best price-to-video-quality ratio?", a: "iPhone 15 Pro Max is the sweet spot in 2026: USB-C 10Gbps external SSD recording, 5x periscope optical zoom, Apple Log, at a discounted price of \u20b999,900 vs its launch price of \u20b91,59,900." },
+      { q: "Should I buy iPhone 16 Pro or wait for iPhone 17/18 Pro?", a: "If you need Camera Control and 4K 120fps Log right now, iPhone 16 Pro is fully worth it. iPhone 17 Pro added a vapor chamber and 48MP periscope. iPhone 18 Pro adds a mechanical variable aperture lens." }
+    ]
   }
 };
 
@@ -96,6 +114,7 @@ export default function CategoryPage() {
   const microSlug = searchParams.get('micro') || 'all';
 
   const [selectedBrand, setSelectedBrand] = useState('all');
+  const [selectedMarketStatus, setSelectedMarketStatus] = useState('all');
   const [selectedPriceRange, setSelectedPriceRange] = useState('all');
   const [selectedDiscount, setSelectedDiscount] = useState(0);
   const [minRating, setMinRating] = useState(0);
@@ -107,7 +126,7 @@ export default function CategoryPage() {
 
   // Lookup taxonomy item
   const taxonomyCategory = TAXONOMY.find(t => t.id === canonicalCategorySlug);
-  const flatCategory = CATEGORIES.find(c => c.id === canonicalCategorySlug);
+  const flatCategory = CATEGORIES?.find(c => c.id === canonicalCategorySlug);
 
   const categoryName = taxonomyCategory?.name || flatCategory?.name || (categorySlug ? categorySlug.replace(/-/g, ' ').toUpperCase() : 'Category');
 
@@ -121,8 +140,13 @@ export default function CategoryPage() {
     faqs: []
   };
 
+  const allCatalogProducts = [...VLOGGING_PRODUCTS, ...VLOGGING_SMARTPHONES];
+
   // Base products for category
-  const baseCategoryProducts = VLOGGING_PRODUCTS.filter(p => {
+  const baseCategoryProducts = allCatalogProducts.filter(p => {
+    if (canonicalCategorySlug === 'smartphone-rigs' || categorySlug === 'smartphones') {
+      return p.category === 'smartphone-rigs' || p.category === 'flagship-cinema' || p.category === 'flagship-zoom' || p.category === 'flagship-ai' || p.category === 'flagship-killer' || p.category === 'budget-vlogger' || p.category === 'legacy-landmark';
+    }
     return p.category === canonicalCategorySlug || p.category === categorySlug;
   });
 
@@ -143,19 +167,27 @@ export default function CategoryPage() {
     categoryProducts = categoryProducts.filter(p => p.brand.toLowerCase() === selectedBrand.toLowerCase());
   }
 
+  if (selectedMarketStatus !== 'all') {
+    categoryProducts = categoryProducts.filter(p => p.marketStatus === selectedMarketStatus);
+  }
+
   if (selectedDiscount > 0) {
-    categoryProducts = categoryProducts.filter(p => p.discountPercent >= selectedDiscount);
+    categoryProducts = categoryProducts.filter(p => (p.discountPercent || 0) >= selectedDiscount);
   }
 
   if (minRating > 0) {
-    categoryProducts = categoryProducts.filter(p => p.rating >= minRating);
+    categoryProducts = categoryProducts.filter(p => (p.rating || 0) >= minRating);
   }
 
   if (selectedPriceRange !== 'all') {
-    if (selectedPriceRange === 'under-1000') categoryProducts = categoryProducts.filter(p => p.priceINR < 1000);
-    else if (selectedPriceRange === '1000-5000') categoryProducts = categoryProducts.filter(p => p.priceINR >= 1000 && p.priceINR <= 5000);
-    else if (selectedPriceRange === '5000-25000') categoryProducts = categoryProducts.filter(p => p.priceINR > 5000 && p.priceINR <= 25000);
-    else if (selectedPriceRange === 'above-25000') categoryProducts = categoryProducts.filter(p => p.priceINR > 25000);
+    categoryProducts = categoryProducts.filter(p => {
+      const priceINR = p.priceINR || p.price || 0;
+      if (selectedPriceRange === 'under-1000') return priceINR < 1000;
+      if (selectedPriceRange === '1000-5000') return priceINR >= 1000 && priceINR <= 5000;
+      if (selectedPriceRange === '5000-25000') return priceINR > 5000 && priceINR <= 25000;
+      if (selectedPriceRange === 'above-25000') return priceINR > 25000;
+      return true;
+    });
   }
 
   // Sorting logic
@@ -190,6 +222,7 @@ export default function CategoryPage() {
     setSelectedPriceRange('all');
     setSelectedDiscount(0);
     setMinRating(0);
+    setSelectedMarketStatus('all');
     setSearchParams({});
   };
 
@@ -440,6 +473,8 @@ export default function CategoryPage() {
           setSelectedDiscount={setSelectedDiscount}
           minRating={minRating}
           setMinRating={setMinRating}
+          selectedMarketStatus={selectedMarketStatus}
+          setSelectedMarketStatus={setSelectedMarketStatus}
           onReset={handleResetFilters}
         />
 
@@ -506,6 +541,46 @@ export default function CategoryPage() {
                 <option value="rating" style={{ background: '#0a0d24' }}>Customer Rating</option>
               </select>
             </div>
+          </div>
+
+          {/* ✨ Market Status Quick-Toggle Bar */}
+          <div style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '8px',
+            padding: '12px 16px',
+            background: 'rgba(0, 242, 254, 0.04)',
+            border: '1px solid rgba(0, 242, 254, 0.14)',
+            borderRadius: '12px',
+            marginBottom: '16px',
+            alignItems: 'center'
+          }}>
+            <span style={{ fontSize: '0.72rem', fontWeight: 800, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.5px', marginRight: '4px' }}>Availability:</span>
+            {[
+              { label: '🌐 All Versions', value: 'all' },
+              { label: '✨ Live Flagships', value: 'live-current' },
+              { label: '🏷️ Discounted Stock', value: 'live-discounted' },
+              { label: '🔄 Certified Renewed', value: 'renewed-refurbished' },
+              { label: '📜 Historical Archive', value: 'legacy-archive' },
+            ].map(ms => (
+              <button
+                key={ms.value}
+                onClick={() => setSelectedMarketStatus(ms.value)}
+                style={{
+                  padding: '5px 12px',
+                  borderRadius: '16px',
+                  fontSize: '0.77rem',
+                  fontWeight: selectedMarketStatus === ms.value ? 800 : 500,
+                  border: selectedMarketStatus === ms.value ? '1.5px solid #00f2fe' : '1px solid rgba(255,255,255,0.1)',
+                  background: selectedMarketStatus === ms.value ? 'linear-gradient(135deg, rgba(0,242,254,0.2), rgba(79,172,254,0.15))' : 'rgba(255,255,255,0.04)',
+                  color: selectedMarketStatus === ms.value ? '#00f2fe' : 'var(--text-secondary)',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                {ms.label}
+              </button>
+            ))}
           </div>
 
           {/* Products Grid */}

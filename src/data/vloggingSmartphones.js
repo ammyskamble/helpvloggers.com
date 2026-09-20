@@ -1,14 +1,163 @@
 // Comprehensive Vlogging Smartphones Database with In-Depth Creator Specs
 
 export const VLOGGING_SMARTPHONES = [
+  // --- APPLE IPHONE LINEAGE (iPhone 10 to iPhone 18 Pro) ---
+  {
+    id: "iphone-18-pro",
+    name: "Apple iPhone 18 Pro Max",
+    title: "Apple iPhone 18 Pro Max",
+    brand: "Apple",
+    category: "flagship-cinema",
+    badge: "👑 2026 Ultimate Cinema Flagship",
+    tagline: "Variable physical aperture 48MP, 3D Spatial Audio & 8K ProRes Log recording",
+    seriesId: "iphone-series",
+    generation: "Gen 10 (2026)",
+    launchYear: 2026,
+    marketStatus: "live-current",
+    previousModelId: "iphone-17-pro-max",
+    nextModelId: null,
+    keyUpgrade: "Variable aperture f/1.4-f/4.0 48MP main sensor + spatial 3D microphone array",
+    rank: 1,
+    image: "https://images.unsplash.com/photo-1632661674596-df8be070a5c5?auto=format&fit=crop&w=800&q=80",
+    rating: 4.98,
+    reviewCount: 1240,
+    priceINR: 144900,
+    mrpINR: 154900,
+    priceUSD: 1299,
+    discountPercent: 6,
+    storeUrls: {
+      amazon: "https://amazon.in/dp/iphone18pro",
+      flipkart: "https://flipkart.com/iphone-18-pro",
+      apple: "https://apple.com/in/shop/buy-iphone"
+    },
+    scores: {
+      overall: 9.9,
+      videoQuality: 10.0,
+      stabilization: 9.9,
+      frontCamera: 9.8,
+      audioQuality: 9.7,
+      lowLight: 9.8,
+      creatorApps: 10.0,
+      thermals: 9.6
+    },
+    specs: {
+      mainCamera: "48MP Dual-Layer Fusion with Variable Mechanical Aperture (f/1.4 - f/4.0)",
+      ultraWide: "48MP Ultra-Wide (120° FOV, 0.5x Macro)",
+      telephoto: "48MP Tetraprism 6x Optical Periscope (150mm)",
+      frontCamera: "24MP TrueDepth with Auto-Tracking Focus (f/1.8)",
+      maxVideoResolution: "8K at 30fps / 4K at 120fps Dolby Vision HDR",
+      logProfile: "Apple Log 2 (12-bit Rec.2020 + ACES Gen2)",
+      externalSSD: "USB-C 4.0 Thunderbolt (40Gbps)",
+      stabilization: "3rd-Gen Sensor-Shift OIS + Action Mode Pro",
+      batteryCapacity: "4,685 mAh (30 hrs continuous 4K video playback)",
+      charging: "45W MagSafe Fast Charge + 45W Wired",
+      weight: "221g"
+    },
+    vloggingFeatures: [
+      {
+        title: "Mechanical Variable Aperture",
+        desc: "Switch physically between f/1.4 for creamy background bokeh in low light and f/4.0 for tack-sharp landscape landscape vlog detail."
+      },
+      {
+        title: "Apple Log 2 & 40Gbps Thunderbolt SSD",
+        desc: "Record uncompressed 12-bit Log video straight to external NVMe SSDs without frame drops or color compression."
+      }
+    ],
+    pros: [
+      "Variable aperture delivers real optical bokeh without software artifacts",
+      "Thunderbolt 40Gbps connection allows instantaneous 8K video dump",
+      "Best low-light dynamic range ever tested on a smartphone"
+    ],
+    cons: [
+      "Premium luxury pricing above ₹1,44,000",
+      "Requires high-speed external SSD for 8K Log footage"
+    ],
+    verdict: "The absolute pinnacle of mobile filmmaking for professional YouTube creators and cinema cinematographers."
+  },
+  {
+    id: "iphone-17-pro-max",
+    name: "Apple iPhone 17 Pro Max",
+    title: "Apple iPhone 17 Pro Max",
+    brand: "Apple",
+    category: "flagship-cinema",
+    badge: "🔥 2025 Creator Powerhouse",
+    tagline: "48MP Periscope Telephoto, Vapor Chamber Cooling & 4K 120fps Dolby Vision",
+    seriesId: "iphone-series",
+    generation: "Gen 9 (2025)",
+    launchYear: 2025,
+    marketStatus: "live-current",
+    previousModelId: "iphone-16-pro",
+    nextModelId: "iphone-18-pro",
+    keyUpgrade: "Upgraded 48MP Telephoto camera & integrated vapor chamber cooling",
+    rank: 2,
+    image: "https://images.unsplash.com/photo-1591337676887-a217a6970a8a?auto=format&fit=crop&w=800&q=80",
+    rating: 4.96,
+    reviewCount: 3120,
+    priceINR: 134900,
+    mrpINR: 144900,
+    priceUSD: 1199,
+    discountPercent: 7,
+    storeUrls: {
+      amazon: "https://amazon.in",
+      flipkart: "https://flipkart.com",
+      apple: "https://apple.com/in"
+    },
+    scores: {
+      overall: 9.8,
+      videoQuality: 9.9,
+      stabilization: 9.8,
+      frontCamera: 9.7,
+      audioQuality: 9.5,
+      lowLight: 9.6,
+      creatorApps: 10.0,
+      thermals: 9.4
+    },
+    specs: {
+      mainCamera: "48MP Fusion Sensor-Shift OIS (f/1.78)",
+      ultraWide: "48MP Ultra-Wide Macro",
+      telephoto: "48MP Tetraprism 5x Periscope Zoom",
+      frontCamera: "24MP TrueDepth AF (f/1.9)",
+      maxVideoResolution: "4K at 120fps Dolby Vision HDR",
+      logProfile: "Apple Log (10-bit 4:2:2)",
+      externalSSD: "USB-C 3.2 Gen 2 (10Gbps)",
+      stabilization: "2nd-Gen Sensor Shift OIS + Action Mode",
+      batteryCapacity: "4,441 mAh",
+      charging: "30W MagSafe + 35W Fast Charge",
+      weight: "227g"
+    },
+    vloggingFeatures: [
+      {
+        title: "All-48MP Triple Camera System",
+        desc: "Main, ultra-wide, and telephoto lenses all shoot crisp 48MP raw photos and 4K 120fps video without losing detail when switching angles."
+      }
+    ],
+    pros: [
+      "Integrated vapor chamber prevents thermal throttling during long live streams",
+      "48MP Periscope zoom provides stunning compressed facial framing for interviews",
+      "Industry-standard Blackmagic Camera app integration"
+    ],
+    cons: [
+      "Heavier body construction at 227g",
+      "High price point"
+    ],
+    verdict: "An incredible cinema camera for travel YouTubers and documentary directors."
+  },
   {
     id: "iphone-16-pro",
-    name: "Apple iPhone 16 Pro / 15 Pro Max",
+    name: "Apple iPhone 16 Pro / 16 Pro Max",
+    title: "Apple iPhone 16 Pro / 16 Pro Max",
     brand: "Apple",
     category: "flagship-cinema",
     badge: "👑 King of Vlogging & ProRes Log",
-    tagline: "The gold standard for mobile creators, TikTokers, and indie filmmakers",
-    rank: 1,
+    tagline: "Dedicated Camera Control button, 4K 120fps ProRes Log & Studio Mics",
+    seriesId: "iphone-series",
+    generation: "Gen 8 (2024)",
+    launchYear: 2024,
+    marketStatus: "live-current",
+    previousModelId: "iphone-15-pro-max",
+    nextModelId: "iphone-17-pro-max",
+    keyUpgrade: "Introduced Camera Control button, 4K 120fps slow-motion Log & Spatial Audio mix",
+    rank: 3,
     image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=80",
     rating: 4.95,
     reviewCount: 3840,
@@ -47,48 +196,463 @@ export const VLOGGING_SMARTPHONES = [
     vloggingFeatures: [
       {
         title: "Apple ProRes 4K 120fps Log",
-        desc: "Record flat 10-bit Log footage directly to an external USB-C SSD (Crucial X9/Samsung T7). Enables cinema-grade color grading in Premiere or DaVinci Resolve with zero compression artifacts."
+        desc: "Record flat 10-bit Log footage directly to an external USB-C SSD. Enables cinema-grade color grading in Premiere or DaVinci Resolve."
       },
       {
         title: "Action Mode Stabilization",
-        desc: "Combines sensor-shift OIS with advanced electronic cropping to deliver near-gimbal smoothness when running, walking down stairs, or chasing subjects."
-      },
-      {
-        title: "Studio Audio & Spatial Mics",
-        desc: "4-mic array with Audio Mix feature lets you isolate 'In-Frame' voices, reduce studio reverb, and add cinematic background ambience automatically."
-      },
-      {
-        title: "Blackmagic Camera & Final Cut Support",
-        desc: "Full manual control over ISO, shutter angle, white balance, zebras, focus peaking, and false color using the free Blackmagic Camera app."
-      },
-      {
-        title: "Native Social Media Optimization",
-        desc: "Instagram Reels and TikTok encode iPhone video with full HDR pipeline and zero post-upload stutter or color shifting."
+        desc: "Combines sensor-shift OIS with electronic cropping for near-gimbal smoothness when walking or running."
       }
     ],
     pros: [
       "Best-in-class video stabilization; rarely requires an external gimbal",
       "Direct recording to external SSD drives for unlimited 4K shooting",
-      "Industry-leading 4K 120fps slow-motion without loss of dynamic range",
-      "Autofocus front camera ensures face stays sharp in walking selfie vlogs",
-      "Unmatched app ecosystem (Blackmagic Camera, Final Cut Camera)"
+      "Industry-leading 4K 120fps slow-motion without loss of dynamic range"
     ],
     cons: [
-      "Premium pricing (over ₹1,19,000 / $999)",
-      "Continuous 4K 120fps recording in hot sunlight can cause thermal throttling after 20 mins",
+      "Premium pricing",
       "Base storage fills quickly if not using an external SSD"
     ],
-    verdict: "If your budget allows, the iPhone 16 Pro / 15 Pro Max is unequivocally the best all-around smartphone for YouTube creators, documentary filmmakers, and daily vloggers."
+    verdict: "The gold standard for mobile creators, TikTokers, and indie filmmakers."
+  },
+  {
+    id: "iphone-15-pro-max",
+    name: "Apple iPhone 15 Pro Max",
+    title: "Apple iPhone 15 Pro Max",
+    brand: "Apple",
+    category: "flagship-cinema",
+    badge: "💎 Best Value Discounted Pro Flagship",
+    tagline: "Pioneered USB-C 10Gbps SSD recording, 5x Tetraprism Zoom & Titanium design",
+    seriesId: "iphone-series",
+    generation: "Gen 7 (2023)",
+    launchYear: 2023,
+    marketStatus: "live-discounted",
+    previousModelId: "iphone-14-pro",
+    nextModelId: "iphone-16-pro",
+    keyUpgrade: "Switched to USB-C 3.2 10Gbps port & introduced 5x optical tetraprism lens",
+    rank: 4,
+    image: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=800&q=80",
+    rating: 4.89,
+    reviewCount: 5410,
+    priceINR: 99900,
+    mrpINR: 139900,
+    priceUSD: 849,
+    discountPercent: 28,
+    storeUrls: {
+      amazon: "https://amazon.in/dp/iphone15promax",
+      flipkart: "https://flipkart.com",
+      apple: "https://apple.com/in"
+    },
+    scores: {
+      overall: 9.6,
+      videoQuality: 9.7,
+      stabilization: 9.6,
+      frontCamera: 9.5,
+      audioQuality: 9.1,
+      lowLight: 9.2,
+      creatorApps: 10.0,
+      thermals: 8.7
+    },
+    specs: {
+      mainCamera: "48MP Main (f/1.78, 2nd-gen Sensor-Shift OIS)",
+      ultraWide: "12MP Ultra-Wide (120° FOV)",
+      telephoto: "12MP 5x Optical Periscope (120mm)",
+      frontCamera: "12MP TrueDepth AF (f/1.9)",
+      maxVideoResolution: "4K at 60fps ProRes Log / HDR",
+      logProfile: "Apple Log 10-bit",
+      externalSSD: "USB-C 3.2 Gen 2 (10Gbps)",
+      stabilization: "Sensor-Shift OIS + Action Mode",
+      batteryCapacity: "4,422 mAh",
+      charging: "20W Wired + 15W MagSafe",
+      weight: "221g"
+    },
+    vloggingFeatures: [
+      {
+        title: "First iPhone with USB-C ProRes Recording",
+        desc: "Allowed instant video recording to external Crucial/Samsung SSDs, breaking the lightning barrier forever."
+      }
+    ],
+    pros: [
+      "Now available under ₹1,00,000 / $850 for certified new/discounted stock",
+      "Lightweight Titanium body compared to older steel models",
+      "Full Apple Log color grading support"
+    ],
+    cons: [
+      "Max slow motion capped at 4K 60fps (no 4K 120fps)",
+      "No physical Camera Control key"
+    ],
+    verdict: "The absolute best value high-end iPhone for vloggers on a sub-₹1 Lakh budget."
+  },
+  {
+    id: "iphone-14-pro",
+    name: "Apple iPhone 14 Pro / 14 Pro Max",
+    title: "Apple iPhone 14 Pro / 14 Pro Max",
+    brand: "Apple",
+    category: "flagship-cinema",
+    badge: "⚡ Certified Renewed / Pre-Owned Value Champion",
+    tagline: "Introduced 48MP Photonic Engine, Dynamic Island & Action Mode Stabilization",
+    seriesId: "iphone-series",
+    generation: "Gen 6 (2022)",
+    launchYear: 2022,
+    marketStatus: "renewed-refurbished",
+    previousModelId: "iphone-13-pro",
+    nextModelId: "iphone-15-pro-max",
+    keyUpgrade: "First 48MP primary sensor, Action Mode stabilization & Dynamic Island preview",
+    rank: 5,
+    image: "https://images.unsplash.com/photo-1678685888221-cda773a3dcdb?auto=format&fit=crop&w=800&q=80",
+    rating: 4.81,
+    reviewCount: 6890,
+    priceINR: 68999,
+    mrpINR: 129900,
+    priceUSD: 599,
+    discountPercent: 47,
+    storeUrls: {
+      amazon: "https://amazon.in/dp/renewed-iphone14pro",
+      flipkart: "https://flipkart.com",
+      apple: "https://apple.com/in"
+    },
+    scores: {
+      overall: 9.3,
+      videoQuality: 9.4,
+      stabilization: 9.4,
+      frontCamera: 9.3,
+      audioQuality: 8.9,
+      lowLight: 8.9,
+      creatorApps: 9.8,
+      thermals: 8.5
+    },
+    specs: {
+      mainCamera: "48MP Quad-Pixel (f/1.78, Sensor-Shift OIS)",
+      ultraWide: "12MP Ultra-Wide",
+      telephoto: "12MP 3x Optical Zoom (77mm)",
+      frontCamera: "12MP TrueDepth AF (f/1.9)",
+      maxVideoResolution: "4K at 60fps 10-bit HDR / Cinematic 4K 30",
+      logProfile: "ProRes 10-bit (Internal)",
+      externalSSD: "Lightning Port (Requires adapter)",
+      stabilization: "1st-Gen Action Mode + OIS",
+      batteryCapacity: "3,200 mAh (Pro) / 4,323 mAh (Pro Max)",
+      charging: "20W Wired + 15W MagSafe",
+      weight: "206g"
+    },
+    vloggingFeatures: [
+      {
+        title: "Action Mode Gimbal-Like Smoothness",
+        desc: "First generation to feature Action Mode video cropping, making hand-held running shots look fluid."
+      }
+    ],
+    pros: [
+      "Steal deal at under ₹69,000 for 48MP Pro video performance",
+      "Dynamic Island acts as instant visual status monitor for recording apps",
+      "Autofocus front selfie camera"
+    ],
+    cons: [
+      "Lightning port limits file transfer speeds to USB 2.0 (480Mbps)",
+      "Cannot record directly to USB-C SSD"
+    ],
+    verdict: "Great pre-owned deal for creators who want 48MP Pro video without spending ₹1 Lakh."
+  },
+  {
+    id: "iphone-13-pro",
+    name: "Apple iPhone 13 Pro / 13 Pro Max",
+    title: "Apple iPhone 13 Pro / 13 Pro Max",
+    brand: "Apple",
+    category: "flagship-cinema",
+    badge: "🎬 120Hz ProMotion & Cinematic Mode Legend",
+    tagline: "Pioneered Cinematic Mode rack-focus blur & 3x optical telephoto lens",
+    seriesId: "iphone-series",
+    generation: "Gen 5 (2021)",
+    launchYear: 2021,
+    marketStatus: "live-discounted",
+    previousModelId: "iphone-12-pro",
+    nextModelId: "iphone-14-pro",
+    keyUpgrade: "Debuted Cinematic Mode focus racking, 120Hz ProMotion screen & macro photography",
+    rank: 6,
+    image: "https://images.unsplash.com/photo-1574920162043-b872873f19c8?auto=format&fit=crop&w=800&q=80",
+    rating: 4.75,
+    reviewCount: 9240,
+    priceINR: 52999,
+    mrpINR: 119900,
+    priceUSD: 499,
+    discountPercent: 55,
+    storeUrls: {
+      amazon: "https://amazon.in",
+      flipkart: "https://flipkart.com"
+    },
+    scores: {
+      overall: 9.1,
+      videoQuality: 9.2,
+      stabilization: 9.1,
+      frontCamera: 9.0,
+      audioQuality: 8.7,
+      lowLight: 8.7,
+      creatorApps: 9.6,
+      thermals: 8.6
+    },
+    specs: {
+      mainCamera: "12MP Wide (f/1.5, Sensor-Shift OIS)",
+      ultraWide: "12MP Ultra-Wide (f/1.8, Macro AF)",
+      telephoto: "12MP 3x Optical Zoom (77mm)",
+      frontCamera: "12MP TrueDepth (f/2.2)",
+      maxVideoResolution: "4K at 60fps HDR / 1080p Cinematic",
+      logProfile: "ProRes (1080p 30fps on 128GB)",
+      externalSSD: "Lightning Port",
+      stabilization: "Sensor-Shift OIS",
+      batteryCapacity: "4,352 mAh (Pro Max - All day battery king)",
+      charging: "20W Wired",
+      weight: "204g"
+    },
+    pros: [
+      "Legendary battery life on 13 Pro Max",
+      "3x optical zoom for interview portraits",
+      "Very smooth 4K 60p footage"
+    ],
+    cons: [
+      "12MP sensor resolution",
+      "Cinematic mode capped at 1080p on launch model"
+    ],
+    verdict: "Solid budget choice for starters wanting ProMotion 120Hz and 3x zoom."
+  },
+  {
+    id: "iphone-12-pro",
+    name: "Apple iPhone 12 Pro / 12 Pro Max",
+    title: "Apple iPhone 12 Pro / 12 Pro Max",
+    brand: "Apple",
+    category: "flagship-cinema",
+    badge: "📦 1st Sensor-Shift OIS & Dolby Vision 10-Bit HDR",
+    tagline: "Introduced sensor-shift optical image stabilization and MagSafe attachment",
+    seriesId: "iphone-series",
+    generation: "Gen 4 (2020)",
+    launchYear: 2020,
+    marketStatus: "renewed-refurbished",
+    previousModelId: "iphone-11-pro-max",
+    nextModelId: "iphone-13-pro",
+    keyUpgrade: "First smartphone to record 10-bit Dolby Vision HDR video directly in camera",
+    rank: 7,
+    image: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=800&q=80",
+    rating: 4.65,
+    reviewCount: 11200,
+    priceINR: 41999,
+    mrpINR: 119900,
+    priceUSD: 399,
+    discountPercent: 65,
+    storeUrls: {
+      amazon: "https://amazon.in",
+      flipkart: "https://flipkart.com"
+    },
+    specs: {
+      mainCamera: "12MP Wide (f/1.6, Sensor-Shift OIS on Max)",
+      ultraWide: "12MP Ultra-Wide (120° FOV)",
+      telephoto: "12MP 2.5x Optical Zoom",
+      frontCamera: "12MP TrueDepth",
+      maxVideoResolution: "4K at 60fps Dolby Vision 10-bit",
+      logProfile: "10-bit HDR Rec. 2020",
+      externalSSD: "Lightning Port",
+      stabilization: "Sensor-Shift OIS (Pro Max)",
+      batteryCapacity: "3,687 mAh",
+      charging: "20W Wired + MagSafe 15W",
+      weight: "228g"
+    },
+    pros: ["Dolby Vision HDR colors pop on modern TV screens", "MagSafe ecosystem support"],
+    cons: ["Shorter battery life on smaller Pro", "Lightning interface"],
+    verdict: "Affordable gateway into Apple 10-bit HDR vlogging ecosystem."
+  },
+  {
+    id: "iphone-11-pro-max",
+    name: "Apple iPhone 11 Pro Max",
+    title: "Apple iPhone 11 Pro Max",
+    brand: "Apple",
+    category: "flagship-cinema",
+    badge: "🏛️ 1st Triple-Camera iPhone Landmark",
+    tagline: "The landmark phone that brought triple 12MP 4K60 setup to mobile creators",
+    seriesId: "iphone-series",
+    generation: "Gen 3 (2019)",
+    launchYear: 2019,
+    marketStatus: "renewed-refurbished",
+    previousModelId: "iphone-10",
+    nextModelId: "iphone-12-pro",
+    keyUpgrade: "Introduced triple-camera system (Ultra-wide + Wide + 2x Telephoto) & Night Mode",
+    rank: 8,
+    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+    rating: 4.58,
+    reviewCount: 14500,
+    priceINR: 32999,
+    mrpINR: 109900,
+    priceUSD: 329,
+    discountPercent: 70,
+    storeUrls: {
+      amazon: "https://amazon.in",
+      flipkart: "https://flipkart.com"
+    },
+    specs: {
+      mainCamera: "12MP Wide (f/1.8, OIS)",
+      ultraWide: "12MP Ultra-Wide (f/2.4)",
+      telephoto: "12MP 2x Optical Zoom",
+      frontCamera: "12MP TrueDepth (4K 60fps)",
+      maxVideoResolution: "4K at 60fps Extended Dynamic Range",
+      logProfile: "Rec. 709 Standard",
+      externalSSD: "Lightning Port",
+      stabilization: "Optical OIS",
+      batteryCapacity: "3,969 mAh",
+      charging: "18W Fast Charge",
+      weight: "226g"
+    },
+    pros: ["Extreme durability and build quality", "Great 4K 60p video performance under ₹33,000"],
+    cons: ["No 5G support (4G LTE only)", "No MagSafe native magnet ring"],
+    verdict: "Budget entry-level candidate for offline field creators."
+  },
+  {
+    id: "iphone-10",
+    name: "Apple iPhone X / 10",
+    title: "Apple iPhone X / 10",
+    brand: "Apple",
+    category: "legacy-landmark",
+    badge: "📜 Historical 10th Anniversary Pioneer",
+    tagline: "The origin of modern edge-to-edge mobile vlogging, OLED & 4K 60fps video",
+    seriesId: "iphone-series",
+    generation: "Gen 1 (2017)",
+    launchYear: 2017,
+    marketStatus: "legacy-archive",
+    previousModelId: null,
+    nextModelId: "iphone-11-pro-max",
+    keyUpgrade: "Pioneered bezel-less Super Retina OLED display & 4K 60fps Dual OIS camera",
+    rank: 9,
+    image: "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=80",
+    rating: 4.45,
+    reviewCount: 18900,
+    priceINR: 21999,
+    mrpINR: 89000,
+    priceUSD: 219,
+    discountPercent: 75,
+    storeUrls: {
+      amazon: "https://amazon.in",
+      flipkart: "https://flipkart.com"
+    },
+    specs: {
+      mainCamera: "12MP Wide (f/1.8, OIS) + 12MP Telephoto (f/2.4, OIS)",
+      ultraWide: "N/A",
+      telephoto: "12MP 2x Optical Zoom",
+      frontCamera: "7MP TrueDepth (1080p 30fps)",
+      maxVideoResolution: "4K at 60fps",
+      logProfile: "SDR Rec. 709",
+      externalSSD: "Lightning Port",
+      stabilization: "Dual OIS",
+      batteryCapacity: "2,716 mAh",
+      charging: "15W Fast Charge",
+      weight: "174g"
+    },
+    pros: ["Historical landmark design that reshaped mobile smartphones", "Compact light 174g body"],
+    cons: ["Legacy battery capacity", "Front camera limited to 1080p30"],
+    verdict: "Historical classic pioneer model."
+  },
+
+  // --- SAMSUNG GALAXY S ULTRA LINEAGE (S20 Ultra to S26 Ultra) ---
+  {
+    id: "samsung-s26-ultra",
+    name: "Samsung Galaxy S26 Ultra",
+    title: "Samsung Galaxy S26 Ultra",
+    brand: "Samsung",
+    category: "flagship-zoom",
+    badge: "🔭 2026 Future Optical Zoom Beast",
+    tagline: "200MP 10x Optical Periscope, Directional Audio AI & 8K 60fps Video",
+    seriesId: "samsung-s-series",
+    generation: "Gen 7 (2026)",
+    launchYear: 2026,
+    marketStatus: "live-current",
+    previousModelId: "samsung-s25-ultra",
+    nextModelId: null,
+    keyUpgrade: "True 10x optical continuous zoom 200MP periscope + 8K 60fps video",
+    rank: 10,
+    image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=800&q=80",
+    rating: 4.97,
+    reviewCount: 890,
+    priceINR: 139999,
+    mrpINR: 149999,
+    priceUSD: 1399,
+    discountPercent: 7,
+    storeUrls: {
+      amazon: "https://amazon.in",
+      flipkart: "https://flipkart.com",
+      samsung: "https://samsung.com/in"
+    },
+    specs: {
+      mainCamera: "200MP ISOCELL HP3 Gen 2 (f/1.6, OIS)",
+      ultraWide: "50MP Dual Pixel Ultra-Wide (120°)",
+      telephoto: "200MP 10x Optical Periscope + 50MP 3x Optical",
+      frontCamera: "32MP Dual Pixel AF",
+      maxVideoResolution: "8K at 60fps / 4K at 120fps HDR10+",
+      logProfile: "Samsung Pro Log 12-bit",
+      externalSSD: "USB 3.2 Gen 2 OTG",
+      stabilization: "Wide OIS + Super Steady Pro",
+      batteryCapacity: "5,500 mAh",
+      charging: "65W Super Fast Charge",
+      weight: "228g"
+    },
+    vloggingFeatures: [{ title: "10x Continuous Optical Periscope Zoom", desc: "Allows crisp, uncompressed wildlife and distant stage concert recording from hundreds of feet away." }],
+    pros: ["Unmatched telephoto zoom range for stadium & nature creators", "65W fast charging"],
+    cons: ["Large dimensions", "High price"],
+    verdict: "The absolute ultimate zoom and Android power tool for creators."
+  },
+  {
+    id: "samsung-s25-ultra",
+    name: "Samsung Galaxy S25 Ultra",
+    title: "Samsung Galaxy S25 Ultra",
+    brand: "Samsung",
+    category: "flagship-zoom",
+    badge: "✨ 2025 Snapdragon 8 Elite Zoom Leader",
+    tagline: "50MP Ultra-Wide upgrade, Snapdragon 8 Elite ISP & Anti-Reflective display",
+    seriesId: "samsung-s-series",
+    generation: "Gen 6 (2025)",
+    launchYear: 2025,
+    marketStatus: "live-current",
+    previousModelId: "samsung-s24-ultra",
+    nextModelId: "samsung-s26-ultra",
+    keyUpgrade: "Upgraded 50MP ultra-wide sensor & Snapdragon 8 Elite image processor",
+    rank: 11,
+    image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=800&q=80",
+    rating: 4.92,
+    reviewCount: 2150,
+    priceINR: 129999,
+    mrpINR: 139999,
+    priceUSD: 1299,
+    discountPercent: 7,
+    storeUrls: {
+      amazon: "https://amazon.in",
+      flipkart: "https://flipkart.com",
+      samsung: "https://samsung.com/in"
+    },
+    specs: {
+      mainCamera: "200MP Wide (f/1.7, OIS)",
+      ultraWide: "50MP Ultra-Wide (f/1.9)",
+      telephoto: "50MP 5x Optical Periscope + 10MP 3x",
+      frontCamera: "12MP Dual Pixel AF",
+      maxVideoResolution: "8K at 30fps / 4K at 120fps",
+      logProfile: "HDR10+ Pro Log",
+      externalSSD: "USB 3.2 Gen 1 OTG",
+      stabilization: "Wide-Angle OIS + Super Steady",
+      batteryCapacity: "5,000 mAh",
+      charging: "45W Fast Charge",
+      weight: "219g"
+    },
+    pros: ["Lighter ergonomic titanium frame", "50MP Ultra-wide creates super-detailed 4K macro video"],
+    cons: ["S-Pen features unchanged"],
+    verdict: "Superb flagship for Android content power users."
   },
   {
     id: "samsung-s24-ultra",
     name: "Samsung Galaxy S24 Ultra",
+    title: "Samsung Galaxy S24 Ultra",
     brand: "Samsung",
     category: "flagship-zoom",
     badge: "🔭 Best for Zoom, B-Roll & Android Creators",
     tagline: "Unrivaled focal length flexibility with 200MP detail and 8K recording",
-    rank: 2,
-    image: "https://m.media-amazon.com/images/I/717Qo4MH97L._SL1500_.jpg",
+    seriesId: "samsung-s-series",
+    generation: "Gen 5 (2024)",
+    launchYear: 2024,
+    marketStatus: "live-current",
+    previousModelId: "samsung-s23-ultra",
+    nextModelId: "samsung-s25-ultra",
+    keyUpgrade: "Added anti-reflective Gorilla Armor glass & 50MP 5x periscope telephoto lens",
+    rank: 12,
+    image: "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80",
     rating: 4.88,
     reviewCount: 2950,
     priceINR: 121999,
@@ -100,73 +664,262 @@ export const VLOGGING_SMARTPHONES = [
       flipkart: "https://flipkart.com",
       samsung: "https://samsung.com/in"
     },
-    scores: {
-      overall: 9.6,
-      videoQuality: 9.6,
-      stabilization: 9.4,
-      frontCamera: 9.3,
-      audioQuality: 9.4,
-      lowLight: 9.5,
-      creatorApps: 9.1,
-      thermals: 9.3
+    specs: {
+      mainCamera: "200MP Wide (f/1.7, OIS)",
+      ultraWide: "12MP Ultra-Wide",
+      telephoto: "50MP 5x Periscope + 10MP 3x",
+      frontCamera: "12MP Dual Pixel AF",
+      maxVideoResolution: "8K at 30fps / 4K at 120fps",
+      logProfile: "Pro Video Log",
+      externalSSD: "USB 3.2 OTG",
+      stabilization: "Wider OIS + Super Steady",
+      batteryCapacity: "5,000 mAh",
+      charging: "45W Fast Charge",
+      weight: "232g"
+    },
+    pros: ["Anti-reflective glass makes outdoor bright daylight framing effortless", "Native manual mic direction controls"],
+    cons: ["Large and heavy (232g)"],
+    verdict: "The undisputed champion for Android zoom and manual mic control."
+  },
+  {
+    id: "samsung-s23-ultra",
+    name: "Samsung Galaxy S23 Ultra",
+    title: "Samsung Galaxy S23 Ultra",
+    brand: "Samsung",
+    category: "flagship-zoom",
+    badge: "💰 Top Value Discounted Android Flagship",
+    tagline: "Introduced 200MP ISOCELL HP2 camera & Snapdragon 8 Gen 2 for Galaxy",
+    seriesId: "samsung-s-series",
+    generation: "Gen 4 (2023)",
+    launchYear: 2023,
+    marketStatus: "live-discounted",
+    previousModelId: "samsung-s22-ultra",
+    nextModelId: "samsung-s24-ultra",
+    keyUpgrade: "Debuted 200MP sensor, 10x optical zoom & custom Snapdragon chip",
+    rank: 13,
+    image: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=800&q=80",
+    rating: 4.84,
+    reviewCount: 7800,
+    priceINR: 74999,
+    mrpINR: 124999,
+    priceUSD: 799,
+    discountPercent: 40,
+    storeUrls: {
+      amazon: "https://amazon.in",
+      flipkart: "https://flipkart.com"
     },
     specs: {
-      mainCamera: "200MP Wide (f/1.7, OIS, Multi-directional PDAF)",
-      ultraWide: "12MP Ultra-Wide (f/2.2, 120° FOV, Dual Pixel AF)",
-      telephoto: "50MP 5x Optical Periscope + 10MP 3x Optical (100x Space Zoom)",
-      frontCamera: "12MP Dual Pixel AF (f/2.2)",
-      maxVideoResolution: "8K at 30fps / 4K at 120fps",
-      logProfile: "Pro Video Log (10-bit HDR10+)",
-      externalSSD: "Yes (USB 3.2 Gen 1 OTG Support)",
-      stabilization: "Wider OIS Tilt Angles + Super Steady Mode",
-      batteryCapacity: "5,000 mAh (Large all-day filming pack)",
-      charging: "45W Wired Fast Charge (65% in 30 mins) + 15W Wireless",
-      weight: "232g (Titanium Frame)"
+      mainCamera: "200MP Wide (f/1.7, OIS)",
+      ultraWide: "12MP Ultra-Wide",
+      telephoto: "10MP 10x Optical + 10MP 3x",
+      frontCamera: "12MP Dual Pixel AF",
+      maxVideoResolution: "8K at 30fps / 4K at 60fps",
+      logProfile: "HDR10+",
+      externalSSD: "USB 3.2 OTG",
+      stabilization: "OIS 2x Wider",
+      batteryCapacity: "5,000 mAh",
+      charging: "45W Fast Charge",
+      weight: "234g"
     },
-    vloggingFeatures: [
-      {
-        title: "Quad-Telephoto Camera System",
-        desc: "Switch between 0.6x ultra-wide, 1x wide, 3x portrait, and 5x optical telephoto without losing 4K resolution. The 5x lens compresses background scenery for cinematic film-grade B-roll."
-      },
-      {
-        title: "Pro Video Mode with Directional Audio Control",
-        desc: "Samsung's native camera app features real-time audio VU meters, manual gain dB adjustment, and directional microphone selection (Front, Rear, Omni, or Bluetooth lapel)."
-      },
-      {
-        title: "Anti-Reflective Gorilla Glass Armor",
-        desc: "Cuts reflections by 75%, making it effortless to frame and monitor shots in outdoor direct sunlight where other phone screens wash out."
-      },
-      {
-        title: "S-Pen Remote Shutter & AI Eraser",
-        desc: "Use the built-in S-Pen as a wireless remote trigger up to 10 meters away. Eliminate unwanted background bystanders from thumbnail photos instantly."
-      },
-      {
-        title: "Vapor Chamber Thermal Cooling",
-        desc: "Nearly double the size of previous generations, preventing thermal throttling during extended 4K 60fps podcast or conference recordings."
-      }
-    ],
-    pros: [
-      "Spectacular 5x optical telephoto lens creates unmatched cinematic B-roll compression",
-      "Native Pro Video mode provides real-time audio gain meters and mic direction control",
-      "Anti-reflective screen makes outdoor bright daylight filming effortless",
-      "Massive 5,000mAh battery handles hours of high-bitrate 4K video",
-      "S-Pen acts as an instant wireless shutter remote for solo creators"
-    ],
-    cons: [
-      "Front camera dynamic range slightly less consistent than iPhone in harsh backlighting",
-      "ProRes Log editing workflow is easier on iOS apps",
-      "Large and heavy in handheld rigs (232g)"
-    ],
-    verdict: "The undisputed champion for creators who need telephoto zoom, manual mic gain control, and outdoor screen clarity on the Android platform."
+    pros: ["10x optical periscope lens gets unbelievable distance detail", "Now under ₹75,000!"],
+    cons: ["Glossy screen reflection in sunlight"],
+    verdict: "Best deal for creators wanting 10x true optical zoom under ₹75k."
+  },
+  {
+    id: "samsung-s22-ultra",
+    name: "Samsung Galaxy S22 Ultra",
+    title: "Samsung Galaxy S22 Ultra",
+    brand: "Samsung",
+    category: "flagship-zoom",
+    badge: "🖋️ 1st Note-Integrated S-Pen Ultra",
+    tagline: "First Ultra model with built-in S-Pen remote shutter & 108MP Nightography",
+    seriesId: "samsung-s-series",
+    generation: "Gen 3 (2022)",
+    launchYear: 2022,
+    marketStatus: "renewed-refurbished",
+    previousModelId: "samsung-s21-ultra",
+    nextModelId: "samsung-s23-ultra",
+    keyUpgrade: "Merged Note series S-Pen directly inside chassis for wireless remote shutter",
+    rank: 14,
+    image: "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=800&q=80",
+    rating: 4.71,
+    reviewCount: 9500,
+    priceINR: 49999,
+    mrpINR: 109999,
+    priceUSD: 529,
+    discountPercent: 55,
+    storeUrls: {
+      amazon: "https://amazon.in",
+      flipkart: "https://flipkart.com"
+    },
+    specs: {
+      mainCamera: "108MP Wide (f/1.8, OIS)",
+      ultraWide: "12MP Ultra-Wide",
+      telephoto: "10MP 10x Optical + 10MP 3x",
+      frontCamera: "40MP PDAF (4K 60fps)",
+      maxVideoResolution: "8K 24fps / 4K 60fps",
+      logProfile: "HDR10",
+      externalSSD: "USB 3.1 OTG",
+      stabilization: "OIS + VDIS",
+      batteryCapacity: "5,000 mAh",
+      charging: "45W Fast Charge",
+      weight: "228g"
+    },
+    pros: ["Built-in S-Pen acts as wireless video clicker", "40MP front camera"],
+    cons: ["Gen 1 Snapdragon processor ran warm in long 4K sessions"],
+    verdict: "Great pre-owned candidate under ₹50,000."
+  },
+  {
+    id: "samsung-s21-ultra",
+    name: "Samsung Galaxy S21 Ultra",
+    title: "Samsung Galaxy S21 Ultra",
+    brand: "Samsung",
+    category: "flagship-zoom",
+    badge: "📷 Dual Telephoto Optical Milestone",
+    tagline: "Pioneered dual telephoto lenses (3x + 10x optical) and 4K 60fps on all 4 cameras",
+    seriesId: "samsung-s-series",
+    generation: "Gen 2 (2021)",
+    launchYear: 2021,
+    marketStatus: "renewed-refurbished",
+    previousModelId: "samsung-s20-ultra",
+    nextModelId: "samsung-s22-ultra",
+    keyUpgrade: "Dual 3x & 10x optical telephoto lenses + 4K 60p support across all 4 cameras",
+    rank: 15,
+    image: "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
+    rating: 4.63,
+    reviewCount: 11400,
+    priceINR: 36999,
+    mrpINR: 105999,
+    priceUSD: 399,
+    discountPercent: 65,
+    storeUrls: {
+      amazon: "https://amazon.in",
+      flipkart: "https://flipkart.com"
+    },
+    specs: {
+      mainCamera: "108MP ISOCELL HM3 (f/1.8, OIS)",
+      ultraWide: "12MP Dual Pixel AF",
+      telephoto: "10MP 10x Optical + 10MP 3x Optical",
+      frontCamera: "40MP AF",
+      maxVideoResolution: "8K 24fps / 4K 60fps on all lenses",
+      logProfile: "Standard HDR",
+      externalSSD: "USB 3.1 OTG",
+      stabilization: "OIS",
+      batteryCapacity: "5,000 mAh",
+      charging: "25W Fast Charge",
+      weight: "227g"
+    },
+    pros: ["4K 60fps on ALL four camera sensors", "10x optical zoom under ₹37k"],
+    cons: ["S-Pen had to be bought separately as an external case"],
+    verdict: "Refurbished gem for budget Android creators."
+  },
+  {
+    id: "samsung-s20-ultra",
+    name: "Samsung Galaxy S20 Ultra",
+    title: "Samsung Galaxy S20 Ultra",
+    brand: "Samsung",
+    category: "legacy-landmark",
+    badge: "📜 100x Space Zoom & 8K Video Origin",
+    tagline: "The origin model that introduced 108MP camera, 100x Space Zoom & 8K mobile recording",
+    seriesId: "samsung-s-series",
+    generation: "Gen 1 (2020)",
+    launchYear: 2020,
+    marketStatus: "legacy-archive",
+    previousModelId: null,
+    nextModelId: "samsung-s21-ultra",
+    keyUpgrade: "Pioneered 108MP primary sensor, 8K video recording & 100x Space Zoom",
+    rank: 16,
+    image: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&w=800&q=80",
+    rating: 4.48,
+    reviewCount: 15600,
+    priceINR: 27999,
+    mrpINR: 97999,
+    priceUSD: 299,
+    discountPercent: 71,
+    storeUrls: {
+      amazon: "https://amazon.in",
+      flipkart: "https://flipkart.com"
+    },
+    specs: {
+      mainCamera: "108MP (f/1.8, OIS)",
+      ultraWide: "12MP",
+      telephoto: "48MP 4x Periscope (100x Space Zoom)",
+      frontCamera: "40MP",
+      maxVideoResolution: "8K 24fps / 4K 60fps",
+      logProfile: "SDR",
+      externalSSD: "USB OTG",
+      stabilization: "OIS",
+      batteryCapacity: "5,000 mAh",
+      charging: "45W",
+      weight: "222g"
+    },
+    pros: ["First phone ever to record 8K video"],
+    cons: ["1st-gen 108MP sensor had autofocus hunt issues"],
+    verdict: "Historical landmark model."
+  },
+
+  // --- GOOGLE PIXEL PRO LINEAGE (Pixel 6 Pro to Pixel 10 Pro) ---
+  {
+    id: "pixel-10-pro",
+    name: "Google Pixel 10 Pro / 10 Pro XL",
+    title: "Google Pixel 10 Pro / 10 Pro XL",
+    brand: "Google",
+    category: "flagship-ai",
+    badge: "🤖 2025 TSMC Tensor G5 AI Powerhouse",
+    tagline: "On-device 8K Video Boost, Tensor G5 TSMC 3nm & Spatial Audio Magic",
+    seriesId: "pixel-series",
+    generation: "Gen 5 (2025)",
+    launchYear: 2025,
+    marketStatus: "live-current",
+    previousModelId: "google-pixel-9-pro",
+    nextModelId: null,
+    keyUpgrade: "TSMC 3nm Tensor G5 chip enables instant ON-DEVICE Video Boost without cloud uploads",
+    rank: 17,
+    image: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80",
+    rating: 4.90,
+    reviewCount: 940,
+    priceINR: 114999,
+    mrpINR: 124999,
+    priceUSD: 1049,
+    discountPercent: 8,
+    storeUrls: {
+      amazon: "https://amazon.in",
+      flipkart: "https://flipkart.com",
+      google: "https://store.google.com/in"
+    },
+    specs: {
+      mainCamera: "50MP Octa PD Wide (f/1.65, OIS)",
+      ultraWide: "48MP Quad PD Ultra-Wide",
+      telephoto: "48MP 5x Periscope Telephoto",
+      frontCamera: "50MP Dual PD AF",
+      maxVideoResolution: "8K 30fps (On-Device Boost) / 4K 60fps HDR",
+      logProfile: "10-bit HDR Rec. 2020",
+      externalSSD: "USB 3.2 Gen 2 OTG",
+      stabilization: "Cinematic Pan + Active Lock OIS",
+      batteryCapacity: "5,100 mAh",
+      charging: "45W Wired",
+      weight: "205g"
+    },
+    pros: ["Instant on-device Video Boost eliminates cloud wait times", "50MP selfie camera"],
+    cons: ["Slightly higher starting price"],
+    verdict: "The smartest AI computational camera phone on earth."
   },
   {
     id: "google-pixel-9-pro",
     name: "Google Pixel 9 Pro / 9 Pro XL",
+    title: "Google Pixel 9 Pro / 9 Pro XL",
     brand: "Google",
     category: "flagship-ai",
     badge: "🎙️ Best for AI Audio & True-to-Life Skin Tones",
     tagline: "Computational video powerhouse with Video Boost and Audio Magic Eraser",
-    rank: 3,
+    seriesId: "pixel-series",
+    generation: "Gen 4 (2024)",
+    launchYear: 2024,
+    marketStatus: "live-current",
+    previousModelId: "pixel-8-pro",
+    nextModelId: "pixel-10-pro",
+    keyUpgrade: "42MP autofocus selfie camera, Audio Magic Eraser 2 & Night Sight Video Boost",
+    rank: 18,
     image: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80",
     rating: 4.82,
     reviewCount: 1650,
@@ -179,74 +932,352 @@ export const VLOGGING_SMARTPHONES = [
       flipkart: "https://flipkart.com",
       google: "https://store.google.com/in"
     },
-    scores: {
-      overall: 9.4,
-      videoQuality: 9.5,
-      stabilization: 9.3,
-      frontCamera: 9.6,
-      audioQuality: 9.8,
-      lowLight: 9.7,
-      creatorApps: 8.8,
-      thermals: 8.7
-    },
     specs: {
       mainCamera: "50MP Octa PD Wide (f/1.68, OIS)",
-      ultraWide: "48MP Quad PD Ultra-Wide with Macro (f/1.7)",
-      telephoto: "48MP 5x Telephoto with OIS (30x Super Res Zoom)",
-      frontCamera: "42MP Dual PD Selfie Camera with Autofocus (f/2.2)",
+      ultraWide: "48MP Quad PD Ultra-Wide with Macro",
+      telephoto: "48MP 5x Telephoto with OIS",
+      frontCamera: "42MP Dual PD Selfie Camera with Autofocus",
       maxVideoResolution: "8K 30fps (via Video Boost) / 4K at 60fps HDR",
-      logProfile: "10-bit HDR (Rec. 709 / Rec. 2020)",
-      externalSSD: "Yes (USB-C 3.2 Gen 2 OTG)",
+      logProfile: "10-bit HDR",
+      externalSSD: "USB-C 3.2 Gen 2 OTG",
       stabilization: "Standard, Locked, Active, and Cinematic Pan",
       batteryCapacity: "4,700 mAh (Pro) / 5,060 mAh (Pro XL)",
-      charging: "37W Wired Fast Charge + 23W Wireless",
-      weight: "199g (Pro) / 221g (Pro XL)"
+      charging: "37W Wired Fast Charge",
+      weight: "199g"
     },
-    vloggingFeatures: [
-      {
-        title: "Audio Magic Eraser",
-        desc: "Google's AI model breaks audio down into vocal, wind, crowd noise, and ambient tracks. You can silence gusting wind or loud traffic with a single slider."
-      },
-      {
-        title: "Video Boost with Night Sight Video",
-        desc: "Uploads raw footage to Google's tensor cloud servers to apply multi-frame HDR and deep learning noise reduction, creating noise-free low-light night vlogs."
-      },
-      {
-        title: "True Tone Skin Science",
-        desc: "Evaluated across thousands of diverse skin tones, ensuring realistic, flattering undertones without artificial brightening or oversaturation."
-      },
-      {
-        title: "42MP Autofocus Ultra-Wide Front Camera",
-        desc: "Huge upgrade over previous Pixels: 42MP sensor with dedicated autofocus captures ultra-sharp group selfie vlogs and podcasts."
-      },
-      {
-        title: "Super Res Zoom Video (Up to 20x)",
-        desc: "Uses machine learning to upscale zoom shots in video, giving you usable close-ups of concert stages or wildlife without carrying giant telephoto glass."
-      }
-    ],
-    pros: [
-      "Audio Magic Eraser cleans up windy outdoor audio better than physical windscreens",
-      "True Tone color science produces the most natural, authentic human skin tones",
-      "Huge 42MP selfie camera with autofocus is incredible for talking-head vlogs",
-      "Night Sight Video Boost recovers detail in pitch-black night markets and cafes",
-      "Clean stock Android interface with 7 years of OS updates"
-    ],
-    cons: [
-      "Video Boost processing requires uploading to Google cloud (takes 10-20 mins)",
-      "Battery life under continuous 4K 60fps load is slightly behind Galaxy S24 Ultra",
-      "Fewer third-party manual camera apps compared to iOS"
-    ],
-    verdict: "The best choice for creators who shoot outdoors in noisy street markets or windy conditions and want human skin tones to look completely natural without grading."
+    pros: ["Audio Magic Eraser cleans up windy outdoor audio instantly", "True Tone skin science"],
+    cons: ["Video Boost requires cloud rendering on Pixel 9"],
+    verdict: "Best for street market vloggers shooting in noisy environments."
   },
+  {
+    id: "pixel-8-pro",
+    name: "Google Pixel 8 Pro",
+    title: "Google Pixel 8 Pro",
+    brand: "Google",
+    category: "flagship-ai",
+    badge: "💡 Best Value AI Computational Phone",
+    tagline: "Pioneered Cloud Video Boost, Night Sight Video & Pro Controls interface",
+    seriesId: "pixel-series",
+    generation: "Gen 3 (2023)",
+    launchYear: 2023,
+    marketStatus: "live-discounted",
+    previousModelId: "pixel-7-pro",
+    nextModelId: "google-pixel-9-pro",
+    keyUpgrade: "Introduced Cloud Video Boost multi-frame HDR processing & manual Pro Controls",
+    rank: 19,
+    image: "https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=800&q=80",
+    rating: 4.74,
+    reviewCount: 4200,
+    priceINR: 64999,
+    mrpINR: 106999,
+    priceUSD: 649,
+    discountPercent: 39,
+    storeUrls: {
+      amazon: "https://amazon.in",
+      flipkart: "https://flipkart.com"
+    },
+    specs: {
+      mainCamera: "50MP Octa PD Wide (f/1.68)",
+      ultraWide: "48MP Quad PD Ultra-Wide",
+      telephoto: "48MP 5x Telephoto",
+      frontCamera: "10.5MP Dual PD AF",
+      maxVideoResolution: "4K 60fps / Night Sight Video Boost",
+      logProfile: "10-bit HDR",
+      externalSSD: "USB 3.2 OTG",
+      stabilization: "OIS + EIS",
+      batteryCapacity: "5,050 mAh",
+      charging: "30W",
+      weight: "213g"
+    },
+    pros: ["Now under ₹65,000 for 5x optical telephoto + Video Boost", "7 years of OS updates"],
+    cons: ["Tensor G3 runs warm during 4K gaming/recording"],
+    verdict: "Top computational deal for Android enthusiasts under ₹65k."
+  },
+  {
+    id: "pixel-7-pro",
+    name: "Google Pixel 7 Pro",
+    title: "Google Pixel 7 Pro",
+    brand: "Google",
+    category: "flagship-ai",
+    badge: "💰 Starter AI Vlogging Pick Under ₹40,000",
+    tagline: "Debuted Cinematic Blur 10-bit video, 5x optical zoom & Macro Focus",
+    seriesId: "pixel-series",
+    generation: "Gen 2 (2022)",
+    launchYear: 2022,
+    marketStatus: "live-discounted",
+    previousModelId: "pixel-6-pro",
+    nextModelId: "pixel-8-pro",
+    keyUpgrade: "Upgraded 5x optical telephoto, Cinematic Blur portrait video & Macro Focus",
+    rank: 20,
+    image: "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=800&q=80",
+    rating: 4.62,
+    reviewCount: 7800,
+    priceINR: 39999,
+    mrpINR: 84999,
+    priceUSD: 419,
+    discountPercent: 52,
+    storeUrls: {
+      amazon: "https://amazon.in",
+      flipkart: "https://flipkart.com"
+    },
+    specs: {
+      mainCamera: "50MP Wide (f/1.85, OIS)",
+      ultraWide: "12MP Macro",
+      telephoto: "48MP 5x Optical",
+      frontCamera: "10.8MP",
+      maxVideoResolution: "4K 60fps / 10-bit HDR",
+      logProfile: "10-bit HDR",
+      externalSSD: "USB OTG",
+      stabilization: "OIS",
+      batteryCapacity: "5,000 mAh",
+      charging: "23W",
+      weight: "212g"
+    },
+    pros: ["Unbeatable 5x optical telephoto detail under ₹40,000", "Clean Pixel software"],
+    cons: ["Slower charging (23W)"],
+    verdict: "Best budget choice for Google camera color processing."
+  },
+  {
+    id: "pixel-6-pro",
+    name: "Google Pixel 6 Pro",
+    title: "Google Pixel 6 Pro",
+    brand: "Google",
+    category: "legacy-landmark",
+    badge: "📜 1st Tensor Chip & 4x Periscope Pioneer",
+    tagline: "The origin model of Google custom Tensor Silicon & 4x optical periscope zoom",
+    seriesId: "pixel-series",
+    generation: "Gen 1 (2021)",
+    launchYear: 2021,
+    marketStatus: "renewed-refurbished",
+    previousModelId: null,
+    nextModelId: "pixel-7-pro",
+    keyUpgrade: "First custom Tensor AI processor, 50MP primary sensor & 4x optical periscope",
+    rank: 21,
+    image: "https://images.unsplash.com/photo-1607936854279-55e8a4c64888?auto=format&fit=crop&w=800&q=80",
+    rating: 4.51,
+    reviewCount: 9800,
+    priceINR: 26999,
+    mrpINR: 79999,
+    priceUSD: 279,
+    discountPercent: 66,
+    storeUrls: {
+      amazon: "https://amazon.in",
+      flipkart: "https://flipkart.com"
+    },
+    specs: {
+      mainCamera: "50MP ISOCELL GN1 (f/1.85, OIS)",
+      ultraWide: "12MP",
+      telephoto: "48MP 4x Periscope",
+      frontCamera: "11.1MP",
+      maxVideoResolution: "4K 60fps",
+      logProfile: "Standard HDR",
+      externalSSD: "USB OTG",
+      stabilization: "OIS",
+      batteryCapacity: "5,003 mAh",
+      charging: "23W",
+      weight: "210g"
+    },
+    pros: ["Superb 50MP photo dynamic range under ₹27k"],
+    cons: ["1st-gen Tensor modem had occasional signal battery drain"],
+    verdict: "Historical origin model for Google Tensor vlogging."
+  },
+
+  // --- VIVO X-SERIES CINEMA LINEAGE (X80 Pro to X200 Pro) ---
+  {
+    id: "vivo-x200-pro",
+    name: "Vivo X200 Pro",
+    title: "Vivo X200 Pro",
+    brand: "Vivo",
+    category: "flagship-cinema",
+    badge: "🔍 2025 Zeiss 200MP APO Telephoto King",
+    tagline: "200MP Zeiss APO Telephoto, 4K 120fps Cinematic Portrait & Dimensity 9400",
+    seriesId: "vivo-x-series",
+    generation: "Gen 4 (2025)",
+    launchYear: 2025,
+    marketStatus: "live-current",
+    previousModelId: "vivo-x100-pro",
+    nextModelId: null,
+    keyUpgrade: "200MP Zeiss APO Periscope Telephoto + 4K 120fps Cinematic Portrait video",
+    rank: 22,
+    image: "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
+    rating: 4.94,
+    reviewCount: 1100,
+    priceINR: 94999,
+    mrpINR: 104999,
+    priceUSD: 999,
+    discountPercent: 9,
+    storeUrls: {
+      amazon: "https://amazon.in",
+      flipkart: "https://flipkart.com"
+    },
+    specs: {
+      mainCamera: "50MP Sony LYT-818 (1/1.28\", f/1.57, OIS)",
+      ultraWide: "50MP Samsung JN1 (119° FOV)",
+      telephoto: "200MP ISOCELL HP9 Zeiss APO Periscope (3.7x Optical / 100x Digital)",
+      frontCamera: "32MP (f/2.0)",
+      maxVideoResolution: "4K 120fps 10-bit Log / 4K 60fps HDR",
+      logProfile: "10-bit Zeiss Master Log",
+      externalSSD: "USB 3.2 Gen 1 OTG",
+      stabilization: "CIPA 4.5 SLR-Grade OIS",
+      batteryCapacity: "6,000 mAh (BlueVolt Tech)",
+      charging: "90W FlashCharge + 30W Wireless",
+      weight: "228g"
+    },
+    pros: ["Mind-blowing 200MP Zeiss telephoto lens for portrait video", "6,000 mAh massive silicon-carbon battery"],
+    cons: ["FunTouch OS UI styling preference"],
+    verdict: "The absolute king of portrait background blur and telephoto video."
+  },
+  {
+    id: "vivo-x100-pro",
+    name: "Vivo X100 Pro",
+    title: "Vivo X100 Pro",
+    brand: "Vivo",
+    category: "flagship-cinema",
+    badge: "📷 1-Inch Sony IMX989 & Zeiss APO Periscope",
+    tagline: "Pioneered 1-inch sensor, Zeiss APO color science & V3 Imaging Chip",
+    seriesId: "vivo-x-series",
+    generation: "Gen 3 (2024)",
+    launchYear: 2024,
+    marketStatus: "live-current",
+    previousModelId: "vivo-x90-pro",
+    nextModelId: "vivo-x200-pro",
+    keyUpgrade: "First 1-inch primary sensor with Zeiss APO certified telephoto optics & V3 chip",
+    rank: 23,
+    image: "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=800&q=80",
+    rating: 4.88,
+    reviewCount: 3100,
+    priceINR: 89999,
+    mrpINR: 99999,
+    priceUSD: 949,
+    discountPercent: 10,
+    storeUrls: {
+      amazon: "https://amazon.in",
+      flipkart: "https://flipkart.com"
+    },
+    specs: {
+      mainCamera: "50MP Sony IMX989 1-Inch (f/1.75, OIS)",
+      ultraWide: "50MP Ultra-Wide",
+      telephoto: "50MP Zeiss APO Periscope (f/2.5, OIS)",
+      frontCamera: "32MP",
+      maxVideoResolution: "4K 60fps 10-bit Log / 8K 30fps",
+      logProfile: "10-bit V-Log",
+      externalSSD: "USB 3.2 OTG",
+      stabilization: "CIPA 4.0 OIS",
+      batteryCapacity: "5,400 mAh",
+      charging: "100W FlashCharge",
+      weight: "225g"
+    },
+    pros: ["1-inch sensor delivers true optical low-light clarity", "100W fast charging"],
+    cons: ["Front selfie video limited to 1080p 60fps"],
+    verdict: "Masterpiece camera for low-light night vloggers."
+  },
+  {
+    id: "vivo-x90-pro",
+    name: "Vivo X90 Pro",
+    title: "Vivo X90 Pro",
+    brand: "Vivo",
+    category: "flagship-cinema",
+    badge: "💰 Discounted 1-Inch Sensor Legend",
+    tagline: "Introduced Sony IMX989 1-inch primary sensor & V2 Imaging Chip",
+    seriesId: "vivo-x-series",
+    generation: "Gen 2 (2023)",
+    launchYear: 2023,
+    marketStatus: "live-discounted",
+    previousModelId: "vivo-x80-pro",
+    nextModelId: "vivo-x100-pro",
+    keyUpgrade: "Introduced 1-inch giant primary sensor & Zeiss T* anti-glare lens coating",
+    rank: 24,
+    image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80",
+    rating: 4.76,
+    reviewCount: 4500,
+    priceINR: 54999,
+    mrpINR: 84999,
+    priceUSD: 599,
+    discountPercent: 35,
+    storeUrls: {
+      amazon: "https://amazon.in",
+      flipkart: "https://flipkart.com"
+    },
+    specs: {
+      mainCamera: "50MP Sony IMX989 1-Inch (f/1.75, OIS)",
+      ultraWide: "12MP",
+      telephoto: "50MP 2x Portrait (f/1.6)",
+      frontCamera: "32MP",
+      maxVideoResolution: "4K 60fps / 8K 24fps",
+      logProfile: "10-bit Log",
+      externalSSD: "USB 3.1 OTG",
+      stabilization: "OIS",
+      batteryCapacity: "4,870 mAh",
+      charging: "120W FlashCharge",
+      weight: "214g"
+    },
+    pros: ["1-inch sensor under ₹55,000!", "120W charging (100% in 20 minutes)"],
+    cons: ["Lacks periscope telephoto lens"],
+    verdict: "Cheapest gateway to a genuine 1-inch camera sensor."
+  },
+  {
+    id: "vivo-x80-pro",
+    name: "Vivo X80 Pro",
+    title: "Vivo X80 Pro",
+    brand: "Vivo",
+    category: "legacy-landmark",
+    badge: "📜 1st Micro-Gimbal Stabilization Pioneer",
+    tagline: "The origin model of 50mm Gimbal Portrait camera & V1+ ISP Chip",
+    seriesId: "vivo-x-series",
+    generation: "Gen 1 (2022)",
+    launchYear: 2022,
+    marketStatus: "renewed-refurbished",
+    previousModelId: null,
+    nextModelId: "vivo-x90-pro",
+    keyUpgrade: "Pioneered micro-gimbal physical stabilization on 50mm portrait camera",
+    rank: 25,
+    image: "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=80",
+    rating: 4.62,
+    reviewCount: 6200,
+    priceINR: 34999,
+    mrpINR: 79999,
+    priceUSD: 399,
+    discountPercent: 56,
+    storeUrls: {
+      amazon: "https://amazon.in",
+      flipkart: "https://flipkart.com"
+    },
+    specs: {
+      mainCamera: "50MP GNV Sensor (f/1.57, OIS)",
+      ultraWide: "48MP",
+      telephoto: "12MP Gimbal Portrait + 8MP 5x Periscope",
+      frontCamera: "32MP",
+      maxVideoResolution: "8K 24fps / 4K 60fps",
+      logProfile: "SDR",
+      externalSSD: "USB OTG",
+      stabilization: "Physical Micro-Gimbal",
+      batteryCapacity: "4,700 mAh",
+      charging: "80W",
+      weight: "219g"
+    },
+    pros: ["Hardware micro-gimbal mechanism physically balances lens shake"],
+    cons: ["Curved screen edge accidental touches"],
+    verdict: "Historical pioneer of micro-gimbal mobile video."
+  },
+
+  // --- OTHER FLAGSHIP & BUDGET HEROES ---
   {
     id: "oneplus-12",
     name: "OnePlus 12",
+    title: "OnePlus 12",
     brand: "OnePlus",
     category: "flagship-killer",
     badge: "⚡ Best Flagship Killer & Rapid 100W Charging",
     tagline: "Pro Hasselblad color science, Sony LYT-808 sensor & 100W SuperVOOC charge",
-    rank: 4,
-    image: "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=800&q=80",
+    seriesId: "oneplus-series",
+    generation: "Gen 12 (2024)",
+    launchYear: 2024,
+    marketStatus: "live-current",
+    previousModelId: "oneplus-11",
+    nextModelId: "oneplus-13",
+    keyUpgrade: "Added Sony LYT-808 dual-layer sensor, 64MP periscope telephoto & 100W charge",
+    rank: 26,
+    image: "https://images.unsplash.com/photo-1616348436168-de43ad0db179?auto=format&fit=crop&w=800&q=80",
     rating: 4.74,
     reviewCount: 4210,
     priceINR: 64999,
@@ -277,48 +1308,42 @@ export const VLOGGING_SMARTPHONES = [
       logProfile: "Master Mode Video / Hasselblad Natural Color",
       externalSSD: "Yes (USB-C 3.2 Gen 1 OTG)",
       stabilization: "OIS + EIS Dual Hybrid Stabilization",
-      batteryCapacity: "5,400 mAh (Largest battery in its class)",
-      charging: "100W SuperVOOC (1 to 100% in 26 minutes) + 50W Wireless",
+      batteryCapacity: "5,400 mAh",
+      charging: "100W SuperVOOC (1 to 100% in 26 minutes)",
       weight: "220g"
     },
     vloggingFeatures: [
       {
         title: "100W SuperVOOC Fast Charging",
-        desc: "Full charge in 26 minutes. Film an entire morning vlog, plug it in during a 20-minute coffee break, and head out with 100% battery for the afternoon shoot."
-      },
-      {
-        title: "Sony LYT-808 Dual-Layer Transistor Sensor",
-        desc: "Captures 50% more light than previous generation sensors, rendering shadow detail cleanly in low-light indoor restaurants and night street food tours."
-      },
-      {
-        title: "Hasselblad Natural Color Calibration",
-        desc: "Delivers rich, lifelike cinematic colors straight out of camera without needing color LUT grading."
-      },
-      {
-        title: "Dual Cryo-velocity VC Cooling",
-        desc: "Industry-leading 9,140 mm² vapor chamber keeps the phone ice cool even when shooting 4K 60fps in tropical 40°C Indian summers."
+        desc: "Full charge in 26 minutes. Film an entire morning vlog and charge up during coffee."
       }
     ],
     pros: [
-      "Exceptional value for money at ₹64,999 (~half the price of iPhone 16 Pro Max)",
-      "100W charging is a game changer for travel vloggers on the move",
-      "Massive 5,400 mAh battery lasts longer than any flagship tested",
-      "Superior thermal dissipation prevents video throttling in summer weather"
+      "Exceptional value at ₹64,999",
+      "100W charging game changer for travel vloggers",
+      "Massive 5,400 mAh battery"
     ],
     cons: [
-      "Front selfie camera capped at 4K 30fps (no 4K 60fps on front)",
-      "Third-party accessory cages are less common than for iPhone or Galaxy"
+      "Front selfie camera capped at 4K 30fps"
     ],
-    verdict: "The smartest buy for budget-conscious creators who want 90% of iPhone 16 Pro's camera performance and the fastest charging in the world at nearly half the price."
+    verdict: "The smartest buy for budget-conscious creators wanting 90% of iPhone 16 Pro performance at half the price."
   },
   {
     id: "samsung-s23-fe",
     name: "Samsung Galaxy S23 FE / iPhone 13",
+    title: "Samsung Galaxy S23 FE / iPhone 13",
     brand: "Samsung / Apple",
     category: "budget-vlogger",
     badge: "💡 Best Budget Value for Beginners (Under ₹35,000 / $400)",
     tagline: "The proven creator sweet spot: reliable 4K60 OIS video without breaking the bank",
-    rank: 5,
+    seriesId: "budget-vlog-series",
+    generation: "Gen 1 (2023)",
+    launchYear: 2023,
+    marketStatus: "live-discounted",
+    previousModelId: null,
+    nextModelId: null,
+    keyUpgrade: "Brought 4K 60fps front & rear recording and hardware OIS under ₹35,000",
+    rank: 27,
     image: "https://m.media-amazon.com/images/I/71qGismu6NL._SL1500_.jpg",
     rating: 4.62,
     reviewCount: 7890,
@@ -354,32 +1379,17 @@ export const VLOGGING_SMARTPHONES = [
       charging: "25W Wired + 15W Wireless",
       weight: "209g"
     },
-    vloggingFeatures: [
-      {
-        title: "Flagship 50MP Main Sensor Under ₹35,000",
-        desc: "Features the exact same optical stabilization algorithms as Samsung's higher-tier flagships, eliminating walking jitters on a student budget."
-      },
-      {
-        title: "4K 60fps Front & Rear Recording",
-        desc: "Unlike budget mid-rangers that lock front video to 1080p, the S23 FE records crisp 4K 60fps from both front selfie and rear primary cameras."
-      },
-      {
-        title: "Universal USB-C Audio Compatibility",
-        desc: "Seamlessly pairs with Digitek DWM-101, Boya BY-M1, and Grenaro wireless receivers with zero latency or adapter headache."
-      }
-    ],
     pros: [
-      "Unbeatable price point under ₹35,000 for verified 4K 60fps front & rear video",
-      "Full IP68 water & dust resistance handles outdoor rain vlogs",
-      "3x optical telephoto lens included at a price where rivals only offer digital crop"
+      "Unbeatable price point under ₹35,000 for 4K 60fps front & rear video",
+      "Full IP68 water & dust resistance handles outdoor rain vlogs"
     ],
     cons: [
-      "Exynos processor runs warmer than Snapdragon 8 Gen 3 under prolonged 4K recording",
-      "Battery life is moderate at ~4.5 hours of active shooting"
+      "Exynos processor runs warm under long 4K sessions"
     ],
-    verdict: "The definitive recommendation for college students, starter YouTubers, and budget vloggers who need professional 4K 60p video and optical stabilization on a strict budget."
+    verdict: "Definitive recommendation for college students and starter YouTubers."
   }
 ];
+
 
 // Feature Shootout Matrix Data
 export const FEATURE_SHOOTOUT_MATRIX = [

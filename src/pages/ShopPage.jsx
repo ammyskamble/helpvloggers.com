@@ -3,6 +3,7 @@ import { useSearchParams, Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import EcommerceSidebarFilter from '../components/EcommerceSidebarFilter';
 import { VLOGGING_PRODUCTS, TAXONOMY, CATEGORIES } from '../data/vloggingProducts';
+import { VLOGGING_SMARTPHONES } from '../data/vloggingSmartphones';
 import { useEcommerce } from '../context/EcommerceContext';
 import { 
   ChevronRight, ArrowUpDown, Filter, ShoppingBag, 
@@ -18,11 +19,13 @@ export default function ShopPage() {
   const initialBrand = searchParams.get('brand') || 'all';
   const initialMarket = searchParams.get('market') || market || 'all';
   const initialDiscount = searchParams.get('discount') ? Number(searchParams.get('discount')) : 0;
+  const initialStatus = searchParams.get('status') || 'all';
 
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [selectedCategory, setSelectedCategory] = useState(initialCat);
   const [selectedBrand, setSelectedBrand] = useState(initialBrand);
   const [selectedMarket, setSelectedMarket] = useState(initialMarket);
+  const [selectedMarketStatus, setSelectedMarketStatus] = useState(initialStatus);
   const [selectedPriceRange, setSelectedPriceRange] = useState('all');
   const [selectedDiscount, setSelectedDiscount] = useState(initialDiscount);
   const [minRating, setMinRating] = useState(0);
@@ -34,11 +37,13 @@ export default function ShopPage() {
     const brand = searchParams.get('brand');
     const m = searchParams.get('market');
     const disc = searchParams.get('discount');
+    const status = searchParams.get('status');
     if (q !== null) setSearchQuery(q);
     if (cat !== null) setSelectedCategory(cat);
     if (brand !== null) setSelectedBrand(brand);
     if (m !== null) setSelectedMarket(m);
     if (disc !== null) setSelectedDiscount(Number(disc));
+    if (status !== null) setSelectedMarketStatus(status);
   }, [searchParams]);
 
   const handleMarketChange = (newMarket) => {
@@ -51,6 +56,7 @@ export default function ShopPage() {
   const handleResetFilters = () => {
     setSelectedBrand('all');
     setSelectedMarket('all');
+    setSelectedMarketStatus('all');
     setSelectedPriceRange('all');
     setSelectedDiscount(0);
     setMinRating(0);
@@ -60,18 +66,24 @@ export default function ShopPage() {
     setSearchParams({});
   };
 
+  const allCatalogProducts = [...VLOGGING_PRODUCTS, ...VLOGGING_SMARTPHONES];
+
   // Filter products across all facets
-  let filteredProducts = VLOGGING_PRODUCTS.filter(product => {
+  let filteredProducts = allCatalogProducts.filter(product => {
     // Search query
     const matchesSearch = !searchQuery || 
-      product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (product.title && product.title.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (product.name && product.name.toLowerCase().includes(searchQuery.toLowerCase())) ||
       product.brand.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product.targetKeyword.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product.categoryName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (product.targetKeyword && product.targetKeyword.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (product.categoryName && product.categoryName.toLowerCase().includes(searchQuery.toLowerCase())) ||
       (product.subCategoryName && product.subCategoryName.toLowerCase().includes(searchQuery.toLowerCase()));
 
-    // Market separation (India vs Global - No Conflict!)
-    const matchesMarket = selectedMarket === 'all' || product.market === selectedMarket;
+    // Market separation
+    const matchesMarket = selectedMarket === 'all' || !product.market || product.market === selectedMarket;
+
+    // Market Status (Live Flagships, Discounted, Renewed, Legacy)
+    const matchesStatus = selectedMarketStatus === 'all' || product.marketStatus === selectedMarketStatus;
 
     // Category
     const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
@@ -80,19 +92,20 @@ export default function ShopPage() {
     const matchesBrand = selectedBrand === 'all' || product.brand.toLowerCase() === selectedBrand.toLowerCase();
 
     // Discount
-    const matchesDiscount = product.discountPercent >= selectedDiscount;
+    const matchesDiscount = (product.discountPercent || 0) >= selectedDiscount;
 
     // Rating
-    const matchesRating = product.rating >= minRating;
+    const matchesRating = (product.rating || 0) >= minRating;
 
     // Price range (in INR)
+    const priceINR = product.priceINR || product.price || 0;
     let matchesPrice = true;
-    if (selectedPriceRange === 'under-1000') matchesPrice = product.priceINR < 1000;
-    else if (selectedPriceRange === '1000-5000') matchesPrice = product.priceINR >= 1000 && product.priceINR <= 5000;
-    else if (selectedPriceRange === '5000-25000') matchesPrice = product.priceINR > 5000 && product.priceINR <= 25000;
-    else if (selectedPriceRange === 'above-25000') matchesPrice = product.priceINR > 25000;
+    if (selectedPriceRange === 'under-1000') matchesPrice = priceINR < 1000;
+    else if (selectedPriceRange === '1000-5000') matchesPrice = priceINR >= 1000 && priceINR <= 5000;
+    else if (selectedPriceRange === '5000-25000') matchesPrice = priceINR > 5000 && priceINR <= 25000;
+    else if (selectedPriceRange === 'above-25000') matchesPrice = priceINR > 25000;
 
-    return matchesSearch && matchesMarket && matchesCategory && matchesBrand && matchesDiscount && matchesRating && matchesPrice;
+    return matchesSearch && matchesMarket && matchesStatus && matchesCategory && matchesBrand && matchesDiscount && matchesRating && matchesPrice;
   });
 
   // Sorting
@@ -166,6 +179,8 @@ export default function ShopPage() {
           setMinRating={setMinRating}
           selectedMarket={selectedMarket}
           setSelectedMarket={handleMarketChange}
+          selectedMarketStatus={selectedMarketStatus}
+          setSelectedMarketStatus={setSelectedMarketStatus}
           onReset={handleResetFilters}
         />
 
