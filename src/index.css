@@ -568,8 +568,17 @@ button {
   align-items: center; 
   gap: 12px; 
 }
+.mobile-header-actions {
+  display: none;
+}
 .mobile-menu-btn { 
   display: none; 
+}
+.nav-label-mobile { 
+  display: none; 
+}
+.nav-label-desktop { 
+  display: inline; 
 }
 
 /* =============================================
@@ -597,24 +606,64 @@ button {
 
 /* Mobile: ≤ 768px */
 @media (max-width: 768px) {
-  /* Header */
-  .header-bar { padding: 8px 12px !important; gap: 8px !important; }
-  .logo-brand { font-size: 1.1rem; gap: 8px; }
-  .logo-icon { width: 34px; height: 34px; border-radius: 10px; }
+  /* Header & Bar Real Estate Overflow Fix */
+  .header-bar { padding: 6px 10px !important; gap: 6px !important; }
+  .logo-brand { font-size: 1.05rem; gap: 6px; }
+  .logo-icon { width: 30px; height: 30px; border-radius: 8px; }
   .logo-sub { display: none !important; }
-  .search-box-wrap { max-width: 100%; flex: 1; }
+  .search-box-wrap { max-width: 100%; flex: 1; margin: 0 6px !important; }
 
-  /* Hide desktop header-right, show mobile hamburger button */
+  /* Hide desktop header-right, show mobile header actions */
   .header-right-desktop { display: none !important; }
+  .mobile-header-actions { display: flex !important; align-items: center; gap: 6px; }
   .mobile-menu-btn { display: flex !important; }
 
   /* Announcement bar */
+  .announcement-bar-top { padding: 4px 10px !important; font-size: 0.68rem !important; }
   .announcement-pincode { display: none !important; }
   .search-cat-select { display: none !important; }
 
-  /* Category subnav tabs: compact padding on mobile */
-  .category-subnav { padding: 4px 8px !important; }
+  /* Category subnav tabs: compact padding & short mobile labels */
+  .category-subnav { padding: 3px 6px !important; }
   .category-subnav-inner { gap: 4px !important; }
+  .subnav-pill { padding: 5px 9px !important; font-size: 0.74rem !important; gap: 4px !important; }
+  .nav-label-desktop { display: none !important; }
+  .nav-label-mobile { display: inline !important; }
+
+  /* Hide duplicate category pills bar inside Hero on mobile (saves vertical height) */
+  .hero-category-pills-bar { display: none !important; }
+
+  /* Compact floating hero badge in top-left */
+  .hero-slide-badge {
+    top: 8px !important;
+    left: 8px !important;
+    padding: 3px 8px !important;
+    font-size: 0.68rem !important;
+    border-radius: 6px !important;
+    gap: 5px !important;
+    background: rgba(15, 23, 42, 0.6) !important;
+  }
+  .hero-badge-sub { display: none !important; }
+
+  /* Hero Carousel arrows: pushed to side gutters so they don't block product photo */
+  .carousel-arrow {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 11px !important;
+    background: rgba(15, 23, 42, 0.45) !important;
+    backdrop-filter: blur(4px) !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+  }
+  .carousel-arrow.left { left: 4px !important; }
+  .carousel-arrow.right { right: 4px !important; }
+
+  /* Carousel dots on mobile */
+  .carousel-dots {
+    bottom: 12px !important;
+    padding: 4px 10px !important;
+    gap: 5px !important;
+  }
 
   /* Hero Banner text */
   .hero-title { font-size: 2rem; }
@@ -672,11 +721,6 @@ button {
 
   /* Section headers collapse on mobile */
   .section-header { flex-direction: column; align-items: flex-start; gap: 8px; }
-
-  /* Hero Carousel arrows */
-  .carousel-arrow { width: 30px; height: 30px; font-size: 12px; }
-  .carousel-arrow.left { left: 8px; }
-  .carousel-arrow.right { right: 8px; }
 }
 
 /* Small mobile: ≤ 480px */

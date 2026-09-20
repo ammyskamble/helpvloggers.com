@@ -3,7 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { TAXONOMY } from '../data/vloggingProducts';
 import { 
   Mic, Camera, Smartphone, Sliders, Sparkles, Package, ShoppingBag, 
-  Home, ChevronDown, ArrowRight, BookOpen, ArrowLeftRight, Wrench
+  Home, ChevronDown, ArrowRight, BookOpen, ArrowLeftRight
 } from 'lucide-react';
 
 const ICON_MAP = {
@@ -13,6 +13,15 @@ const ICON_MAP = {
   'gimbals-tripods': Sliders,
   'creator-lighting': Sparkles,
   'creator-tech': Package
+};
+
+const SHORT_LABELS = {
+  'audio-microphones': 'Mics',
+  'cameras-recorders': 'Cameras',
+  'smartphone-rigs': 'Rigs',
+  'gimbals-tripods': 'Tripods',
+  'creator-lighting': 'Lighting',
+  'creator-tech': 'Tech'
 };
 
 export default function CategoryNavBar({ onOpenBuilder }) {
@@ -87,7 +96,8 @@ export default function CategoryNavBar({ onOpenBuilder }) {
           }}
         >
           <ShoppingBag size={14} color="#00f2fe" /> 
-          <span>Shop All Gear</span>
+          <span className="nav-label-desktop">Shop All Gear</span>
+          <span className="nav-label-mobile">Shop</span>
         </NavLink>
 
         {/* 3. Vlogging Smartphones Hub */}
@@ -114,7 +124,8 @@ export default function CategoryNavBar({ onOpenBuilder }) {
             }}
           >
             <Smartphone size={14} color="#00e676" />
-            <span>Smartphones Hub</span>
+            <span className="nav-label-desktop">Smartphones Hub</span>
+            <span className="nav-label-mobile">Phones</span>
             <ChevronDown size={11} style={{ opacity: 0.6 }} />
           </NavLink>
 
@@ -195,6 +206,7 @@ export default function CategoryNavBar({ onOpenBuilder }) {
         {TAXONOMY.map(cat => {
           const IconComponent = ICON_MAP[cat.id] || Sparkles;
           const isHovered = hoveredCat === cat.id;
+          const shortLabel = SHORT_LABELS[cat.id] || cat.name;
 
           return (
             <div 
@@ -221,7 +233,8 @@ export default function CategoryNavBar({ onOpenBuilder }) {
                 }}
               >
                 <IconComponent size={14} />
-                <span>{cat.name}</span>
+                <span className="nav-label-desktop">{cat.name}</span>
+                <span className="nav-label-mobile">{shortLabel}</span>
                 {cat.subCategories && cat.subCategories.length > 0 && (
                   <ChevronDown size={11} style={{ opacity: 0.6 }} />
                 )}
@@ -321,7 +334,8 @@ export default function CategoryNavBar({ onOpenBuilder }) {
           }}
         >
           <BookOpen size={14} color="#00e676" />
-          <span>Reviews & Blogs</span>
+          <span className="nav-label-desktop">Reviews & Blogs</span>
+          <span className="nav-label-mobile">Reviews</span>
           <span style={{
             background: 'rgba(0, 230, 118, 0.18)',
             color: '#00e676',
@@ -354,7 +368,8 @@ export default function CategoryNavBar({ onOpenBuilder }) {
           }}
         >
           <ArrowLeftRight size={14} color="#f6d365" />
-          <span>Comparisons</span>
+          <span className="nav-label-desktop">Comparisons</span>
+          <span className="nav-label-mobile">Compare</span>
         </NavLink>
 
         {/* 7. Kit Builder Trigger Button */}
@@ -388,7 +403,8 @@ export default function CategoryNavBar({ onOpenBuilder }) {
             }}
           >
             <Sparkles size={14} color="#ff9900" />
-            <span>Kit Builder</span>
+            <span className="nav-label-desktop">Kit Builder</span>
+            <span className="nav-label-mobile">Builder</span>
           </button>
         )}
       </div>

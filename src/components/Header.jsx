@@ -133,10 +133,10 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
   };
 
   return (
-    <header style={{ position: 'sticky', top: 0, zIndex: 1000, backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}>
-      {/* 1. Top Slimmer, Dismissible Announcement Bar */}
+    <>
+      {/* 1. Top Slimmer, Dismissible Announcement Bar (Slides away naturally on scroll) */}
       {isAnnouncementVisible && (
-        <div style={{
+        <div className="announcement-bar-top" style={{
           background: 'linear-gradient(90deg, #ff9900 0%, #ff5722 50%, #00f2fe 100%)',
           color: '#050714',
           fontSize: '0.74rem',
@@ -196,6 +196,7 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
             {/* Pincode Selector (When India is active) */}
             {market === 'india' && (
               <div 
+                className="announcement-pincode"
                 onClick={() => {
                   const code = prompt('Enter delivery pincode (e.g. 110001 Delhi, 560001 Bengaluru, 400001 Mumbai):', '400001');
                   if (code) setSelectedPincode(code);
@@ -234,8 +235,9 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
         </div>
       )}
 
-      {/* 2. Main E-Commerce Brand & Search Bar */}
-      <div className="header-bar glass-panel" style={{ borderRadius: 0, padding: '12px 24px' }}>
+      {/* 2. Main Sticky Header (Only search bar + compact category subnav stick!) */}
+      <header className="sticky-header-container" style={{ position: 'sticky', top: 0, zIndex: 1000, backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)' }}>
+        <div className="header-bar glass-panel" style={{ borderRadius: 0, padding: '10px 20px' }}>
         <Link to="/" className="logo-brand" style={{ textDecoration: 'none' }}>
           <div className="logo-icon" style={{ background: 'linear-gradient(135deg, #ff9900 0%, #00f2fe 100%)' }}>
             <Camera size={22} color="#050714" />
@@ -521,28 +523,54 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
           </Link>
         </div>
 
-        {/* Mobile Hamburger Button — shown only on mobile */}
-        <button
-          className="mobile-menu-btn"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle navigation menu"
-          style={{
-            display: 'none',
-            background: isMobileMenuOpen ? 'rgba(0, 242, 254, 0.12)' : 'rgba(255, 255, 255, 0.07)',
-            border: isMobileMenuOpen ? '1px solid rgba(0, 242, 254, 0.4)' : '1px solid rgba(255, 255, 255, 0.14)',
-            borderRadius: '10px',
-            width: '40px',
-            height: '40px',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: isMobileMenuOpen ? '#00f2fe' : '#ffffff',
-            cursor: 'pointer',
-            flexShrink: 0,
-            transition: 'all 0.2s ease'
-          }}
-        >
-          {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        {/* Mobile Right Controls: Wishlist + Hamburger */}
+        <div className="mobile-header-actions" style={{ display: 'none', alignItems: 'center', gap: '8px' }}>
+          <div 
+            onClick={() => alert(`Your Wishlist contains ${wishlist.length} creator products.`)}
+            style={{ 
+              cursor: 'pointer', 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              width: '38px', 
+              height: '38px', 
+              borderRadius: '10px', 
+              background: 'rgba(255, 255, 255, 0.06)', 
+              border: '1px solid rgba(255, 255, 255, 0.1)' 
+            }}
+          >
+            <div style={{ position: 'relative', display: 'flex' }}>
+              <Heart size={18} color={wishlist.length > 0 ? '#ff0844' : '#cbd5e1'} fill={wishlist.length > 0 ? '#ff0844' : 'none'} />
+              {wishlist.length > 0 && (
+                <span style={{ position: 'absolute', top: '-6px', right: '-8px', background: '#ff0844', color: '#fff', fontSize: '0.62rem', borderRadius: '10px', padding: '0 4px', fontWeight: 900 }}>
+                  {wishlist.length}
+                </span>
+              )}
+            </div>
+          </div>
+
+          <button
+            className="mobile-menu-btn"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle navigation menu"
+            style={{
+              background: isMobileMenuOpen ? 'rgba(0, 242, 254, 0.12)' : 'rgba(255, 255, 255, 0.07)',
+              border: isMobileMenuOpen ? '1px solid rgba(0, 242, 254, 0.4)' : '1px solid rgba(255, 255, 255, 0.14)',
+              borderRadius: '10px',
+              width: '38px',
+              height: '38px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: isMobileMenuOpen ? '#00f2fe' : '#ffffff',
+              cursor: 'pointer',
+              flexShrink: 0,
+              transition: 'all 0.2s ease'
+            }}
+          >
+            {isMobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
       </div>
 
       {/* 3. Sticky Dedicated Category & Navigation Tabs Bar */}
@@ -699,5 +727,6 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
         </div>
       )}
     </header>
+  </>
   );
 }

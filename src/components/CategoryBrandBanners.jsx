@@ -87,6 +87,7 @@ export default function CategoryBrandBanners() {
     >
       {/* Category Navigation Pills (Touch-Friendly Smooth Horizontal Swipe) */}
       <div 
+        className="hero-category-pills-bar"
         style={{
           background: 'rgba(5, 7, 18, 0.95)',
           borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
@@ -182,7 +183,7 @@ export default function CategoryBrandBanners() {
               <div className="hero-slide-badge">
                 <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: banner.accentColor, display: 'inline-block', boxShadow: `0 0 8px ${banner.accentColor}` }} />
                 <span>{banner.name}</span>
-                <span style={{ opacity: 0.6, fontSize: '0.7rem' }}>• 2025/2026 Picks</span>
+                <span className="hero-badge-sub" style={{ opacity: 0.6, fontSize: '0.7rem' }}>• 2025/2026 Picks</span>
               </div>
 
               {/* Full-Bleed Studio Background Image with Ken-Burns subtle zoom */}
