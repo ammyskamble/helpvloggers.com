@@ -21,7 +21,7 @@ export default function BlogSection() {
         <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Lab-Tested Recommendations Before You Buy</span>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '20px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
         {BLOG_CLUSTERS.map(blog => {
           // Find featured products referenced in this guide
           const relatedProducts = (blog.relatedProductIds || [])

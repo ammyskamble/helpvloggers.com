@@ -22,6 +22,18 @@
   padding: 0;
 }
 
+html, body, #root, .app-root {
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
+  position: relative;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background-color: var(--bg-dark);
@@ -580,6 +592,12 @@ button {
 .nav-label-desktop { 
   display: inline; 
 }
+.announcement-bar-text-full {
+  display: inline;
+}
+.announcement-bar-text-mobile {
+  display: none;
+}
 
 /* =============================================
    RESPONSIVE BREAKPOINTS — Mobile-first design
@@ -606,26 +624,70 @@ button {
 
 /* Mobile: ≤ 768px */
 @media (max-width: 768px) {
-  /* Header & Bar Real Estate Overflow Fix */
-  .header-bar { padding: 6px 10px !important; gap: 6px !important; }
-  .logo-brand { font-size: 1.05rem; gap: 6px; }
+  /* Header & Bar Real Estate Overflow Fix — 2-Row Flex Wrap */
+  .header-bar { 
+    display: flex !important; 
+    flex-wrap: wrap !important; 
+    padding: 8px 12px !important; 
+    gap: 8px !important; 
+    align-items: center !important; 
+  }
+  .logo-brand { 
+    order: 1 !important; 
+    font-size: 1.05rem; 
+    gap: 6px; 
+    flex-shrink: 0; 
+  }
   .logo-icon { width: 30px; height: 30px; border-radius: 8px; }
   .logo-sub { display: none !important; }
-  .search-box-wrap { max-width: 100%; flex: 1; margin: 0 6px !important; }
 
-  /* Hide desktop header-right, show mobile header actions */
-  .header-right-desktop { display: none !important; }
-  .mobile-header-actions { display: flex !important; align-items: center; gap: 6px; }
+  /* Mobile actions: Wishlist + Hamburger on the right of logo */
+  .mobile-header-actions { 
+    order: 2 !important; 
+    margin-left: auto !important; 
+    display: flex !important; 
+    align-items: center; 
+    gap: 8px; 
+    flex-shrink: 0; 
+  }
   .mobile-menu-btn { display: flex !important; }
 
+  /* Search box on row 2, 100% width */
+  .search-box-wrap { 
+    order: 3 !important; 
+    width: 100% !important; 
+    max-width: 100% !important; 
+    flex: 0 0 100% !important; 
+    margin: 4px 0 0 !important; 
+  }
+  .search-btn-label { display: none !important; }
+  .search-submit-btn { padding: 8px 14px !important; }
+
+  /* Hide desktop header-right */
+  .header-right-desktop { display: none !important; }
+
   /* Announcement bar */
-  .announcement-bar-top { padding: 4px 10px !important; font-size: 0.68rem !important; }
+  .announcement-bar-top { 
+    padding: 5px 10px !important; 
+    font-size: 0.68rem !important; 
+    justify-content: center !important; 
+    text-align: center !important; 
+  }
+  .announcement-bar-text-full { display: none !important; }
+  .announcement-bar-text-mobile { display: inline !important; }
   .announcement-pincode { display: none !important; }
   .search-cat-select { display: none !important; }
 
   /* Category subnav tabs: compact padding & short mobile labels */
-  .category-subnav { padding: 3px 6px !important; }
-  .category-subnav-inner { gap: 4px !important; }
+  .category-subnav { 
+    padding: 3px 6px !important; 
+    max-width: 100% !important; 
+    overflow-x: hidden !important; 
+  }
+  .category-subnav-inner { 
+    gap: 4px !important; 
+    max-width: 100% !important; 
+  }
   .subnav-pill { padding: 5px 9px !important; font-size: 0.74rem !important; gap: 4px !important; }
   .nav-label-desktop { display: none !important; }
   .nav-label-mobile { display: inline !important; }
@@ -686,8 +748,8 @@ button {
   .pill-btn { flex-shrink: 0; padding: 8px 16px; font-size: 0.82rem; }
 
   /* Main content grid */
-  .main-container { padding: 0 12px 60px; }
-  .products-grid { grid-template-columns: 1fr; gap: 16px; }
+  .main-container { padding: 0 12px 60px; max-width: 100%; box-sizing: border-box; }
+  .products-grid { grid-template-columns: 1fr !important; gap: 16px; }
   .section-title { font-size: 1.3rem; }
 
   /* Kit builder banner */

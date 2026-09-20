@@ -73,7 +73,7 @@ export default function ComparisonDetailPage() {
       </div>
 
       {/* Side by Side Product Showcases */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px', marginBottom: '40px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', marginBottom: '40px' }}>
         {/* Product A */}
         <div className="glass-panel" style={{ padding: '28px', borderRadius: '18px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>

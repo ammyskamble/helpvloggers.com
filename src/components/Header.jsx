@@ -150,7 +150,8 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
           transition: 'all 0.25s ease'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span>🇮🇳 <strong>Creator Fest:</strong> Up to 65% OFF on Digitek, Boya & LED Lighting</span>
+            <span className="announcement-bar-text-full">🇮🇳 <strong>Creator Fest:</strong> Up to 65% OFF on Digitek, Boya & LED Lighting</span>
+            <span className="announcement-bar-text-mobile">🇮🇳 <strong>Creator Fest:</strong> Up to 65% OFF</span>
             <span style={{ background: '#050714', color: '#ff9900', padding: '1px 5px', borderRadius: '4px', fontSize: '0.65rem' }}>
               DEALS LIVE
             </span>
@@ -253,9 +254,10 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
 
 
         {/* E-Commerce Search Bar with Centered Modern Layout & Instant Suggestions */}
-        <div ref={searchWrapRef} style={{ position: 'relative', maxWidth: '680px', flex: 1, margin: '0 24px' }}>
+        <div ref={searchWrapRef} className="search-box-wrap" style={{ position: 'relative', maxWidth: '680px', flex: 1, margin: '0 24px' }}>
           <form 
             onSubmit={handleSearchSubmit} 
+            className="header-search-form"
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -300,6 +302,7 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
             {/* Input */}
             <input
               type="text"
+              className="header-search-input"
               placeholder={market === 'india' 
                 ? "Search Indian creator gear (Digitek mic, Boya, Tygot tripod, Ring light)..."
                 : "Search global gear (DJI Mic 2, Sony ZV-E10, SmallRig, Pocket 3)..."
@@ -318,7 +321,8 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
                 padding: '12px 18px',
                 fontSize: '0.92rem',
                 outline: 'none',
-                minWidth: '140px'
+                minWidth: 0,
+                width: '100%'
               }}
             />
 
@@ -340,6 +344,7 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
             {/* Search Submit Button with High Contrast Gradient */}
             <button 
               type="submit" 
+              className="search-submit-btn"
               style={{ 
                 background: 'linear-gradient(135deg, #ff9900 0%, #ff5722 100%)', 
                 color: '#fff', 
@@ -353,7 +358,8 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
                 gap: '8px',
                 height: '100%',
                 boxShadow: '0 2px 12px rgba(255, 120, 0, 0.35)',
-                transition: 'all 0.2s ease'
+                transition: 'all 0.2s ease',
+                flexShrink: 0
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.opacity = '0.95';
@@ -365,7 +371,7 @@ export default function Header({ searchQuery, setSearchQuery, onOpenBuilder }) {
               }}
             >
               <Search size={16} />
-              <span>Search</span>
+              <span className="search-btn-label">Search</span>
             </button>
           </form>
 

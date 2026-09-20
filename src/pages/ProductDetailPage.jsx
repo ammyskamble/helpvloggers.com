@@ -65,7 +65,7 @@ export default function ProductDetailPage() {
       </nav>
 
       {/* Product Hero Layout: Image + Buying Box */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '40px', marginBottom: '50px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '40px', marginBottom: '50px' }}>
         {/* Left: Product Image & Badges */}
         <div>
           <div className="glass-panel glow-border" style={{ borderRadius: '20px', overflow: 'hidden', position: 'relative' }}>
@@ -318,7 +318,7 @@ export default function ProductDetailPage() {
       )}
 
       {/* Deep Specs & Pros/Cons Section */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '30px', marginBottom: '50px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '30px', marginBottom: '50px' }}>
         <div className="glass-panel" style={{ padding: '28px', borderRadius: '16px' }}>
           <h3 style={{ fontSize: '1.3rem', fontWeight: 800, marginBottom: '18px' }}>
             Technical Specifications

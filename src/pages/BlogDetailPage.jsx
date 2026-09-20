@@ -328,7 +328,7 @@ export default function BlogDetailPage() {
       {(blog.pros || blog.cons) && (
         <section style={{ 
           display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
           gap: '24px', 
           marginBottom: '36px' 
         }}>

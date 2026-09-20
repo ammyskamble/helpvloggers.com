@@ -665,7 +665,7 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '22px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '22px' }}>
           {BLOG_CLUSTERS.slice(0, 3).map(blog => {
             const relatedProducts = (blog.relatedProductIds || [])
               .map(id => VLOGGING_PRODUCTS.find(p => p.id === id))

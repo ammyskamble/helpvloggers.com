@@ -115,7 +115,7 @@ export default function VSComparisonMatrix() {
         {/* Dynamic Spec Comparison Box */}
         {isComparingCustom && (
           <div style={{ marginTop: '24px', paddingTop: '20px', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px', marginBottom: '20px' }}>
               <div style={{ padding: '16px', background: 'rgba(0, 242, 254, 0.08)', borderRadius: '12px', border: '1px solid rgba(0, 242, 254, 0.2)' }}>
                 <div style={{ fontSize: '0.75rem', color: '#00f2fe', fontWeight: 800 }}>CONTENDER A</div>
                 <h4 style={{ fontSize: '1.05rem', margin: '4px 0 8px' }}>{prodA.title}</h4>
@@ -170,7 +170,7 @@ export default function VSComparisonMatrix() {
       </div>
 
       {/* Curated Editorial Battles */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '20px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
         {HEAD_TO_HEAD_COMPARISONS.map(comp => (
           <div className="glass-panel glow-border" key={comp.id} style={{ padding: '24px', borderRadius: '16px' }}>
             <div style={{ fontSize: '0.75rem', color: '#00f2fe', fontWeight: 700, textTransform: 'uppercase', marginBottom: '6px' }}>

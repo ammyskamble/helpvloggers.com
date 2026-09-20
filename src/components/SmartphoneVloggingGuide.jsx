@@ -146,7 +146,7 @@ export default function SmartphoneVloggingGuide() {
       {/* 3. Deep-Dive Showcase for Selected Phone */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
         gap: '30px',
         background: 'rgba(5, 8, 22, 0.7)',
         borderRadius: '20px',
@@ -284,7 +284,7 @@ export default function SmartphoneVloggingGuide() {
             </div>
 
             {/* Pros & Cons */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px', marginBottom: '16px' }}>
               <div style={{ background: 'rgba(0, 230, 118, 0.05)', border: '1px solid rgba(0, 230, 118, 0.15)', borderRadius: '12px', padding: '14px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#00e676', fontWeight: 800, fontSize: '0.82rem', marginBottom: '8px' }}>
                   <CheckCircle2 size={16} /> Why Creators Love It
@@ -470,6 +470,9 @@ export default function SmartphoneVloggingGuide() {
           overflowX: 'auto',
           overflowY: 'auto',
           maxHeight: '560px',
+          maxWidth: '100%',
+          width: '100%',
+          WebkitOverflowScrolling: 'touch',
           borderRadius: '16px',
           border: '1px solid rgba(255, 255, 255, 0.12)',
           background: 'rgba(10, 14, 32, 0.85)',
